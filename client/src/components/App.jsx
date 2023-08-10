@@ -9,6 +9,9 @@ const App = () => {
       <QuestionsList />
       {/* <ratingReviews /> */}
       {/* <relatedProducts /> */}
+      <h1 class="text-3xl font-bold underline">
+      React is running! Great job team! Now go to work.....
+      </h1>
     </div>
   );
 };
