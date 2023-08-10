@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SRC_DIR = path.join(__dirname, 'client', 'src');
 const OUT_DIR = path.join(__dirname, 'public');
 
@@ -12,7 +11,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test:/\.(js|jsx)$/,
+        test:/\.(js|jsx|ts)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -25,7 +24,7 @@ module.exports = {
   },
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.ts']
   },
   // plugins: [
   //   new HtmlWebpackPlugin({
