@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QuestionsList from "../components/questionsAnswers/QuestionsList.jsx";
+import RelatedProducts from './relatedProducts/relatedProducts.jsx';
+
 const App = () => {
 
   return (
@@ -7,10 +9,10 @@ const App = () => {
       <h1 className="text-3xl font-bold underline">
       React is running! Great job team! Now go to work.....
       </h1>
-      {/* <productDetails /> */}
-      {/* <QuestionsList /> */}
-      {/* <ratingReviews /> */}
-      {/* <relatedProducts /> */}
+      {/* <ProductDetails /> */}
+      {/* <QuestionsAnswers /> */}
+      {/* <RatingReviews /> */}
+      {/* <RelatedProducts /> */}
     </div>
   );
 };
