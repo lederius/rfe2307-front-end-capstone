@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
-console.log(process.env.TOKEN);
+// console.log(process.env.TOKEN);
 
 // ROUTES BELOW
 app.get(`/reviews/`, (req, res) => {
@@ -19,6 +19,24 @@ app.get(`/reviews/`, (req, res) => {
     .catch(err => console.log('failed get request', err))
 })
 
+
+
+// Question and Answers API Routing
+app.get('/qa/questions/:product_id', (req, res) => {
+  var productId = req.params.product_id;
+  console.log(`${process.env.API_URL}qa/questions/${productId}`);
+  axios.get(`${process.env.API_URL}qa/questions/?product_id=${productId}`, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then((product) => {
+      res.send(product.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+});
+
+
+
 app.listen(process.env.PORT, (err) => {
   if (err) {
     console.log(err.message);
@@ -26,3 +44,7 @@ app.listen(process.env.PORT, (err) => {
     console.log(`Listening at http://localhost:${process.env.PORT}`);
   }
 });
+
+
+
+
