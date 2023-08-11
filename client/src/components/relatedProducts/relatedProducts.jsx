@@ -1,9 +1,15 @@
 import React from 'react';
 import RelatedList from './relatedList.jsx';
 import YourList from './yourList.jsx';
+import axios from 'axios';
 
 const RelatedProducts = () => {
 
+  axios.get('http://localhost:9000/products')
+    .then(response => {
+    })
+    .catch(error =>
+      console.log('An error fetching from server:', error));
 
   return (
     <div className='mainRelated'>
