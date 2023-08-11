@@ -16,8 +16,8 @@ app.get(`/reviews/`, (req, res) => {
     headers: {Authorization: `Bearer ${process.env.TOKEN}`}
   })
     .then(data => console.log(res.data))
-    .catch(err => console.log('failed get request', err))
-})
+    .catch(err => console.log('failed get request', err));
+});
 
 
 
