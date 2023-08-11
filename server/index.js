@@ -10,23 +10,15 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(cors());
 
-<<<<<<< HEAD
-=======
 // console.log(process.env.TOKEN);
 
->>>>>>> master
 // ROUTES BELOW
 app.get('/reviews/:productID', (req, res) => {
   const id = req.params.productID;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}`, {
     headers: {Authorization: `${process.env.TOKEN}`},
   })
-<<<<<<< HEAD
     .then(response => res.send(response.data.results))
-    .catch(err => console.log('failed get request', err))
-})
-=======
-    .then(data => console.log(res.data))
     .catch(err => console.log('failed get request', err));
 });
 
@@ -60,7 +52,6 @@ app.get('/products', (req, res) => {
     });
 });
 
->>>>>>> master
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
