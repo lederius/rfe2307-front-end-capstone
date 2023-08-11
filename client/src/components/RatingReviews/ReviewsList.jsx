@@ -3,22 +3,22 @@ import axios from 'axios';
 import SingleReview from './SingleReview.jsx';
 
 const ReviewsList = () => {
+  const id = '37315';
 
-  // [reviewList, setReviewList] = useState([]);
+  const [reviewList, setReviewList] = useState([]);
 
-  // useEffect(() => {
-  //   fetch();
-  // })
+  useEffect(() => {
+    fetch();
+  }, [])
 
-  // const fetch = () => {
-  //   axios.get('/reviews/')
-  //     .then(data => console.log(data))
-  //     .then(data => setReviewList(data))
-  //     .catch(err => console.log(err));
-  // }
+  const fetch = () => {
+    axios.get(`/reviews/${id}`, { params: { productID: id } })
+      .then(res => setReviewList(res.data))
+      .catch(err => console.log('failed client get req', err));
+  }
 
   return (
-    <div><SingleReview /></div>
+    <div><SingleReview reviewList={reviewList}/></div>
   )
 }
 

@@ -13,11 +13,12 @@ app.use(cors());
 // console.log(process.env.TOKEN);
 
 // ROUTES BELOW
-app.get(`/reviews/`, (req, res) => {
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', {
-    headers: {Authorization: `Bearer ${process.env.TOKEN}`}
+app.get('/reviews/:productID', (req, res) => {
+  const id = req.params.productID;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}`, {
+    headers: {Authorization: `${process.env.TOKEN}`},
   })
-    .then(data => console.log(res.data))
+    .then(response => res.send(response.data.results))
     .catch(err => console.log('failed get request', err));
 });
 
