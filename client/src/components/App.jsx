@@ -22,8 +22,8 @@ const App = () => {
       </h1> */}
       <ProductDetails />
       {/* <QuestionAnswerContainer /> */}
-      <RatingReviews />
-      {/* <RelatedProducts/> */}
+      {/* <RatingReviews /> */}
+      <RelatedProducts />
     </div>
   );
 };
