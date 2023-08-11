@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RelatedProducts from './relatedProducts/relatedProducts.jsx';
+import RatingReviews from './RatingReviews/ReviewsList.jsx';
 
 const App = () => {
 
