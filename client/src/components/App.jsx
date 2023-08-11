@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QuestionsList from "../components/questionsAnswers/QuestionsList.jsx";
 import RelatedProducts from './relatedProducts/relatedProducts.jsx';
+import RatingReviews from './RatingReviews/ReviewsList.jsx';
 
 const App = () => {
 
