@@ -10,8 +10,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(cors());
 
-// console.log(process.env.TOKEN);
-
 // ROUTES BELOW
 app.get('/reviews/:productID', (req, res) => {
   const id = req.params.productID;

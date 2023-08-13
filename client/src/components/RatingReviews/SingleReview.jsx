@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 
 const SingleReview = ({ reviewList }) => {
@@ -111,10 +111,9 @@ const SingleReview = ({ reviewList }) => {
 
   const photo = (arr) => {
     if (arr.length > 0) {
-      console.log(arr);
       return (
         arr.map(image => {
-          return <img src={image.url}></img>
+          return <img key={image.id} className="h-32 w-32" src={image.url}></img>
         })
       )
     }
@@ -132,21 +131,33 @@ const SingleReview = ({ reviewList }) => {
         </select>
       </div>
 
-      <div className='reviewTile'>
+      <div className='reviewTile rounded-lg shadow-xl'>
           {reviewList.map(review => {
+            const [helpCount, setHelpCount] = useState(review.helpfulness);
+            console.log(helpCount);
+
+            const handleClick = (e, count) => {
+              e.preventDefault();
+              setHelpCount(helpCount + 1);
+              // add post request here for persistency
+            }
+
             return (
-              <div key={review.review_id} className='h-48 bg-slate-200 rounded-lg shadow-xl min-h-[25%]'>
-                <div>
-                  <div className='stars'>{stars(review.rating)}</div>
-                  <div className='username'>{review.reviewer_name}</div>
-                  <div className='date'>{moment(review.date).fromNow()}</div>
-                  <div className='summary'>{review.summary}</div>
+              <div key={review.review_id} className='bg-slate-200 min-h-[15%]'>
+                <div className="flex justify-between items-center p-2">
+                  <span className='stars'>{stars(review.rating)}</span>
+                  <span className='usernameDate'>{review.reviewer_name}, {moment(review.date).fromNow()}</span>
+                </div>
+                <div className="p-2">
+                  <div className='summary text-lg font-bold'>{review.summary}</div>
                   <div className='body'>{review.body}</div>
                   {/* needs conditional rendering */}
                   <div className='rec'>{rec(review.recommend)}</div>
-                  <div className='photos'>{photo(review.photos)}</div>
+                  <div className='photos flex gap-3'>{photo(review.photos)}</div>
                   {/* <div className='response'></div> */}
-                  <div className='help'>{review.helpfulness}</div>
+                  <div className='help pb-8'>Did you find this review helpful? <button
+                    onClick={(e) => handleClick(e, helpCount)}
+                  >Yes ({helpCount})</button></div>
                 </div>
               </div>
             )
