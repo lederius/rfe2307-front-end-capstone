@@ -133,8 +133,8 @@ const SingleReview = ({ reviewList }) => {
 
       <div className='reviewTile rounded-lg shadow-xl'>
           {reviewList.map(review => {
+
             const [helpCount, setHelpCount] = useState(review.helpfulness);
-            console.log(helpCount);
 
             const handleClick = (e, count) => {
               e.preventDefault();
@@ -143,21 +143,21 @@ const SingleReview = ({ reviewList }) => {
             }
 
             return (
-              <div key={review.review_id} className='bg-slate-200 min-h-[15%]'>
-                <div className="flex justify-between items-center p-2">
+              <div key={review.review_id} className='bg-slate-200 min-h-[15% border-b-2 border-black'>
+                <div className="flex justify-between items-center pt-4 px-2">
                   <span className='stars'>{stars(review.rating)}</span>
                   <span className='usernameDate'>{review.reviewer_name}, {moment(review.date).fromNow()}</span>
                 </div>
                 <div className="p-2">
-                  <div className='summary text-lg font-bold'>{review.summary}</div>
-                  <div className='body'>{review.body}</div>
-                  {/* needs conditional rendering */}
-                  <div className='rec'>{rec(review.recommend)}</div>
-                  <div className='photos flex gap-3'>{photo(review.photos)}</div>
-                  {/* <div className='response'></div> */}
-                  <div className='help pb-8'>Did you find this review helpful? <button
-                    onClick={(e) => handleClick(e, helpCount)}
-                  >Yes ({helpCount})</button></div>
+                  <div className='summary text-lg font-bold p-1'>{review.summary}</div>
+                  <div className='body p-1'>{review.body}</div>
+                  <div className='rec p-1'>{rec(review.recommend)}</div>
+                  <div className='photos flex gap-3 p-1'>{photo(review.photos)}</div>
+
+                  {/* format this when new review + post req is setup */}
+                  {/* <div className='response'>{review.response}</div> */}
+
+                  <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button onClick={(e) => handleClick(e, helpCount)}>Yes ({helpCount})</button></div>
                 </div>
               </div>
             )
