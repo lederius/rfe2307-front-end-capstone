@@ -3,6 +3,7 @@ import QuestionAnswerContainer from './questionsAnswers/QuestionAnswerContainer.
 import RelatedProducts from './relatedProducts/relatedProducts.jsx';
 import RatingReviews from './ratingReviews/ReviewsList.jsx';
 
+
 const App = () => {
 
 
