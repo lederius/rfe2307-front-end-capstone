@@ -2,6 +2,8 @@ import React from 'react';
 import RelatedList from './relatedList.jsx';
 import YourList from './yourList.jsx';
 import axios from 'axios';
+import './related.css';
+
 
 const RelatedProducts = () => {
 
