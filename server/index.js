@@ -30,12 +30,12 @@ app.get('/qa/questions/:product_id', (req, res) => {
   console.log(`${process.env.API_URL}qa/questions/${productId}`);
   axios.get(`${process.env.API_URL}qa/questions/?product_id=${productId}`, {headers: {Authorization: `${process.env.TOKEN}`}})
     .then((product) => {
+      // console.log(product.data);
       res.send(product.data);
     })
     .catch(err => {
       console.log(err);
     });
-
 });
 
 
