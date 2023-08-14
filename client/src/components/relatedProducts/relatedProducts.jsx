@@ -9,7 +9,7 @@ const RelatedProducts = () => {
 
   axios.get('http://localhost:9000/products')
     .then(response => {
-      console.log('this is respone', response.data);
+    //  console.log('this is respone', response.data);
     })
     .catch(error =>
       console.log('An error fetching from server:', error));
