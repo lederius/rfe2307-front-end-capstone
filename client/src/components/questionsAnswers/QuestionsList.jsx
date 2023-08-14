@@ -3,7 +3,7 @@ import Question from './Question.jsx';
 import axios from 'axios';
 
 const QuestionsList = (props) => {
-
+  // console.log(props.questions);
   return (
     <div>
       {props.questions.map((question, index) => {
