@@ -3,7 +3,6 @@ import QuestionsList from "../components/questionsAnswers/QuestionsList.jsx";
 import RelatedProducts from './relatedProducts/relatedProducts.jsx';
 import RatingReviews from './ratingReviews/ReviewsList.jsx';
 
-
 const App = () => {
 
 
