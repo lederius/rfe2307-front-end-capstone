@@ -1,12 +1,4 @@
 {
-  "tailwindCSS.includeLanguages": {
-    "html": "html",
-    "javascript": "javascript",
-    "css": "css"
-  },
-  "editor.quickSuggestions": {
-    "strings": true
-  },
   "editor.lightbulb.enabled": false,
   "editor.parameterHints.enabled": false,
   "editor.renderWhitespace": "all",
