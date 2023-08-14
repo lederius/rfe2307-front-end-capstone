@@ -15,13 +15,13 @@ const Answer = (props) => {
   return (
     <div>
       <p ><label className="font-bold" >A:</label> {answerObj.body} </p>
-      <p className="text-sm ml-5" >by {answerObj.answerer_name}, {moment.utc(answerObj.date).format('MMMM DD, YYYY')}  |   <label>Helpful? </label>
+      <p className="text-xs ml-5" >by {answerObj.answerer_name}, {moment.utc(answerObj.date).format('MMMM DD, YYYY')}<span className="m-4 text-xs">|</span><label>Helpful? </label>
 
-        <button className="underline" onClick={(e)=>{
+        <button className="underline text-xs m-1" onClick={(e)=>{
           console.log('clicked helpful');
-        }}>Yes </button>
+        }}>Yes</button>
 
-        <span> ({answerObj.helpfulness})  |  </span><button className="underline" onClick={(e)=>{
+        <span className="text-xs">({answerObj.helpfulness})</span><span className="m-4 text-xs">|</span><button className="underline" onClick={(e)=>{
           console.log('clicked report');
         }}>Report </button></p>
 
