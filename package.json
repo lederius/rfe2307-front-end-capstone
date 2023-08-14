@@ -11,7 +11,7 @@
     "client-dev": "npx webpack --watch",
     "build": "npx webpack",
     "server-dev": "nodemon server/index.js",
-    "css-dev": "npx tailwindcss -i ./public/styles.css -o ./public/output.css --watch",
+    "css-dev": "npx tailwindcss -i ./public/styles.css -o ./public/build/output.css --watch",
     "test": "jest"
   },
   "dependencies": {
