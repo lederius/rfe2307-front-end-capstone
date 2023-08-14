@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import QuestionsList from "../components/questionsAnswers/QuestionsList.jsx";
+import React, { useState, useEffect } from 'react';
+import QuestionAnswerContainer from './questionsAnswers/QuestionAnswerContainer.jsx';
 import RelatedProducts from './relatedProducts/relatedProducts.jsx';
 import RatingReviews from './ratingReviews/ReviewsList.jsx';
 
@@ -15,7 +15,7 @@ const App = () => {
       React is running! Great job team! Now go to work.....
       </h1>
       {/* <ProductDetails /> */}
-      {/* <QuestionsList /> */}
+      <QuestionAnswerContainer />
       {/* <RatingReviews /> */}
       {/* <RelatedProducts /> */}
     </div>
