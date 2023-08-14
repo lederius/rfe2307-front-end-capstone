@@ -52,7 +52,7 @@ app.get('/products', (req, res) => {
 
 //list of related products
 app.get('/products/:product_id/related', (req, res) => {
-  var productid = req.body.password;
+  var productId = req.params.product_id;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productid}/related`, {
     headers: { Authorization: process.env.TOKEN }
   })
@@ -67,7 +67,7 @@ app.get('/products/:product_id/related', (req, res) => {
 
 //styles
 app.get('/products/:product_id/styles', (req, res) => {
-  var productid = req.body.password;
+  var productId = req.params.product_id;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productid}/styles`, {
     headers: { Authorization: process.env.TOKEN }
   })
