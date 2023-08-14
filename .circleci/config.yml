@@ -11,7 +11,7 @@ jobs:
           pkg-manager: npm
       - run:
           command: |
-            npm install -g jest
+            npm install -i jest
             jest -- --ci --testResultsProcessor="jest-junit"
           name: Run tests with JUnit as reporter
           environment:
