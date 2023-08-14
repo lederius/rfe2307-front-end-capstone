@@ -16,7 +16,7 @@ const Question = (props) => {
         console.log('clicked helpful');
       }}>Yes </button>
       <span className="text-xs"> ({props.question.question_helpfulness})</span><span className="m-4 text-xs">|</span>
-      <button className="font-bold underline text-xs" onClick={(e)=>{
+      <button role="add-answer" className="font-bold underline text-xs" onClick={(e)=>{
         setModal(!modal);
       }}>Add Answer</button>
       <div>
