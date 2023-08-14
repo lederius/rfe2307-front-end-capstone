@@ -10,12 +10,16 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          command: npm i jest-junit
+          name: Install jest-junit
+      - run:
           command: |
-            mkdir test-results
-            npm run test
-          name: Run tests
+            jest --ci --runInBand --reporters=default --reporters=jest-junit
+          name: Run tests with JUnit as reporter
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/
       - store_test_results:
-          path: test-results
+          path: ./reports/
       - run:
           command: npm run build
           name: Build app
