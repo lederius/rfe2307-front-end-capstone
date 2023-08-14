@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  node: circleci/node@4.7.0
+  node: circleci/node@5.0.2
   heroku: circleci/heroku@1.2.6
 jobs:
   build_and_test: # this can be any name you choose
@@ -22,13 +22,13 @@ jobs:
           root: ~/project
           paths:
             - .
-deploy:
-  executor: heroku/default
-  steps:
-    - attach_workspace:
-        at: ~/project
-    - heroku/deploy-via-git:
-        force: true
+  deploy:
+    executor: heroku/default
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - heroku/deploy-via-git:
+          force: true
 
 workflows:
   build_test_deploy: # this can be any name you choose
