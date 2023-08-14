@@ -5,7 +5,7 @@ const Question = (props) => {
 
   const [answers, setAnswers] = useState([props.question.answers]);
   const [modal, setModal] = useState(false);
-
+  // console.log('product name and question body', props.question);
 
   return (
     <div className="flex-1">
@@ -20,7 +20,7 @@ const Question = (props) => {
         setModal(!modal);
       }}>Add Answer</button>
       <div>
-        {modal && (<AnswerModal modal={modal} setModal={setModal}/>)}
+        {modal && (<AnswerModal modal={modal} setModal={setModal} questionbody={props.question.question_body}/>)}
       </div>
       <div>
         <AnswersList answers={answers}/>

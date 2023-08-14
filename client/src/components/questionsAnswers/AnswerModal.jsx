@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const AnswerModal = ({modal, setModal}) => {
+const AnswerModal = ({modal, setModal, questionbody}) => {
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -11,7 +11,7 @@ const AnswerModal = ({modal, setModal}) => {
         <div onClick={setModal} className="w-100vw h-100vh top-0 left-0 right-0 bottom-0 fixed bg-neutral-600 opacity-70 "></div>
         <div className="absolute inset-x-1/4 translate-y-1/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 h-124">
           <form className="flex flex-col">
-            <label className="mt-2 ml-2">[Product Name]: [Question Body]</label>
+            <label className="mt-2 ml-2">[Product Name]: {questionbody}</label>
             <textarea className="m-2 h-48" placeholder="Your answer"></textarea>
             <input className="m-2" placeholder="Example: jack543!"></input>
             <span className="m-2 text-xs">For privacy reasons, do not use your full name or email address</span>
