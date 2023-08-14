@@ -143,7 +143,7 @@ const SingleReview = ({ reviewList }) => {
             }
 
             return (
-              <div key={review.review_id} className='bg-slate-200 min-h-[15% border-b-2 border-black'>
+              <div key={review.review_id} className='min-h-[15%] border-b-2 border-black'>
                 <div className="flex justify-between items-center pt-4 px-2">
                   <span className='stars'>{stars(review.rating)}</span>
                   <span className='usernameDate'>{review.reviewer_name}, {moment(review.date).fromNow()}</span>
@@ -157,7 +157,7 @@ const SingleReview = ({ reviewList }) => {
                   {/* format this when new review + post req is setup */}
                   {/* <div className='response'>{review.response}</div> */}
 
-                  <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button onClick={(e) => handleClick(e, helpCount)}>Yes ({helpCount})</button></div>
+                  <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button data-testid="helpful" onClick={(e) => handleClick(e, helpCount)}>Yes ({helpCount})</button></div>
                 </div>
               </div>
             )

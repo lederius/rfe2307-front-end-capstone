@@ -15,8 +15,8 @@ const App = () => {
       React is running! Great job team! Now go to work.....
       </h1>
       {/* <ProductDetails /> */}
-      <QuestionAnswerContainer />
-      {/* <RatingReviews /> */}
+      {/* <QuestionAnswerContainer /> */}
+      <RatingReviews />
       {/* <RelatedProducts /> */}
     </div>
   );
