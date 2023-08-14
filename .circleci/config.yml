@@ -10,7 +10,9 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run test
+          command: |
+            mkdir test-results
+            npm run test
           name: Run tests
       - store_test_results:
           path: public/build/test-results
