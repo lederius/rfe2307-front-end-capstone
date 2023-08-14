@@ -13,7 +13,7 @@ jobs:
           command: npm run test
           name: Run tests
       - store_test_results:
-          path: public/build/test-results/test
+          path: public/build/test-results
       - run:
           command: npm run build
           name: Build app
