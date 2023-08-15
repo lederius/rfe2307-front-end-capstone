@@ -50,6 +50,37 @@ app.get('/products', (req, res) => {
     });
 });
 
+//list of related products
+app.get('/products/:product_id/related', (req, res) => {
+  var productId = req.params.product_id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`, {
+    headers: { Authorization: process.env.TOKEN }
+  })
+    .then(response => {
+      res.json(response.data);
+    })
+    .catch(err => {
+      console.log('Failed to get request', err);
+      res.status(500).json({ error: 'Failed to fetch list of related products' });
+    });
+});
+
+//styles
+app.get('/products/:product_id/styles', (req, res) => {
+  var productId = req.params.product_id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/styles`, {
+    headers: { Authorization: process.env.TOKEN }
+  })
+    .then(response => {
+      res.json(response.data);
+    })
+    .catch(err => {
+      console.log('Failed to get request', err);
+      res.status(500).json({ error: 'Failed to fetch list of styles' });
+    });
+});
+
+
 
 app.listen(process.env.PORT, (err) => {
   if (err) {

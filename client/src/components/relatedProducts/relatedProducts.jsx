@@ -9,6 +9,7 @@ const RelatedProducts = () => {
 
   axios.get('http://localhost:9000/products')
     .then(response => {
+    //  console.log('this is respone', response.data);
     })
     .catch(error =>
       console.log('An error fetching from server:', error));
@@ -16,11 +17,11 @@ const RelatedProducts = () => {
   return (
     <div className='mainRelated'>
       <div className='relatedproducts'>
-        <h2> RELATED PRODUCTS </h2>
+        <h2 className='sectionHeading'> RELATED PRODUCTS <hr className="theLine" /></h2>
         <RelatedList />
       </div>
       <div className='youroutfit'>
-        <h2> YOUR OUTFIT </h2>
+        <h2 className='sectionHeading'> YOUR OUTFIT <hr className="theLine" /></h2>
         <YourList />
       </div>
     </div>
