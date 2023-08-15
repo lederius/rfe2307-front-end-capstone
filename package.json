@@ -9,10 +9,11 @@
   },
   "scripts": {
     "client-dev": "npx webpack --watch",
-    "build": "npx webpack",
+    "build": "npx webpack & npx tailwindcss -i ./public/styles.css -o ./public/build/output.css",
     "server-dev": "nodemon server/index.js",
     "css-dev": "npx tailwindcss -i ./public/styles.css -o ./public/build/output.css --watch",
-    "test": "jest"
+    "test": "jest",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "axios": "^1.4.0",
