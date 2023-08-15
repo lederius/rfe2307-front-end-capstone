@@ -1,5 +1,5 @@
 import React from 'react';
-import './related.css';
+//import './related.css';
 import RelatedList from './relatedList.jsx';
 
 const ProductCard = ({styles, photo}) => {
@@ -10,9 +10,6 @@ const ProductCard = ({styles, photo}) => {
 
   const name = styles.name;
   const price = styles.original_price;
-  console.log('the other log', name)
-  console.log('photo log', price)
-
 
 
   return (
