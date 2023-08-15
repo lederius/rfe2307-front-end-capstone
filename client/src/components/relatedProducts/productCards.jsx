@@ -14,7 +14,9 @@ const ProductCard = ({styles, photo}) => {
 
   return (
     <div className='productCard'>
-      <img src={photo} />
+      <div className='thumbSpace'>
+        <img className='cardImage' src={photo} />
+      </div>
       <div className='container'>
         <h2>CATEGORY</h2>
         <h3><b>{name}</b></h3>

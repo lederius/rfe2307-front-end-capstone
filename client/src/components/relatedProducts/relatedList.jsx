@@ -3,7 +3,7 @@ import ProductCard from './productCards.jsx';
 import axios from 'axios';
 
 const RelatedList = () => {
-  const [productId, setProductId] = React.useState(37312);
+  const [productId, setProductId] = React.useState(37315);
   const [styles, setStyles] = React.useState([]);
   const [product, setProduct] = React.useState('');
 
@@ -21,14 +21,14 @@ const RelatedList = () => {
 
             for (var item of resultData) {
               var temp = {id: item.product_id};
-              for (var style of item.results) {
+              outerLoop: for (var style of item.results) {
                 for (var photo of style.photos) {
                   if (photo.thumbnail_url) {
                     temp.photo = photo.thumbnail_url;
                     temp.style = style;
                   }
                   if (style['default?']) {
-                    break;
+                    break outerLoop;
                   }
                 }
               }
