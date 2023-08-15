@@ -2,28 +2,26 @@ import React from 'react';
 import './related.css';
 import RelatedList from './relatedList.jsx';
 
-const ProductCard = ({results}) => {
+const ProductCard = ({styles, photo}) => {
 
-  for (var element of results) {
-    if (element['default?'] && element.photos[0].thumbnail_url) {
-      var defaultStyle = element;
-      break;
-    }
-    if (element.photos[0].thumbnail_url) {
-      var defaultStyle = element;
-    }
-    if (!defaultStyle) {
-      continue;
-    }
+  if (!styles || !photo) {
+    return null;
   }
+
+  const name = styles.name;
+  const price = styles.original_price;
+  console.log('the other log', name)
+  console.log('photo log', price)
+
+
 
   return (
     <div className='productCard'>
-      <img src={defaultStyle.photos[0].thumbnail_url} />
+      <img src={photo} />
       <div className='container'>
         <h2>CATEGORY</h2>
-        <h3><b>{defaultStyle.name}</b></h3>
-        <p>${defaultStyle.original_price}</p>
+        <h3><b>{name}</b></h3>
+        <p>${price}</p>
       Rating
       </div>
     </div>

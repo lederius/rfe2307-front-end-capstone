@@ -3,7 +3,7 @@ import ProductCard from './productCards.jsx';
 import axios from 'axios';
 
 const RelatedList = () => {
-  const [productId, setProductId] = React.useState(37311);
+  const [productId, setProductId] = React.useState(37312);
   const [styles, setStyles] = React.useState([]);
   const [product, setProduct] = React.useState('');
 
@@ -16,7 +16,26 @@ const RelatedList = () => {
         });
         Promise.all(stylePromises)
           .then(results => {
-            const newStyles = results.map(result => result.data);
+            const resultData = results.map(result => result.data);
+            const newStyles = [];
+
+            for (var item of resultData) {
+              var temp = {id: item.product_id};
+              for (var style of item.results) {
+                for (var photo of style.photos) {
+                  if (photo.thumbnail_url) {
+                    temp.photo = photo.thumbnail_url;
+                    temp.style = style;
+                  }
+                  if (style['default?']) {
+                    break;
+                  }
+                }
+              }
+              if (temp.photo) {
+                newStyles.push(temp);
+              }
+            }
             setStyles(newStyles);
           })
           .catch(error => {
@@ -29,9 +48,11 @@ const RelatedList = () => {
   }, [productId]);
 
 
+
   return (
     <div className='relatedList'>
-      {styles.map(item => (<ProductCard key={item.product_id} results={item.results}/>))}
+      {console.log('styles log', styles)}
+      {styles.map(item => (<ProductCard key={item.id} styles={item.style} photo={item.photo}/>))}
     </div>
   );
 };
