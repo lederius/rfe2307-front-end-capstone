@@ -1,39 +1,29 @@
-import React, {useEffect} from 'react';
-import ProductCard from './productCards.jsx';
-import axios from 'axios';
+import React from 'react';
+import './related.css';
+import RelatedList from './relatedList.jsx';
 
-const RelatedList = () => {
-  const [productId, setProductId] = React.useState(37311);
-  const [styles, setStyles] = React.useState([]);
-  const [product, setProduct] = React.useState('');
+const ProductCard = ({styles, photo}) => {
 
+  if (!styles || !photo) {
+    return null;
+  }
 
-  useEffect(() => {
-    axios.get(`http://localhost:9000/products/${productId}/related`)
-      .then(response => {
-        const stylePromises = response.data.map(item => {
-          return axios.get(`http://localhost:9000/products/${item}/styles`);
-        });
-        Promise.all(stylePromises)
-          .then(results => {
-            const newStyles = results.map(result => result.data);
-            setStyles(newStyles);
-          })
-          .catch(error => {
-            console.log('An error occurred:', error);
-          });
-      })
-      .catch(error => {
-        console.log('An error occurred:', error);
-      });
-  }, [productId]);
+  const name = styles.name;
+  const price = styles.original_price;
 
 
   return (
-    <div className='relatedList'>
-      {styles.map(item => (<ProductCard key={item.product_id} results={item.results}/>))}
+    <div className='productCard'>
+      <img src={photo} />
+      <div className='container'>
+        <h2>CATEGORY</h2>
+        <h3><b>{name}</b></h3>
+        <p>${price}</p>
+      Rating
+      </div>
     </div>
   );
 };
 
-export default RelatedList;
+export default ProductCard;
+
