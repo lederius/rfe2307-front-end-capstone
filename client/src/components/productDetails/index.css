@@ -1,0 +1,7 @@
+.Header{
+border: 1px solid black;
+border-radius: 5%;
+}
+.searchBar{
+  float: right;
+}
