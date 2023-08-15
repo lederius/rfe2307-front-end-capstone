@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, fireEvent, cleanup, screen, configure } from '@testing-library/react';
+import QuestionAnswerContainer from './QuestionAnswerContainer.jsx';
 import QuestionsList from './QuestionsList.jsx';
 import AnswerModal from './AnswerModal.jsx';
+import QuestionModal from './QuestionModal.jsx';
 import '@testing-library/jest-dom/';
 
 const exampleData = [
@@ -40,4 +42,11 @@ it('Tests if button renders answerModal with question_body', () => {
   const button = screen.getByRole('add-answer');
   fireEvent.click(button);
   expect(screen.getByText('Blah blah blah')).toBeTruthy();
+});
+
+it('Tests if add question button renders questionModal with "Test Name"', () => {
+  const {container} = render(<QuestionAnswerContainer />);
+  const button = screen.getByRole('add-question');
+  fireEvent.click(button);
+  expect(screen.getByText('About the TEST NAME')).toBeTruthy();
 });
