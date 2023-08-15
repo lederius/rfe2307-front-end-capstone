@@ -3,14 +3,18 @@ import './related.css';
 import RelatedList from './relatedList.jsx';
 
 const ProductCard = ({results}) => {
-  var defaultStyle;
+
   for (var element of results) {
-    if (element['default?']) {
-      defaultStyle = element;
+    if (element['default?'] && element.photos[0].thumbnail_url) {
+      var defaultStyle = element;
+      break;
     }
-  }
-  if (!defaultStyle) {
-    defaultStyle = results[0];
+    if (element.photos[0].thumbnail_url) {
+      var defaultStyle = element;
+    }
+    if (!defaultStyle) {
+      continue;
+    }
   }
 
   return (
