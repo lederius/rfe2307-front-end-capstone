@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
-const QuestionModal = ({modal, setModal}) => {
+const QuestionModal = ({modal, setModal, productName}) => {
+  const name = productName || 'TEST NAME';
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -11,7 +12,7 @@ const QuestionModal = ({modal, setModal}) => {
         <div onClick={setModal} className="w-100vw h-100vh top-0 left-0 right-0 bottom-0 fixed bg-neutral-600 opacity-70 "></div>
         <div className="absolute top-0 translate-y-1/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 h-124">
           <h1 className="text-xl font-bold m-2">Ask Your Question</h1>
-          <p className="text-sm ml-2">About the [Product Name Here]</p>
+          <p className="text-sm ml-2">About the {name}</p>
           <form className="flex flex-col">
             <textarea className="m-2 h-48" placeholder="Your question"></textarea>
             <input className="m-2" placeholder="Example: jackson11!"></input>
