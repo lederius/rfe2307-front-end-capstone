@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
+//import './related.css';
 import RelatedList from './relatedList.jsx';
 import Stars from './StarRating';
 
@@ -38,9 +38,9 @@ const ProductCard = ({styles, photo, id, actionButton, action}) => {
     return null;
   }
 
-  const onAction = () => {
-    action(product);
-  };
+  const name = styles.name;
+  const price = styles.original_price;
+
 
   return (
     <div className='productCard'>
