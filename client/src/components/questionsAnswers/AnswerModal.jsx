@@ -22,8 +22,8 @@ const AnswerModal = ({modal, setModal, questionbody}) => {
             }} type="button">Add Photos</button>
             <button className=" m-1 py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500">Submit</button>
           </form>
-          <button className="absolute top-2 right-2 px-2" onClick={toggleModal}>
-            CLOSE
+          <button className="h-7 absolute top-2 right-2 px-2 m-1 py-[.688rem] inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-white bg-red-500 hover:border-red-500 transition-all text-sm dark:border-gray-700 dark:hover:border-red-500" onClick={toggleModal}>
+            X
           </button>
         </div>
       </div>
