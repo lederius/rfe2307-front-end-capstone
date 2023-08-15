@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
+//import './related.css';
 import RelatedList from './relatedList.jsx';
 import Stars from './StarRating';
 
@@ -19,6 +19,7 @@ const ProductCard = ({styles, photo, id}) => {
     return null;
   }
 
+  const name = styles.name;
   const price = styles.original_price;
 
 
