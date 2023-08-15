@@ -20,7 +20,7 @@ const App = () => {
       {/* <ProductDetails /> */}
       {/* <QuestionAnswerContainer /> */}
       {/* <RatingReviews /> */}
-      <RelatedProducts />
+      {/* <RelatedProducts /> */}
     </div>
   );
 };

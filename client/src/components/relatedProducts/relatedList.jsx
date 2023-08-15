@@ -29,15 +29,9 @@ const RelatedList = () => {
   }, [productId]);
 
 
-  console.log('the result log', styles);
-
-
   return (
     <div className='relatedList'>
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      {styles.map(item => (<ProductCard key={item.product_id} results={item.results}/>))}
     </div>
   );
 };

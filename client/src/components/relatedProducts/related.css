@@ -13,7 +13,7 @@
 }
 
 .productCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(23, 48, 116, 0.402);
+  box-shadow: 0 8px 16px 0 rgba(185, 44, 232, 0.402);
 }
 
 .container {
@@ -24,3 +24,19 @@
   display: flex;
   justify-content: center;
 }
+
+.theLine {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px auto;
+    width: 80%;
+
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 280px;
+}
+
