@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment';
 const Answer = (props) => {
-  var answer = props.answer[1];
+  // console.log(props.answer);
+  var answer = props.answer[1].answer;
   var id = answer.id;
-  // console.log('id', id, 'answer', answer);
+  // console.log('answer', answer);
   if (props === undefined) {
     return (
       <></>

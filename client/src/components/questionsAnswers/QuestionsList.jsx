@@ -29,7 +29,7 @@ const QuestionsList = (props) => {
   return (
     <div>
       {shown.map((question, index) => {
-        return <Question question={question} key={index}/>;
+        return <Question question={question} key={index} setAnswerCounter={props.setAnswerCounter} answerCounter={props.answerCounter}/>;
       })}
 
     </div>

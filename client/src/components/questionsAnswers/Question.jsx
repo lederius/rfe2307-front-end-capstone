@@ -2,10 +2,24 @@ import React, {useState} from 'react';
 import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 const Question = (props) => {
+  var answersArray = Object.entries(props.question.answers).map(([key, answer]) => (
+    {answer}));
+  const sortAnswers = () => {
+    console.log(answersArray);
+    // eslint-disable-next-line camelcase
+    return answersArray.sort(({helpfulness: a}, {helpfulness: b}) => b - a);
+  };
 
-  const [answers, setAnswers] = useState(props.question.answers);
+  const [answers, setAnswers] = useState(()=> {
+    const initialState = sortAnswers();
+    return initialState;
+  });
   const [modal, setModal] = useState(false);
   // console.log('product name and question body', props.question);
+
+
+
+
 
   return (
     <div className="flex-1">
@@ -29,7 +43,7 @@ const Question = (props) => {
         {modal && (<AnswerModal modal={modal} setModal={setModal} questionbody={props.question.question_body}/>)}
       </div>
       <div>
-        <AnswersList answers={answers}/>
+        <AnswersList answers={answers} answerCounter={props.answerCounter} setAnswerCounter={props.setAnswerCounter}/>
       </div>
     </div>
   );
