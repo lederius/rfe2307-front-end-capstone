@@ -3,15 +3,32 @@ import ProductCard from './productCards.jsx';
 import axios from 'axios';
 
 const RelatedList = () => {
-  const [productId, setProductId] = React.useState(37315);
+  const [productId, setProductId] = React.useState(37317);
   const [styles, setStyles] = React.useState([]);
-  const [product, setProduct] = React.useState('');
+  const [product, setProduct] = React.useState(null);
 
 
   useEffect(() => {
+    const page = 1;
+    const fetcher = (page) => {
+      axios.get(`http://localhost:9000/products?page=${page}&count=15`)
+        .then(response => {
+          for (var each of response.data) {
+            if (each.id === productId) {
+              setProduct(each);
+              return;
+            }
+          }
+          fetcher(page + 1);
+        })
+        .catch(error =>
+          console.log('An error fetching from server:', error));
+    };
+    fetcher(page);
+
     axios.get(`http://localhost:9000/products/${productId}/related`)
       .then(response => {
-        const stylePromises = response.data.map(item => {
+        const stylePromises = [...new Set(response.data)].map(item => {
           return axios.get(`http://localhost:9000/products/${item}/styles`);
         });
         Promise.all(stylePromises)
@@ -51,8 +68,7 @@ const RelatedList = () => {
 
   return (
     <div className='relatedList'>
-      {console.log('styles log', styles)}
-      {styles.map(item => (<ProductCard key={item.id} styles={item.style} photo={item.photo}/>))}
+      {styles.map(item => (<ProductCard key={item.id} product={product} styles={item.style} photo={item.photo}/>))}
     </div>
   );
 };

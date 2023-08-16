@@ -1,15 +1,17 @@
 import React from 'react';
-//import './related.css';
+import axios from 'axios';
 import RelatedList from './relatedList.jsx';
 
-const ProductCard = ({styles, photo}) => {
+const ProductCard = ({styles, photo, product}) => {
 
-  if (!styles || !photo) {
+  if (!styles || !photo || !product) {
     return null;
   }
 
   const name = styles.name;
   const price = styles.original_price;
+
+  console.log('me product', product)
 
 
   return (
