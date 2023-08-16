@@ -7,7 +7,13 @@ const QuestionAnswerContainer = (props) => {
   const id = 37323;
   const [questions, setQuestions] = useState([]);
   const [modal, setModal] = useState(false);
+  const [counter, setCounter] = useState(2);
 
+
+  const incrementCounter = () => {
+    setCounter(counter + 2);
+
+  };
 
 
   const getQuestions = () => {
@@ -23,6 +29,7 @@ const QuestionAnswerContainer = (props) => {
   };
 
 
+
   useEffect(() => {
     getQuestions();
   }, []);
@@ -32,9 +39,11 @@ const QuestionAnswerContainer = (props) => {
     <div className="absolute">
       <h3 className="text-2xl font-bold">Questions & Answers</h3>
       {console.log(questions)}
-      <QuestionsList questions={questions}/>
+      <QuestionsList questions={questions} counter={counter}/>
       <div className="mt-5 space-x-5" >
-        <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500">MORE ANSWERED QUESTIONS</button>
+        <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
+          incrementCounter();
+        }}>MORE ANSWERED QUESTIONS</button>
         <button role="add-question" className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" charSet='utf-8' onClick={(e)=>{
           setModal(!modal);
         }}>ADD QUESTION &#10133;</button>

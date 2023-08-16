@@ -5,6 +5,8 @@ const AnswersList = (props) => {
   // console.log('current answers', props.answers);
   var answers = Object.entries(props.answers);
   // console.log('answers array', answers);
+
+
   return (
     <div>
       {answers.map((answer, index) => {
