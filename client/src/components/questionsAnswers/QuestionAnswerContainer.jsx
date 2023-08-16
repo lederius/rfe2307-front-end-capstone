@@ -15,13 +15,21 @@ const QuestionAnswerContainer = (props) => {
 
   };
 
+  const sortQuestions = (data) => {
+    // eslint-disable-next-line camelcase
+    return data.sort(({question_helpfulness: a}, {question_helpfulness: b}) => b - a);
+  };
 
   const getQuestions = () => {
     // eslint-disable-next-line camelcase
     axios.get(`/qa/questions/${id}`, {params: {product_id: id}})
       .then((data) => {
         // console.log('productInfo', data.data.results);
-        setQuestions(data.data.results);
+        var sorted = sortQuestions(data.data.results);
+        return sorted;
+      })
+      .then((sorted)=> {
+        setQuestions(sorted);
       })
       .catch(err => {
         console.log(err);
@@ -41,9 +49,9 @@ const QuestionAnswerContainer = (props) => {
       {console.log(questions)}
       <QuestionsList questions={questions} counter={counter}/>
       <div className="mt-5 space-x-5" >
-        <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
+        {counter < questions.length && <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
           incrementCounter();
-        }}>MORE ANSWERED QUESTIONS</button>
+        }}>MORE ANSWERED QUESTIONS</button>}
         <button role="add-question" className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" charSet='utf-8' onClick={(e)=>{
           setModal(!modal);
         }}>ADD QUESTION &#10133;</button>

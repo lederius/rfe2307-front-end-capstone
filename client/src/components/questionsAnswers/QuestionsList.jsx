@@ -19,13 +19,13 @@ const QuestionsList = (props) => {
       setShown(temp);
     }
   };
-
   useEffect(()=> {
     getShown();
   }, [questions]);
   useEffect(()=> {
     getShown();
   }, [counter]);
+
   return (
     <div>
       {shown.map((question, index) => {
