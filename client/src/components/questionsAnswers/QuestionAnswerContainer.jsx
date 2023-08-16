@@ -4,7 +4,7 @@ import QuestionModal from './QuestionModal.jsx';
 import axios from 'axios';
 
 const QuestionAnswerContainer = (props) => {
-  const id = 37315;
+  const id = 37323;
   const [questions, setQuestions] = useState([]);
   const [modal, setModal] = useState(false);
 
@@ -29,7 +29,7 @@ const QuestionAnswerContainer = (props) => {
 
 
   return (
-    <div className="relative">
+    <div className="absolute">
       <h3 className="text-2xl font-bold">Questions & Answers</h3>
       {console.log(questions)}
       <QuestionsList questions={questions}/>
