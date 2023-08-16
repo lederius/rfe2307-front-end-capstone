@@ -29,7 +29,7 @@ const QuestionAnswerContainer = (props) => {
 
 
   return (
-    <div className="left-40 relative">
+    <div className="relative">
       <h3 className="text-2xl font-bold">Questions & Answers</h3>
       {console.log(questions)}
       <QuestionsList questions={questions}/>

@@ -6,11 +6,11 @@ const Answer = (props) => {
   console.log(answerObj);
 
   //fake picture data for testing
-  if (answerObj.photos.length === 0) {
-    answerObj.photos.push('http://tinyurl.com/zgs7z2s');
-    answerObj.photos.push('http://tinyurl.com/zgs7z2s');
-    answerObj.photos.push('http://tinyurl.com/zgs7z2s');
-  }
+  // if (answerObj.photos.length === 0) {
+  //   answerObj.photos.push('http://tinyurl.com/zgs7z2s');
+  //   answerObj.photos.push('http://tinyurl.com/zgs7z2s');
+  //   answerObj.photos.push('http://tinyurl.com/zgs7z2s');
+  // }
 
   return (
     <div>
@@ -24,12 +24,12 @@ const Answer = (props) => {
         <span className="text-xs">({answerObj.helpfulness})</span><span className="m-4 text-xs">|</span><button className="underline" onClick={(e)=>{
           console.log('clicked report');
         }}>Report </button></p>
-
-      <div className="mt-4 flex flex-row h-28 w-42 space-x-3">
-        {answerObj.photos.map((photo, index) => {
-          return <img className="" src={photo} key={index}></img>;
-        })}
-      </div>
+      {answerObj.photos.length > 0 &&
+        <div className="mt-4 flex flex-row h-28 w-42 space-x-3">
+          {answerObj.photos.map((photo, index) => {
+            return <img className="" src={photo} key={index}></img>;
+          })}
+        </div>}
     </div>
   );
 };
