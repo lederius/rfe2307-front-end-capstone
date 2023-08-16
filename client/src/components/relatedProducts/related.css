@@ -22,7 +22,21 @@
 
 .relatedList {
   display: flex;
+  justify-content: flex-start;
+  margin-left: 100px;
+  overflow-x: scroll;
+
+}
+
+.scrollArrow {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  width: 30px;
+  height: 100%;
+  cursor: pointer;
 }
 
 .theLine {
@@ -37,7 +51,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 280px;
+  margin-left: 100px;
 }
 
 .thumbSpace {

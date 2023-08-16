@@ -49,8 +49,13 @@ const RelatedList = () => {
 
 
   return (
-    <div className='relatedList'>
-      {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
+    <div>
+      <div className='relatedList'>
+        {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
+      </div>
+      <div className='scrollArrow'>
+        <i className="fas fa-chevron-right"></i>
+      </div>
     </div>
   );
 };
