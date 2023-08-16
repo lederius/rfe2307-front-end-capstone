@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-const NewReview = ( {productID, state} ) => {
-
+const NewReview = ( {productID} ) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
