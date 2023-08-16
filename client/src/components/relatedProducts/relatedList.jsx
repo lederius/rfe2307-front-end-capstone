@@ -8,8 +8,7 @@ import Comparison from './comparison.jsx';
 const RelatedList = ({displayedId}) => {
   const [productId, setProductId] = React.useState(displayedId);
   const [styles, setStyles] = React.useState([]);
-  const [modal, setModal] = React.useState(false);
-  const [comparedProduct, setComparedProduct] = React.useState(null);
+
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${productId}/related`)
@@ -71,31 +70,10 @@ const RelatedList = ({displayedId}) => {
   };
 
 
-  const star = '☆';
-  const handleCompare = (product) => {
-    setModal(true);
-    setComparedProduct(product);
-  };
-
-  return (<div data-testid='mainArea' className='garage'>
-    <Carousel
-      className='carousel'
-      swipeable={true}
-      draggable={true}
-      // centerMode={true}
-      keyBoardControl={true}
-      responsive={responsive}>
-      {styles.map(item => (
-        <ProductCard
-          actionButton={star}
-          key={item.id}
-          id={parseInt(item.id)}
-          styles={item.style}
-          action={handleCompare}
-          photo={item.photo}/>))}
-    </Carousel>
-    {modal && <Comparison mainId={productId} compared={comparedProduct} onClose={() => setModal(false)}/>}
-  </div>
+  return (
+    <div className='relatedList'>
+      {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
+    </div>
   );
 };
 
