@@ -11,9 +11,9 @@ const Answer = (props) => {
     );
   } else {
     return (
-      <div className="mt-1">
-        <p ><label className="font-bold" >A:</label> {answer.body} </p>
-        <div className="flex flex-auto w-124 text-xs text-gray-500 relative left-10"><p className="w-250">by {answer.answerer_name}, {moment.utc(answer.date).format('MMMM DD, YYYY')} </p><span className="text-xs flex-none w-4 ml-4">|</span><label className="mr-1">Helpful?</label>
+      <div className="mt-1 mb-1">
+        <p><label className="font-bold" >A:</label> {answer.body} </p>
+        <div className="flex flex-auto w-124 text-xs text-gray-500"><p className="w-250">by {answer.answerer_name}, {moment.utc(answer.date).format('MMMM DD, YYYY')} </p><span className="text-xs flex-none w-4 ml-4">|</span><label className="mr-1">Helpful?</label>
 
           <button className="underline text-xs" onClick={(e)=>{
             console.log('clicked helpful');
