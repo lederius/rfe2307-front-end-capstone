@@ -47,23 +47,27 @@ const QuestionAnswerContainer = (props) => {
 
 
   return (
-    <div className="absolute">
-      <h3 className="text-2xl font-bold">Questions & Answers</h3>
-      {console.log(questions)}
-      <QuestionsList questions={questions} counter={counter} answerCounter={answerCounter} setAnswerCounter={setAnswerCounter}/>
-      <div className="mt-5 space-x-5" >
-        {counter < questions.length && <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
-          incrementCounter();
-        }}>MORE ANSWERED QUESTIONS</button>}
-        <button role="add-question" className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" charSet='utf-8' onClick={(e)=>{
-          setModal(!modal);
-        }}>ADD QUESTION &#10133;</button>
-        <div>
-          {modal && (<QuestionModal modal={modal} setModal={setModal}/>)}
+    <div className="relative flex h-screen">
+      <div className="m-auto">
+        <div className="flex-row">
+          <h3 className="text-xl">Questions & Answers</h3>
+          <div className="border-t border-black"></div>
+        </div>
+        {console.log(questions)}
+        <QuestionsList questions={questions} counter={counter} answerCounter={answerCounter} setAnswerCounter={setAnswerCounter}/>
+        <div className="mt-5 space-x-5" >
+          {counter < questions.length && <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
+            incrementCounter();
+          }}>MORE ANSWERED QUESTIONS</button>}
+          <button role="add-question" className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" charSet='utf-8' onClick={(e)=>{
+            setModal(!modal);
+          }}>ADD QUESTION &#10133;</button>
+          <div>
+            {modal && (<QuestionModal modal={modal} setModal={setModal}/>)}
+          </div>
         </div>
       </div>
     </div>
-
   );
 };
 
