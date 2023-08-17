@@ -44,7 +44,7 @@ const ReviewsList = () => {
         <NewReview productID={id} />
       ) : reviewList.length > 0 ? (
         <div>
-          <SingleReview reviewList={reviewList.slice(0, visibleReviews)} />
+          <SingleReview reviewList={reviewList} />
           <div className="flex justify-between">
             <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
             <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>
