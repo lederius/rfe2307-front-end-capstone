@@ -3,7 +3,7 @@ import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 const Question = (props) => {
   var answersArray = Object.entries(props.question.answers).map(([key, answer]) => ({answer}));
-  console.log(answersArray);
+  // console.log(answersArray);
   const sortAnswers = () => {
     // console.log(answersArray);
     // eslint-disable-next-line camelcase
