@@ -38,10 +38,10 @@ const QuestionModal = ({modal, setModal, productName, productid}) => {
             sendFormData(form);
             toggleModal();
           }}>
-            <textarea className="m-2 h-48" placeholder="Your question"></textarea>
-            <input className="m-2" placeholder="Example: jackson11!"></input>
+            <textarea required className="m-2 h-48" placeholder="Your question"></textarea>
+            <input required className="m-2" placeholder="Example: jackson11!"></input>
             <span className="m-2 text-xs">For privacy reasons, do not use your full name or email address</span>
-            <input className="m-2" placeholder="Example: jack@email.com"></input>
+            <input required type="email" className="m-2" placeholder="Example: jack@email.com"></input>
             <span className="m-2 text-xs">For authentication reasons, you will not be emailed</span>
 
             <button className=" m-1 py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500">Submit</button>

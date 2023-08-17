@@ -34,10 +34,10 @@ const AnswerModal = ({modal, setModal, questionbody, questionid}) => {
             toggleModal();
           }}>
             <label className="m-2 flex-shrink-0 relative right-1">[Product Name]:<span className="mr-1">{questionbody}</span></label>
-            <textarea className="m-2 h-48" placeholder="Your answer"></textarea>
-            <input className="m-2" placeholder="Example: jack543!"></input>
+            <textarea required className="m-2 h-48" placeholder="Your answer"></textarea>
+            <input required className="m-2" placeholder="Example: jack543!"></input>
             <span className="m-2 text-xs">For privacy reasons, do not use your full name or email address</span>
-            <input className="m-2" placeholder="Example: jack@email.com"></input>
+            <input required type="email" className="m-2" placeholder="Example: jack@email.com"></input>
             <span className="m-2 text-xs">For authentication reasons, you will not be emailed</span>
             <button className="bottom-2 left-2 m-1 mr-2 py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
               console.log('adding photos!');
