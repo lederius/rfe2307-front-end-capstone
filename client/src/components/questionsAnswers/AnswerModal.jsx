@@ -33,7 +33,7 @@ const AnswerModal = ({modal, setModal, questionbody, questionid}) => {
             sendFormData(form);
             toggleModal();
           }}>
-            <label className="m-2 flex-shrink-0 relative right-1">[Product Name]:<span className="mr-1">{questionbody}</span></label>
+            <label className="m-2 flex-shrink-0 relative right-2">[Product Name]: {questionbody}</label>
             <textarea required className="m-2 h-48" placeholder="Your answer"></textarea>
             <input required className="m-2" placeholder="Example: jack543!"></input>
             <span className="m-2 text-xs">For privacy reasons, do not use your full name or email address</span>

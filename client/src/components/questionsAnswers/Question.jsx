@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 const Question = (props) => {
-  var answersArray = Object.entries(props.question.answers).map(([key, answer]) => (
-    {answer}));
+  var answersArray = Object.entries(props.question.answers).map(([key, answer]) => ({answer}));
+  console.log(answersArray);
   const sortAnswers = () => {
-    console.log(answersArray);
+    // console.log(answersArray);
     // eslint-disable-next-line camelcase
-    return answersArray.sort(({helpfulness: a}, {helpfulness: b}) => b - a);
+    return answersArray.sort((a, b) => b.answer.helpfulness - a.answer.helpfulness);
   };
 
   const [answers, setAnswers] = useState(()=> {
@@ -16,6 +16,7 @@ const Question = (props) => {
   });
   const [modal, setModal] = useState(false);
   // console.log('product name and question body', props.question);
+
 
 
 
@@ -38,13 +39,14 @@ const Question = (props) => {
           }}>Add Answer</button>
         </div>
       </div>
-
       <div>
         {modal && (<AnswerModal modal={modal} setModal={setModal} questionid={props.question.question_id} questionbody={props.question.question_body}/>)}
       </div>
       <div>
         <AnswersList answers={answers} answerCounter={props.answerCounter} setAnswerCounter={props.setAnswerCounter}/>
+        {answers.length > 2 && <button className="m-1 py-[.288rem] px-1 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-xs dark:border-gray-700 dark:hover:border-blue-500">More Answers</button>}
       </div>
+
     </div>
   );
 };
