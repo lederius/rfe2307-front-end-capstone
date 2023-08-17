@@ -11,6 +11,8 @@ export default function ProductDetails () {
   //state passed to children
   const [allProducts, setProducts] = useState([]);
   const [currentProduct, setCurrentProduct] = useState([]);
+  const [productDetail, setProductDetail] = useState([]);
+  console.log('how many times');
 
   useEffect(()=>{
     axios.get('/products')
@@ -23,12 +25,16 @@ export default function ProductDetails () {
       .catch(err=>{
         console.error('errorr ---> ', err);
       });
-    console.log('i fired once');
+    // axios.get()
+    console.log('useEffect fired once');
   }, []);
   // console.log('currentProd: ', currentProduct);
   return (
-    <div>
-      <Header/>
+    <div className="productOverview">
+      <Header
+        currentProducts={currentProduct}
+        setCurrentProduct = {setCurrentProduct}
+        allProducts={allProducts}/>
       <ProductContainer currentProduct={currentProduct}/>
     </div>
   );
