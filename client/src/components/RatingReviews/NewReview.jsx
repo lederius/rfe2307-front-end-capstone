@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
 
 const NewReview = ( {productID} ) => {
 
   const [rating, setRating] = useState(0);
 
   const handleRating = (newRating) => {
-    console.log(newRating);
-    // setRating();
+    setRating(newRating);
   };
 
   const handleSubmit = (e) => {
