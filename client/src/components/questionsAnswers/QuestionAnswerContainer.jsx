@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const QuestionAnswerContainer = (props) => {
   const id = 37323;
+  const count = 50;
   const [questions, setQuestions] = useState([]);
   const [modal, setModal] = useState(false);
   const [counter, setCounter] = useState(2);
@@ -25,7 +26,7 @@ const QuestionAnswerContainer = (props) => {
 
   const getQuestions = () => {
     // eslint-disable-next-line camelcase
-    axios.get(`/qa/questions/${id}`, {params: {product_id: id}})
+    axios.get(`/qa/questions/${id}`, {params: {product_id: id, count: 50}})
       .then((data) => {
         // console.log('productInfo', data.data.results);
         var sorted = sortQuestions(data.data.results);
@@ -63,7 +64,7 @@ const QuestionAnswerContainer = (props) => {
             setModal(!modal);
           }}>ADD QUESTION &#10133;</button>
           <div>
-            {modal && (<QuestionModal modal={modal} setModal={setModal}/>)}
+            {modal && (<QuestionModal modal={modal} setModal={setModal} productid={id}/>)}
           </div>
         </div>
       </div>

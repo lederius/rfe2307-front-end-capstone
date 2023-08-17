@@ -27,8 +27,9 @@ app.get('/reviews/:productID', (req, res) => {
 // Question and Answers API Routing
 app.get('/qa/questions/:product_id', (req, res) => {
   var productId = req.params.product_id;
+  var count = req.params.count;
   // console.log(`${process.env.API_URL}qa/questions/${productId}`);
-  axios.get(`${process.env.API_URL}qa/questions/?product_id=${productId}`, {headers: {Authorization: `${process.env.TOKEN}`}})
+  axios.get(`${process.env.API_URL}qa/questions/?product_id=${productId}&count=50`, {headers: {Authorization: `${process.env.TOKEN}`}})
     .then((product) => {
       // console.log(product.data);
       res.send(product.data);
@@ -45,7 +46,19 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
   axios.post(`${process.env.API_URL}qa/questions/${questionId}/answers`, form, {headers: {Authorization: `${process.env.TOKEN}`}})
     .then((res) => {
       console.log('Success', res);
-      res.send(res);
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.post('/qa/questions/', (req, res) => {
+  // eslint-disable-next-line camelcase
+  axios.post(`${process.env.API_URL}qa/questions/`, req.body.form, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then((res) => {
+      console.log('Success', res);
+      res.end();
     })
     .catch(err => {
       console.log(err);

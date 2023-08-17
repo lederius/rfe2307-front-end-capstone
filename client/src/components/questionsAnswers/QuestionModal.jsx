@@ -1,10 +1,22 @@
 import React, {useState} from 'react';
-
-const QuestionModal = ({modal, setModal, productName}) => {
+import axios from 'axios';
+const QuestionModal = ({modal, setModal, productName, productid}) => {
   const name = productName || 'TEST NAME';
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  const sendFormData = (form) => {
+    // eslint-disable-next-line camelcase
+    axios.post('/qa/questions/', {form})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
 
   return (
     <>
@@ -13,7 +25,19 @@ const QuestionModal = ({modal, setModal, productName}) => {
         <div className="fixed top-0 translate-y-1/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 h-124">
           <h1 className="text-xl font-bold m-2">Ask Your Question</h1>
           <p className="text-sm ml-2">About the {name}</p>
-          <form className="flex flex-col">
+          <form className="flex flex-col" onSubmit={(e) => {
+            e.preventDefault();
+            var form = {
+              // eslint-disable-next-line camelcase
+              body: e.target[0].value,
+              name: e.target[1].value,
+              email: e.target[2].value,
+              // eslint-disable-next-line camelcase
+              product_id: productid
+            };
+            sendFormData(form);
+            toggleModal();
+          }}>
             <textarea className="m-2 h-48" placeholder="Your question"></textarea>
             <input className="m-2" placeholder="Example: jackson11!"></input>
             <span className="m-2 text-xs">For privacy reasons, do not use your full name or email address</span>
