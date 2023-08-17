@@ -40,7 +40,7 @@ const Question = (props) => {
       </div>
 
       <div>
-        {modal && (<AnswerModal modal={modal} setModal={setModal} questionbody={props.question.question_body}/>)}
+        {modal && (<AnswerModal modal={modal} setModal={setModal} questionid={props.question.question_id} questionbody={props.question.question_body}/>)}
       </div>
       <div>
         <AnswersList answers={answers} answerCounter={props.answerCounter} setAnswerCounter={props.setAnswerCounter}/>
