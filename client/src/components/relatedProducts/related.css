@@ -9,7 +9,6 @@
   height: 400px;
   padding: 30px;
   border: 1px solid #ccc;
-  margin: 20px;
 }
 
 .productCard:hover {
@@ -19,11 +18,11 @@
 .container {
   margin: 0;
 }
-
+/*
 .relatedList {
   display: flex;
   justify-content: center;
-}
+} */
 
 .theLine {
     border: none;
