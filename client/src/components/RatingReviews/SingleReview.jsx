@@ -4,6 +4,14 @@ import ReactStars from 'react-stars';
 
 const SingleReview = ({ reviewList }) => {
 
+  const [helpCount, setHelpCount] = useState(reviewList.helpfulness);
+
+  const handleClick = (e, count) => {
+    e.preventDefault();
+    setHelpCount(helpCount + 1);
+    // add post request here for persistency
+  };
+
   const stars = (int) => <ReactStars value={int} count={5} edit={false} size={24}/>;
 
   const rec = (boolean) => {
@@ -26,7 +34,6 @@ const SingleReview = ({ reviewList }) => {
 
   return (
     <div className='oneReview'>
-
       <div className='numReviews'>
         {reviewList.length} reviews, sorted by
         <select className='sort'>
@@ -38,15 +45,6 @@ const SingleReview = ({ reviewList }) => {
 
       <div className='reviewTile rounded-lg shadow-xl'>
         {reviewList.map(review => {
-
-          const [helpCount, setHelpCount] = useState(review.helpfulness);
-
-          const handleClick = (e, count) => {
-            e.preventDefault();
-            setHelpCount(helpCount + 1);
-            // add post request here for persistency
-          };
-
           return (
             <div key={review.review_id} className='min-h-[15%] border-b-2 border-black'>
               <div className="flex justify-between items-center pt-4 px-2">
@@ -69,7 +67,6 @@ const SingleReview = ({ reviewList }) => {
         }
         )}
       </div>
-
     </div>
   );
 };
