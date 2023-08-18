@@ -66,9 +66,9 @@ app.post('/qa/questions/', (req, res) => {
 });
 
 
-app.get('/products', (req, res) => {
-  const {page, count} = req.query;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products?page=${page}&count=${count}`, {
+app.get('/products/:product_id', (req, res) => {
+  const id = req.params.product_id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, {
     headers: { Authorization: process.env.TOKEN }
   })
     .then(response => {
