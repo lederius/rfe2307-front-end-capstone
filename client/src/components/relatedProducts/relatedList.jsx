@@ -75,7 +75,7 @@ const RelatedList = ({displayedId}) => {
       swipeable={true}
       draggable={true}
       keyBoardControl={true}
-      itemClass="carousel-item-padding-10-px"
+      itemClass="carousel-item-padding-30-px"
       responsive={responsive}>
       {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
     </Carousel>
