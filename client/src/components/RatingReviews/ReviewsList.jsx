@@ -11,11 +11,6 @@ const ReviewsList = () => {
   const [countReviews, setCountReviews] = useState(0);
   const [visibleReviews, setVisibleReviews] = useState(2);
   const [form, setForm] = useState(false);
-  // pass 2 reviews first
-  // render more reviews if applicable
-  // on click pass two more
-  // when no more -> button disappears
-  // create form for new review button
 
   const fetch = () => {
     axios.get(`/reviews/${id}`, { params: { productID: id } })
@@ -28,10 +23,28 @@ const ReviewsList = () => {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [visibleReviews]);
+
+  const condReviews = () => {
+    if (countReviews <= 2) {
+      <SingleReview reviewList={reviewList.slice(0, visibleReviews)} />;
+    } else if (visibleReviews < countReviews) {
+      setVisibleReviews(visibleReviews + 2);
+    } else {
+      <SingleReview reviewList={reviewList.slice(0, countReviews)} />;
+      <div className="flex align-center">
+        <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>
+      </div>;
+    }
+  };
 
   const moreClick = () => {
-    setVisibleReviews(visibleReviews + 2);
+    if (visibleReviews < countReviews) {
+      setVisibleReviews(visibleReviews + 2);
+      console.log(visibleReviews);
+    } else {
+      setVisibleReviews(countReviews);
+    }
   };
 
   const addClick = () => {
@@ -44,7 +57,7 @@ const ReviewsList = () => {
         <NewReview productID={id} />
       ) : reviewList.length > 0 ? (
         <div>
-          <SingleReview reviewList={reviewList} />
+          <div><SingleReview reviewList={reviewList.slice(0, visibleReviews)} /></div>
           <div className="flex justify-between">
             <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
             <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>

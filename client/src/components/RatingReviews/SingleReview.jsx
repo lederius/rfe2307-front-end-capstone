@@ -4,11 +4,7 @@ import ReactStars from 'react-stars';
 
 const SingleReview = ({ reviewList }) => {
 
-  const stars = (int) => {
-    return (
-      <ReactStars value={int} count={5} edit={false} size={24}/>
-    );
-  };
+  const stars = (int) => <ReactStars value={int} count={5} edit={false} size={24}/>;
 
   const rec = (boolean) => {
     if (boolean) {
