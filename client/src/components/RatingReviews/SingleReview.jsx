@@ -4,13 +4,13 @@ import ReactStars from 'react-stars';
 
 const SingleReview = ({ reviewList }) => {
 
-  const [helpCount, setHelpCount] = useState(reviewList.helpfulness);
+  // const [helpCount, setHelpCount] = useState(0);
 
-  const handleClick = (e, count) => {
-    e.preventDefault();
-    setHelpCount(helpCount + 1);
-    // add post request here for persistency
-  };
+  // const handleClick = (e, count) => {
+  //   e.preventDefault();
+  //   setHelpCount(count + 1);
+  //   // add post request here for persistency
+  // };
 
   const stars = (int) => <ReactStars value={int} count={5} edit={false} size={24}/>;
 
@@ -60,7 +60,7 @@ const SingleReview = ({ reviewList }) => {
                 {/* format this when new review + post req is setup */}
                 {/* <div className='response'>{review.response}</div> */}
 
-                <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button role="helpful" onClick={(e) => handleClick(e, helpCount)}>Yes ({helpCount})</button></div>
+                <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button role="helpful" onClick={(e) => handleClick(e, review.helpfulness)}>Yes ({review.helpfulness})</button></div>
               </div>
             </div>
           );

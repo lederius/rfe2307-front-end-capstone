@@ -3,6 +3,7 @@ const assert = require('assert');
 require('dotenv').config();
 import React from 'react';
 import { render, fireEvent, cleanup, screen, configure } from '@testing-library/react';
+import ReviewsList from './ReviewsList.jsx';
 import SingleReview from './SingleReview.jsx';
 
 describe('API calls', () => {
@@ -131,5 +132,13 @@ describe('DOM Testing', () => {
 
     assert(screen.getByText('Yes (155)'), true);
   });
+
+  // it ('Only new review button exists when product has 0 reviews', () => {
+  //   render(<ReviewsList />);
+  //   // check if more button false
+  //   assert.equal(screen.getByRole('more'), false);
+  //   // check if add button truthy
+  //   assert.ok(screen.getByRole('add'));
+  // });
 
 });
