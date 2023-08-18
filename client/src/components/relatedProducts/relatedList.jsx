@@ -3,7 +3,6 @@ import ProductCard from './productCards.jsx';
 import axios from 'axios';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Comparison from './comparison.jsx';
 
 const RelatedList = ({displayedId}) => {
   const [productId, setProductId] = React.useState(displayedId);
@@ -57,7 +56,7 @@ const RelatedList = ({displayedId}) => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 5
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -69,11 +68,15 @@ const RelatedList = ({displayedId}) => {
     }
   };
 
-
   return (
-    <div className='relatedList'>
+    <Carousel
+      swipeable={true}
+      draggable={true}
+      keyBoardControl={true}
+      itemClass="carousel-item-padding-10-px"
+      responsive={responsive}>
       {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
-    </div>
+    </Carousel>
   );
 };
 
