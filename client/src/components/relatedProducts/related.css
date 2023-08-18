@@ -32,7 +32,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .thumbSpace {
@@ -45,4 +45,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.react-multi-carousel-item{
+  max-width: 280px;
+  min-width:280px;
+}
+
+.salePrice {
+  color: red;
+}
+
+.priceBlock {
+  display: flex;
+  align-items: baseline;
 }

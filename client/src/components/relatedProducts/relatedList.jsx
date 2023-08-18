@@ -5,7 +5,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 const RelatedList = () => {
-  const [productId, setProductId] = React.useState(37317);
+  const [productId, setProductId] = React.useState(37322);
   const [styles, setStyles] = React.useState([]);
 
 
@@ -19,7 +19,7 @@ const RelatedList = () => {
           .then(results => {
             const resultData = results.map(result => result.data);
             const newStyles = [];
-
+            //resultData is an array of related item objects that each has a property with a list of styles
             for (var item of resultData) {
               var temp = {id: item.product_id};
               outerLoop: for (var style of item.results) {
@@ -53,7 +53,6 @@ const RelatedList = () => {
 
       breakpoint: { max: 4000, min: 3000 },
       items: 5
-
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -74,9 +73,13 @@ const RelatedList = () => {
       swipeable={true}
       draggable={true}
       keyBoardControl={true}
-      itemClass="carousel-item-padding-30-px"
+      itemClass="carousel-item-padding-10-px"
       responsive={responsive}>
-      {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
+      {styles.map(item => (<ProductCard
+        key={item.id}
+        id={parseInt(item.id)}
+        styles={item.style}
+        photo={item.photo}/>))}
     </Carousel>
   );
 };

@@ -18,8 +18,6 @@ const ProductCard = ({styles, photo, id}) => {
     return null;
   }
 
-  const price = styles.original_price;
-
 
   return (
     <div className='productCard'>
@@ -27,9 +25,14 @@ const ProductCard = ({styles, photo, id}) => {
         <img className='cardImage' src={photo} />
       </div>
       <div className='container'>
-        <h2>{product.category}</h2>
+        <h2>Category: {product.category}</h2>
         <h3><b>{product.name}</b></h3>
-        <p>${price}</p>
+        <div className='priceBlock'>
+          <p className='salePrice'>{styles.sale_price || ''} &nbsp;&nbsp;</p>
+          <p style={{ textDecoration: styles.sale_price ? 'line-through' : 'none' }}>
+         ${styles.original_price}
+          </p>
+        </div>
       Rating
       </div>
     </div>
