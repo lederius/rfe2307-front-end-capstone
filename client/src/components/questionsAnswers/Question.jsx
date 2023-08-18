@@ -21,6 +21,7 @@ const Question = (props) => {
   const [modal, setModal] = useState(false);
   const [helpfulness, setHelpfulness] = useState(Number(props.question.question_helpfulness));
   const [helpfulCheck, setHelpfulCheck] = useState(false);
+  const [reported, setReported] = useState(false);
 
   const toggleAllAnswers = (e) => {
     setAllAnswers(!allAnswers);
@@ -48,21 +49,43 @@ const Question = (props) => {
     }
   };
 
+  const reportQuestion = (e) => {
+    if (reported === false) {
+      var id = props.question.question_id;
+      axios.put(`/qa/questions/${id}/helpful`, {id})
+        .then(() => {
+          setReported(true);
+          if (e.target.innerText === 'Report') {
+            e.target.innerText = 'Reported';
+          }
+          console.log('success');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      return;
+    }
+  };
+
   return (
     <div className="flex-1">
       <div className="flex flex-row justify-between">
         <div className="font-bold">
           <label>Q:</label> {props.question.question_body}
         </div>
-        <div className="ml-40">
+        <div className="ml-40 text-xs">
           <label className="text-xs">Helpful? </label>
-          <button id={props.question.question_id} className="underline text-xs ml-1" onClick={(e)=>{
+          <button id={props.question.question_id} className="underline ml-1" onClick={(e)=>{
             setHelpful(e);
           }}>Yes </button>
-          <span className="text-xs"> ({helpfulness})</span><span className="m-4 text-xs">|</span>
-          <button role="add-answer" className="font-bold underline text-xs" onClick={(e)=>{
+          <span className=""> ({helpfulness})</span><span className="m-4">|</span>
+          <button role="add-answer" className="underline" onClick={(e)=>{
             setModal(!modal);
-          }}>Add Answer</button>
+          }}>Add Answer</button><span className="m-4">|</span>
+          <button role="report-question" className="underline mr-2" onClick={(e)=>{
+            reportQuestion(e);
+          }}>Report</button>
         </div>
       </div>
       <div>

@@ -20,7 +20,7 @@ const AnswerModal = ({modal, setModal, questionbody, questionid}) => {
     <>
       <div className="modal">
         <div onClick={setModal} className="w-100vw h-100vh top-0 left-0 right-0 bottom-0 fixed bg-neutral-600 opacity-70 "></div>
-        <div className="fixed top-0 inset-x-1/4 translate-y-1/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 h-124">
+        <div className="fixed top-0 mr-4 inset-x-1/4 translate-y-1/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 h-124">
           <form className="ml-2 flex flex-col" onSubmit={(e) => {
             e.preventDefault();
             var form = {
