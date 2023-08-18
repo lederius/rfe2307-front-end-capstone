@@ -65,6 +65,55 @@ app.post('/qa/questions/', (req, res) => {
     });
 });
 
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/questions/${id}/helpful`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/questions/${id}/report`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/answers/${id}/helpful`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/answers/${id}/report`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+
 
 app.get('/products', (req, res) => {
   const {page, count} = req.query;
