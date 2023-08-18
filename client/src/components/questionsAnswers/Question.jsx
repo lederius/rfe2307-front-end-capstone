@@ -52,7 +52,7 @@ const Question = (props) => {
   const reportQuestion = (e) => {
     if (reported === false) {
       var id = props.question.question_id;
-      axios.put(`/qa/questions/${id}/helpful`, {id})
+      axios.put(`/qa/questions/${id}/report`, {id})
         .then(() => {
           setReported(true);
           if (e.target.innerText === 'Report') {

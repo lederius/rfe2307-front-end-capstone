@@ -77,9 +77,33 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     });
 });
 
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/questions/${id}/report`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
   var id = req.body.id;
   axios.put(`${process.env.API_URL}qa/answers/${id}/helpful`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/answers/${id}/report`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
     .then(() => {
       console.log('Success');
       res.end();

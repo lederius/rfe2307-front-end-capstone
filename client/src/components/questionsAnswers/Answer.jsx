@@ -8,6 +8,7 @@ const Answer = (props) => {
 
   const [helpfulness, setHelpfulness] = useState(Number(answer.helpfulness));
   const [helpfulCheck, setHelpfulCheck] = useState(false);
+  const [reported, setReported] = useState(false);
 
   const toggleAllAnswers = (e) => {
     setAllAnswers(!allAnswers);
@@ -34,6 +35,24 @@ const Answer = (props) => {
     }
   };
 
+  const reportAnswer = (e) => {
+    if (reported === false) {
+      axios.put(`/qa/answers/${id}/report`, {id})
+        .then(() => {
+          setReported(true);
+          if (e.target.innerText === 'Report') {
+            e.target.innerText = 'Reported';
+          }
+          console.log('success');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      return;
+    }
+  };
+
   if (props === undefined) {
     return (
       <></>
@@ -49,7 +68,7 @@ const Answer = (props) => {
           }}>Yes</button>
 
           <span className="text-xs">({helpfulness})</span><span className="text-xs flex-none w-4 ml-4">|</span><button className="underline" onClick={(e)=>{
-            console.log('clicked report');
+            reportAnswer(e);
           }}>Report </button></div>
         {answer.photos.length > 0 &&
           <div className="ml-10 mt-4 flex flex-row h-28 w-42 space-x-3">
