@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.questions-list {
+  overflow-y: auto;
+  max-height: 72vh;
+}
+

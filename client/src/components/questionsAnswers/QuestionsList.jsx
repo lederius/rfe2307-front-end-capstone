@@ -27,9 +27,9 @@ const QuestionsList = (props) => {
   }, [counter]);
 
   return (
-    <div>
+    <div className="questions-list">
       {shown.map((question, index) => {
-        return <Question question={question} key={index} setAnswerCounter={props.setAnswerCounter} answerCounter={props.answerCounter}/>;
+        return <Question question={question} key={index} toggleAllAnswers={props.toggleAllAnswers} allAnswers={props.allAnswers}/>;
       })}
 
     </div>

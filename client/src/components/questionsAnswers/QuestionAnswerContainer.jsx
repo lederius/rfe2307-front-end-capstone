@@ -9,15 +9,13 @@ const QuestionAnswerContainer = (props) => {
   const [questions, setQuestions] = useState([]);
   const [modal, setModal] = useState(false);
   const [counter, setCounter] = useState(2);
-  const [answerCounter, setAnswerCounter] = useState(2);
+
 
   const incrementCounter = () => {
     setCounter(counter + 2);
   };
 
-  const incrementAnswerCounter = () => {
-    setAnswerCounter(answerCounter + 2);
-  };
+
 
   const sortQuestions = (data) => {
     // eslint-disable-next-line camelcase
@@ -49,14 +47,12 @@ const QuestionAnswerContainer = (props) => {
 
 
   return (
-    <div className="relative flex h-screen">
-      <div className="m-auto">
-        <div className="flex-row">
-          <h3 className="text-xl">Questions & Answers</h3>
-          <div className="border-t border-black"></div>
-        </div>
-        <QuestionsList questions={questions} counter={counter} answerCounter={answerCounter} setAnswerCounter={setAnswerCounter}/>
-        <div className="mt-5 space-x-5" >
+    <div className="m-10">
+      <div className="flex-row">
+        <h3 className="text-xl">Questions & Answers</h3>
+        <div className="border-t border-black"></div>
+        <QuestionsList questions={questions} counter={counter}/>
+        <div className="relative mt-5 space-x-5" >
           {counter < questions.length && <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
             incrementCounter();
           }}>MORE ANSWERED QUESTIONS</button>}
