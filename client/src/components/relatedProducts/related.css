@@ -19,6 +19,20 @@
 .container {
   margin: 0;
 }
+/*
+.relatedList {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 100px;
+  overflow-x: scroll;
+
+}
+
+.scrollArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
 
 .theLine {
     border: none;
