@@ -11,17 +11,17 @@ const Answer = (props) => {
     );
   } else {
     return (
-      <div>
-        <p ><label className="font-bold" >A:</label> {answer.body} </p>
-        <p className="text-xs ml-5" >by {answer.answerer_name}, {moment.utc(answer.date).format('MMMM DD, YYYY')}<span className="m-4 text-xs">|</span><label>Helpful? </label>
+      <div className="mt-1 mb-1">
+        <p><label className="font-bold" >A:</label> {answer.body} </p>
+        <div className="flex flex-auto w-124 text-xs text-gray-500"><p className="w-250">by {answer.answerer_name}, {moment.utc(answer.date).format('MMMM DD, YYYY')} </p><span className="text-xs flex-none w-4 ml-4">|</span><label className="mr-1">Helpful?</label>
 
-          <button className="underline text-xs m-1" onClick={(e)=>{
+          <button className="underline text-xs" onClick={(e)=>{
             console.log('clicked helpful');
           }}>Yes</button>
 
-          <span className="text-xs">({answer.helpfulness})</span><span className="m-4 text-xs">|</span><button className="underline" onClick={(e)=>{
+          <span className="text-xs">({answer.helpfulness})</span><span className="text-xs flex-none w-4 ml-4">|</span><button className="underline" onClick={(e)=>{
             console.log('clicked report');
-          }}>Report </button></p>
+          }}>Report </button></div>
         {answer.photos.length > 0 &&
           <div className="ml-10 mt-4 flex flex-row h-28 w-42 space-x-3">
             {answer.photos.map((photo, index) => {

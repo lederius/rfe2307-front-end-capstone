@@ -38,10 +38,10 @@ it('Renders the question to DOM', () => {
 });
 
 it('Tests if button renders answerModal with question_body', () => {
-  const {container} = render(<QuestionsList questions={exampleData}/>);
+  render(<QuestionsList questions={exampleData}/>);
   const button = screen.getByRole('add-answer');
   fireEvent.click(button);
-  expect(screen.getByText('Blah blah blah')).toBeTruthy();
+  expect(screen.getByText('[Product Name]: Blah blah blah')).toBeTruthy();
 });
 
 it('Tests if add question button renders questionModal with "Test Name"', () => {
