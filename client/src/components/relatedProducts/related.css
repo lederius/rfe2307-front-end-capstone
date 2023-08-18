@@ -19,6 +19,11 @@
 .container {
   margin: 0;
 }
+/*
+.relatedList {
+  display: flex;
+  justify-content: center;
+} */
 
 .theLine {
     border: none;
