@@ -5,8 +5,8 @@ import axios from 'axios';
 import './related.css';
 
 
-const RelatedProducts = ({theId}) => {
-  const mainId = theId || 37971;
+const RelatedProducts = () => {
+
 
   return (
     <div className='mainRelated'>
