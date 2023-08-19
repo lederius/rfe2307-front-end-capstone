@@ -3,11 +3,12 @@ import ProductCard from './productCards.jsx';
 import axios from 'axios';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Comparison from './comparison.jsx';
 
 const RelatedList = () => {
   const [productId, setProductId] = React.useState(37322);
   const [styles, setStyles] = React.useState([]);
-
+  const [modal, setModal] = React.useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${productId}/related`)
@@ -56,7 +57,7 @@ const RelatedList = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 5
+      items: 4
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -68,12 +69,17 @@ const RelatedList = () => {
     }
   };
 
-  return (
+  const modalHandler = () => {
+    return Comparison;
+  };
+
+  return (<div className='garage'>
     <Carousel
+      className='carousel'
       swipeable={true}
       draggable={true}
+      // centerMode={true}
       keyBoardControl={true}
-      itemClass="carousel-item-padding-10-px"
       responsive={responsive}>
       {styles.map(item => (<ProductCard
         key={item.id}
@@ -81,6 +87,9 @@ const RelatedList = () => {
         styles={item.style}
         photo={item.photo}/>))}
     </Carousel>
+    <button onClick={() => setModal(true)}>STAR</button>
+    {modal && <Comparison />}
+  </div>
   );
 };
 

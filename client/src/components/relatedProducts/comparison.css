@@ -1,0 +1,41 @@
+
+.modalContainer {
+  max-width: 600px;
+  width:100%;
+  max-height: 500px;
+  height:100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  margin: 20px;
+}
+
+.comparedItem {
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.comparedFeatures {
+  display: flex;
+  align-items: center;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comparing{
+  color:rgb(80, 78, 78);
+  font-size: smaller;
+}
