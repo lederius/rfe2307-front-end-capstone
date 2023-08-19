@@ -2,8 +2,10 @@ import React, {useEffect} from 'react';
 import axios from 'axios';
 import RelatedList from './relatedList.jsx';
 
-const ProductCard = ({styles, photo, id, action}) => {
+
+const ProductCard = ({styles, photo, id, actionButton, action}) => {
   const [product, setProduct] = React.useState(null);
+
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${id}`)
@@ -18,10 +20,15 @@ const ProductCard = ({styles, photo, id, action}) => {
     return null;
   }
 
+  const onAction = () => {
+    action();
+  };
 
   return (
     <div className='productCard'>
+
       <div className='thumbSpace'>
+        <button className='compareButton' onClick={onAction}>{actionButton}</button>
         <img className='cardImage' src={photo} />
       </div>
       <div className='container'>

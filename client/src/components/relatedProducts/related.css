@@ -7,7 +7,7 @@
   transition: 0.3s;
   width: 260px;
   height: 400px;
-  padding: 30px;
+  padding: 20px;
   border: 1px solid #ccc;
 }
 
@@ -35,15 +35,18 @@
 }
 
 .thumbSpace {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 230px;
   overflow: hidden;
+  position: relative;
+  display: inline-block;
 }
 
 .cardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .react-multi-carousel-item{
@@ -65,3 +68,18 @@
   align-items: baseline;
 }
 
+.compareButton {
+  position: absolute;
+  right: 5px;
+  background: none;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px rgb(46, 175, 235);
+}
+
+.compareButton:hover {
+  color: rgb(46, 175, 235);
+  text-shadow: 1px 1px 7px rgb(57, 222, 255);
+}
