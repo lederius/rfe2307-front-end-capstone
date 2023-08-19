@@ -76,10 +76,9 @@
   color: rgb(255, 255, 255);
   font-size: 24px;
   cursor: pointer;
-  text-shadow: 1px 1px 2px rgb(46, 175, 235);
+  text-shadow: 1px 1px 1px rgb(46, 175, 235);
 }
 
 .compareButton:hover {
   color: rgb(46, 175, 235);
-  text-shadow: 1px 1px 7px rgb(57, 222, 255);
 }
