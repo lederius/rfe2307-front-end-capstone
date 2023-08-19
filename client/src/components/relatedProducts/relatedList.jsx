@@ -90,7 +90,7 @@ const RelatedList = () => {
         action={() => setModal(true)}
         photo={item.photo}/>))}
     </Carousel>
-    {modal && <Comparison/>}
+    {modal && <Comparison onClose={() => setModal(false)}/>}
   </div>
   );
 };

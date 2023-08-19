@@ -26,7 +26,6 @@ const ProductCard = ({styles, photo, id, actionButton, action}) => {
 
   return (
     <div className='productCard'>
-
       <div className='thumbSpace'>
         <button className='compareButton' onClick={onAction}>{actionButton}</button>
         <img className='cardImage' src={photo} />
