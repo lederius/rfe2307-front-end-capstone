@@ -6,23 +6,12 @@ const ProductCard = ({styles, photo, id}) => {
   const [product, setProduct] = React.useState(null);
 
   useEffect(() => {
-    const page = 1;
-    const fetcher = (page) => {
-
-      axios.get(`http://localhost:9000/products?page=${page}&count=10`)
-        .then(response => {
-          for (var each of response.data) {
-            if (each.id === id) {
-              setProduct(each);
-              return;
-            }
-          }
-          fetcher(page++);
-        })
-        .catch(error =>
-          console.log('An error fetching from server:', error));
-    };
-    fetcher(page);
+    axios.get(`http://localhost:9000/products/${id}`)
+      .then(response => {
+        setProduct(response.data);
+      })
+      .catch(error =>
+        console.log('An error fetching from server:', error));
   }, [id]);
 
   if (!styles || !photo || !product) {

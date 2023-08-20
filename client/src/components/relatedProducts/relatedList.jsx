@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import ProductCard from './productCards.jsx';
 import axios from 'axios';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const RelatedList = () => {
   const [productId, setProductId] = React.useState(37317);
@@ -46,17 +48,36 @@ const RelatedList = () => {
       });
   }, [productId]);
 
+  const responsive = {
+    superLargeDesktop: {
 
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
   return (
-    <div>
-      <div className='relatedList'>
-        {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
-      </div>
-      <div className='scrollArrow'>
-        <i className="fas fa-chevron-right"></i>
-      </div>
-    </div>
+    <Carousel
+      swipeable={true}
+      draggable={true}
+      keyBoardControl={true}
+      itemClass="carousel-item-padding-30-px"
+      responsive={responsive}>
+      {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
+    </Carousel>
   );
 };
 
