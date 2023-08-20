@@ -10,7 +10,7 @@ const RelatedList = () => {
   const [productId, setProductId] = React.useState(37322);
   const [styles, setStyles] = React.useState([]);
   const [modal, setModal] = React.useState(false);
-
+  const [comparedProduct, setComparedProduct] = React.useState(null);
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${productId}/related`)
@@ -73,6 +73,10 @@ const RelatedList = () => {
 
 
   const star = '☆';
+  const handleCompare = (product) => {
+    setModal(true);
+    setComparedProduct(product);
+  };
 
   return (<div className='garage'>
     <Carousel
@@ -88,10 +92,10 @@ const RelatedList = () => {
           key={item.id}
           id={parseInt(item.id)}
           styles={item.style}
-          action={() => setModal(true)}
+          action={handleCompare}
           photo={item.photo}/>))}
     </Carousel>
-    {modal && <Comparison mainId={productId} onClose={() => setModal(false)}/>}
+    {modal && <Comparison mainId={productId} compared={comparedProduct} onClose={() => setModal(false)}/>}
   </div>
   );
 };

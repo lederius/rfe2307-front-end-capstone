@@ -3,7 +3,7 @@ import axios from 'axios';
 import RelatedList from './relatedList.jsx';
 
 
-const ProductCard = ({styles, photo, id, actionButton, action, mainId}) => {
+const ProductCard = ({styles, photo, id, actionButton, action}) => {
   const [product, setProduct] = React.useState(null);
 
 
@@ -21,7 +21,7 @@ const ProductCard = ({styles, photo, id, actionButton, action, mainId}) => {
   }
 
   const onAction = () => {
-    action();
+    action(product);
   };
 
   return (
