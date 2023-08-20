@@ -1,7 +1,7 @@
 import React from 'react';
 import './comparison.css';
 
-const Comparison = ({onClose}) => {
+const Comparison = ({onClose, mainId}) => {
 
   // axios.get(`http://localhost:9000/products/${id}`)
   // .then(response => {

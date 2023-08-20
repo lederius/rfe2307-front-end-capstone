@@ -3,7 +3,7 @@ import axios from 'axios';
 import RelatedList from './relatedList.jsx';
 
 
-const ProductCard = ({styles, photo, id, actionButton, action}) => {
+const ProductCard = ({styles, photo, id, actionButton, action, mainId}) => {
   const [product, setProduct] = React.useState(null);
 
 

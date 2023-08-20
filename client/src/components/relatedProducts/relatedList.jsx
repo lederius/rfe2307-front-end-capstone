@@ -82,15 +82,16 @@ const RelatedList = () => {
       // centerMode={true}
       keyBoardControl={true}
       responsive={responsive}>
-      {styles.map(item => (<ProductCard
-        actionButton={star}
-        key={item.id}
-        id={parseInt(item.id)}
-        styles={item.style}
-        action={() => setModal(true)}
-        photo={item.photo}/>))}
+      {styles.map(item => (
+        <ProductCard
+          actionButton={star}
+          key={item.id}
+          id={parseInt(item.id)}
+          styles={item.style}
+          action={() => setModal(true)}
+          photo={item.photo}/>))}
     </Carousel>
-    {modal && <Comparison onClose={() => setModal(false)}/>}
+    {modal && <Comparison mainId={productId} onClose={() => setModal(false)}/>}
   </div>
   );
 };
