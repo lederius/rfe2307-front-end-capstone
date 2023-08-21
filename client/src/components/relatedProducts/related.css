@@ -82,3 +82,8 @@
 .compareButton:hover {
   color: rgb(46, 175, 235);
 }
+
+.react-multiple-carousel__arrow {
+  color: red;
+  background-color:  rgba(26, 132, 208, 0.846);
+}

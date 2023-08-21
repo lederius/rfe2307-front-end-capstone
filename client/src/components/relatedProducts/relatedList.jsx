@@ -5,9 +5,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Comparison from './comparison.jsx';
 
-
-const RelatedList = () => {
-  const [productId, setProductId] = React.useState(37322);
+const RelatedList = ({displayedId}) => {
+  const [productId, setProductId] = React.useState(displayedId);
   const [styles, setStyles] = React.useState([]);
   const [modal, setModal] = React.useState(false);
   const [comparedProduct, setComparedProduct] = React.useState(null);
