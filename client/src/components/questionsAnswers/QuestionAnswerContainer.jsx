@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import QuestionsList from './QuestionsList.jsx';
 import QuestionModal from './QuestionModal.jsx';
-import SearchBar from './SearchBar.jsx';
+import Search from './SearchBar.jsx';
 import axios from 'axios';
 
 const QuestionAnswerContainer = ({productid}) => {
@@ -48,9 +48,8 @@ const QuestionAnswerContainer = ({productid}) => {
     <div className="m-10">
       <div className="flex-row">
         <h3 className="text-xl">Questions & Answers</h3>
-        <SearchBar questions={questions} filtered={filtered} onSearch={setFiltered} sortQuestions={sortQuestions} searching={searching} setSearching={setSearching}/>
-        {!searching && <QuestionsList questions={questions} counter={counter}/>}
-        {searching && <QuestionsList questions={filtered} counter={counter} searching={searching}/>}
+        <Search/>
+        <QuestionsList questions={questions} counter={counter}/>
         <div className="relative mt-5 space-x-5" >
           {counter < questions.length && !searching && <button className="py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500" onClick={(e)=> {
             incrementCounter();
