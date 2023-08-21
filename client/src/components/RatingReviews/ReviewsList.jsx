@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SingleReview from './SingleReview.jsx';
 import NewReview from './NewReview.jsx';
@@ -35,13 +35,24 @@ const ReviewsList = () => {
       {form ? (
         <NewReview productID={id} />
       ) : reviewList.length > 0 ? (
-        <div className='max-h-60 overflow-y-scroll'>
-          <div><SingleReview reviewList={reviewList.slice(0, visibleReviews)} /></div>
-          <div className="flex justify-between">
-            {visibleReviews < reviewList.length && (
-              <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
-            )}
-            <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>
+        <div>
+          <div className='numReviews'>
+            {visibleReviews} reviews, sorted by
+            <select className='sort'>
+              <option>Relevance</option>
+              <option>Newest</option>
+              <option>Helpful</option>
+            </select>
+          </div>
+          <div className='max-h-60 overflow-y-scroll'>
+            <div>{reviewList.slice(0, visibleReviews).map(review => <SingleReview review={review} />)}
+            </div>
+            <div className="flex justify-between">
+              {visibleReviews < reviewList.length && (
+                <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
+              )}
+              <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>
+            </div>
           </div>
         </div>
       ) : (
