@@ -1,0 +1,49 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.modalContainer {
+  max-width: 400px;
+  width:100%;
+  max-height: 300px;
+  height:100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(248, 251, 253);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  margin: 300px;
+}
+
+.comparedItem {
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.comparedFeatures {
+  display: flex;
+  align-items: center;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comparing{
+  color:rgb(111, 109, 109);
+  font-size: smaller;
+}

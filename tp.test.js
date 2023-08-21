@@ -9,9 +9,9 @@
     */
 // In addition to expected, "happy path", behaviour as above, you should also test your edge cases
 
-describe('Example tests', function() {
-  var testfunc = function() { return 'Hello'; };
-  it ('Should console log \'Hello\'', function() {
-    expect(testfunc()).toBe('Hello');
-  });
-});
+// describe('Example tests', function() {
+//   var testfunc = function() { return 'Hello'; };
+//   it ('Should console log \'Hello\'', function() {
+//     expect(testfunc()).toBe('Hello');
+//   });
+// });
