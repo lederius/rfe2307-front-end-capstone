@@ -14,9 +14,6 @@ const Comparison = ({onClose, mainId, compared}) => {
         console.log('An error fetching from server:', error));
   }, [mainId]);
 
-  console.log('main log', mainProduct)
-  console.log('compared log', compared)
-
   if (!mainProduct) {
     return null;
   }
