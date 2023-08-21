@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import StarRatings from 'react-star-ratings';
 
 const SingleReview = ({ review }) => {
 
-  const [help, setHelp] = useState(review.helpfulness);
-
-  const handleClick = (e) => {
+  const handleClick = (e, revID, count) => {
     e.preventDefault();
-    setHelp(help + 1);
+    const help = count + 1;
     // put request here for persistency
-    axios.put(`/reviews/${review.review_id}/helpful`, { data: help.toString() }, { params: { reviewID: review.review_id.toString() } })
-      .then(res => {
-        console.log('successful put req');
-      })
+    axios.put(`/reviews/${revID}/helpful`, { data: help.toString() }, { params: { reviewID: revID} })
+      .then(res => console.log('successful put req'))
       .catch(err => console.log('failed helpful put request', err));
   };
 
@@ -76,8 +72,7 @@ const SingleReview = ({ review }) => {
                   {/* format this when new review + post req is setup */}
                   {/* <div className='response'>{review.response}</div> */}
 
-                  <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button data-testid="helpful" onClick={(e) => handleClick(e, helpCount)}>Yes ({helpCount})</button></div>
-                </div>
+                <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button role="helpful" className='underline' onClick={e => handleClick(e, review.review_id.toString(), review.helpfulness)}>Yes ({review.helpfulness})</button></div>
               </div>
             )
           }

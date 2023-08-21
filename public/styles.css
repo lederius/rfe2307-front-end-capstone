@@ -15,8 +15,3 @@
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
-.questions-list {
-  overflow-y: auto;
-  max-height: 72vh;
-}
-
