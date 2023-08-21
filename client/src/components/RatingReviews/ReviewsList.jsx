@@ -1,33 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import SingleReview from './SingleReview.jsx';
 // import NewReview from './NewReview.jsx';
 import moment from 'moment';
 
-  const addClick = () => {
-    setForm(!form);
-  };
+const ReviewsList = ({ reviewList }) => {
+  const id = '37311';
 
-  const [reviewList, setReviewList] = useState([]);
-  const [childReviews, setChildReviews] = useState([]);
-  // console.log(reviewList, 'child', childReviews)
-  // pass 2 reviews first
-  // render more reviews if applicable
-    // on click pass two more
-    // when no more -> button disappears
-  // create form for new review button
-
-  useEffect(() => {
-    fetch();
-  }, [])
-
-  // add second useEffect for childReviews
-
-  const fetch = () => {
-    axios.get(`/reviews/${id}`, { params: { productID: id } })
-      .then(res => setReviewList(res.data))
-      .catch(err => console.log('failed client get req', err));
-  }
+  const [visibleReviews, setVisibleReviews] = useState(2);
+  const [form, setForm] = useState(false);
 
   const moreClick = () => {
     setVisibleReviews(visibleReviews + 2);
