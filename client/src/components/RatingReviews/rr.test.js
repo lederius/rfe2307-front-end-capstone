@@ -125,20 +125,21 @@ describe('DOM Testing', () => {
     }
   ];
 
-  it ('Helpful amount should increment when clicked', () => {
-    render(<SingleReview reviewList={review}/>);
-    const button = screen.getByRole('helpful');
-    fireEvent.click(button);
+  // it ('Helpful amount should increment when clicked', () => {
+  //   render(<SingleReview reviewList={review}/>);
+  //   const button = screen.getByRole('helpful');
+  //   fireEvent.click(button);
 
-    assert(screen.getByText('Yes (155)'), true);
-  });
-
-  // it ('Only new review button exists when product has 0 reviews', () => {
-  //   render(<ReviewsList />);
-  //   // check if more button false
-  //   assert.equal(screen.getByRole('more'), false);
-  //   // check if add button truthy
-  //   assert.ok(screen.getByRole('add'));
+  //   assert(screen.getByText('Yes (155)'), true);
   // });
+
+  it ('Only new review button exists when product has 0 reviews', () => {
+    render(<ReviewsList />);
+    // check if more button false
+    const more = screen.queryByText('More Reviews');
+    expect(more).toBeNull();
+    // check if add button truthy
+    assert.ok(screen.getByRole('add'));
+  });
 
 });

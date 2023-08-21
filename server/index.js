@@ -10,16 +10,23 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(cors());
 
-// ROUTES BELOW
+// Ratings and Reviews Routing
 app.get('/reviews/:productID', (req, res) => {
   const id = req.params.productID;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}`, {
-    headers: {Authorization: `${process.env.TOKEN}`},
+  axios.get(`${process.env.API_URL}reviews/?product_id=${id}`, {
+    headers: {Authorization: `${process.env.TOKEN}`}
   })
     .then(response => res.send(response.data.results))
     .catch(err => console.log('failed get request', err));
 });
 
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  const id = req.params.review_id;
+  const count = req.body.data;
+  axios.put(`${process.env.API_URL}reviews/${id}/helpful`, count, { headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(response => res.end())
+    .catch(err => console.log('failed put request', err));
+});
 
 
 // Question and Answers API Routing
