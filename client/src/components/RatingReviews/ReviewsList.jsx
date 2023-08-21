@@ -13,9 +13,7 @@ const ReviewsList = () => {
 
   const fetch = () => {
     axios.get(`/reviews/${id}`, { params: { productID: id } })
-      .then(res => {
-        setReviewList(res.data);
-      })
+      .then(res => setReviewList(res.data))
       .catch(err => console.log('failed client get req', err));
   };
 
@@ -41,7 +39,7 @@ const ReviewsList = () => {
           <div><SingleReview reviewList={reviewList.slice(0, visibleReviews)} /></div>
           <div className="flex justify-between">
             {visibleReviews < reviewList.length && (
-              <button role='more' className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
+              <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
             )}
             <button className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>
           </div>

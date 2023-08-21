@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import ReactStars from 'react-stars';
 
 const SingleReview = ({ reviewList }) => {
+  console.log(reviewList);
 
   const handleClick = (e, revID, count) => {
     e.preventDefault();
     const help = count + 1;
     // put request here for persistency
     axios.put(`/reviews/${revID}/helpful`, { data: help.toString() }, { params: { reviewID: revID} })
-      .then(res => console.log('successful put req'))
+      .then(res => {
+        // update count on page
+        console.log('successful put req');
+      })
       .catch(err => console.log('failed helpful put request', err));
   };
 

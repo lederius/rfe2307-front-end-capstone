@@ -136,7 +136,7 @@ describe('DOM Testing', () => {
   it ('Only new review button exists when product has 0 reviews', () => {
     render(<ReviewsList />);
     // check if more button false
-    const more = screen.queryByText('More Reviews');
+    const more = screen.queryByText('MORE REVIEWS');
     expect(more).toBeNull();
     // check if add button truthy
     assert.ok(screen.getByRole('add'));
