@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AnswersList from './AnswersList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
 const Question = (props) => {
   var answersArray = Object.entries(props.question.answers).map(([key, answer]) => ({answer}));
-
   // console.log(answersArray);
   const sortAnswers = () => {
     // console.log(answersArray);
@@ -22,6 +21,7 @@ const Question = (props) => {
   const [helpfulness, setHelpfulness] = useState(Number(props.question.question_helpfulness));
   const [helpfulCheck, setHelpfulCheck] = useState(false);
   const [reported, setReported] = useState(false);
+
 
   const toggleAllAnswers = (e) => {
     setAllAnswers(!allAnswers);

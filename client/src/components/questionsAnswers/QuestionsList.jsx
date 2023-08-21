@@ -9,7 +9,12 @@ const QuestionsList = (props) => {
   const [shown, setShown] = useState([]);
 
   const getShown = () => {
-    if (questions.length <= 2) {
+    if (questions === undefined) {
+      return;
+    }
+    if (props.searching) {
+      setShown(questions);
+    } else if (questions.length <= 2) {
       setShown(questions);
     } else if (questions.length < counter) {
       setShown(questions);
@@ -19,9 +24,11 @@ const QuestionsList = (props) => {
       setShown(temp);
     }
   };
+
   useEffect(()=> {
     getShown();
   }, [questions]);
+
   useEffect(()=> {
     getShown();
   }, [counter]);
