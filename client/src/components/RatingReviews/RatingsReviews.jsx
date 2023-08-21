@@ -14,9 +14,6 @@ const RatingReviews = () => {
       .then(res => setReviewList(res.data))
       .catch(err => console.log('failed client get req', err));
 
-
-    // get request for meta data
-    // calculate average rating from that
     axios.get(`/reviews/meta/${id}`, { params: { productID: id } })
       .then(res => setMeta(res.data))
       .catch(err => console.log('failed client get req', err));
@@ -31,7 +28,7 @@ const RatingReviews = () => {
     <div>
       <h1>RATINGS & REVIEWS</h1>
       <div className='grid grid-cols-3 gap-5'>
-        <div className='col-span-1'><MetaRatings meta={meta} id={id} /></div>
+        <div className='col-span-1'><MetaRatings meta={meta} /></div>
         <div className='col-span-2'><ReviewsList reviewList={reviewList} /></div>
       </div>
     </div>
