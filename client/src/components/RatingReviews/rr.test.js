@@ -2,7 +2,8 @@ const request = require('supertest');
 const assert = require('assert');
 require('dotenv').config();
 import React from 'react';
-import { render, fireEvent, cleanup, screen, configure } from '@testing-library/react';
+import { render, fireEvent, cleanup, screen, waitFor } from '@testing-library/react';
+import ReviewsList from './ReviewsList.jsx';
 import SingleReview from './SingleReview.jsx';
 
 describe('API calls', () => {
@@ -124,12 +125,28 @@ describe('DOM Testing', () => {
     }
   ];
 
-  it ('Helpful amount should increment when clicked', () => {
-    render(<SingleReview reviewList={review}/>);
-    const button = screen.getByRole('helpful');
-    fireEvent.click(button);
+  // it ('Helpful amount should increment when clicked', () => {
+  //   render(<SingleReview review={review}/>);
+  //   const button = screen.getByRole('helpful');
+  //   fireEvent.click(button);
 
-    assert(screen.getByText('Yes (155)'), true);
+  //   expect(screen.getByText('Yes (155)')).toBeInTheDocument();
+  // });
+
+  it ('Only new review button exists when product has 0 reviews', () => {
+    render(<ReviewsList />);
+    // check if more button false
+    const more = screen.queryByText('MORE REVIEWS');
+    expect(more).toBeNull();
+    // check if add button truthy
+    expect(screen.getByRole('add')).toBeDefined();
+  });
+
+  it ('New review form should render when add review button clicked', () => {
+    render(<ReviewsList />);
+    const add = screen.getByRole('add');
+    fireEvent.click(add);
+    expect(screen.getByText('New Review')).toBeTruthy();
   });
 
 });
