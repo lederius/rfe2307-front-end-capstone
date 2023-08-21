@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-
-const MetaRatings = ({ review }) => {
-  // get request for meta data
-  // calculate average rating from that
-
+const MetaRatings = ({ meta }) => {
+  console.log(meta);
 
   return (
     <div></div>
