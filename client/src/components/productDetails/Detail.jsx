@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import ProductInfo from './ProductInfo.jsx';
-import StyleSelector from './ProductInfo.jsx';
+import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 export default function Detail ({currentProduct}) {
@@ -9,7 +9,7 @@ export default function Detail ({currentProduct}) {
   //these div should be in col
 
   return (
-    <div>
+    <div className="detail">
       <h3>Detial</h3>
       <ProductInfo currentProduct={currentProduct}/>
       <StyleSelector />

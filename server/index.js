@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+var bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 
 // Ratings and Reviews Routing
 app.get('/reviews/:productID', (req, res) => {
@@ -33,8 +35,9 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
 // Question and Answers API Routing
 app.get('/qa/questions/:product_id', (req, res) => {
   var productId = req.params.product_id;
-  console.log(`${process.env.API_URL}qa/questions/${productId}`);
-  axios.get(`${process.env.API_URL}qa/questions/?product_id=${productId}`, {headers: {Authorization: `${process.env.TOKEN}`}})
+  var count = req.params.count;
+  // console.log(`${process.env.API_URL}qa/questions/${productId}`);
+  axios.get(`${process.env.API_URL}qa/questions/?product_id=${productId}&count=50`, {headers: {Authorization: `${process.env.TOKEN}`}})
     .then((product) => {
       // console.log(product.data);
       res.send(product.data);
@@ -44,9 +47,85 @@ app.get('/qa/questions/:product_id', (req, res) => {
     });
 });
 
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  var questionId = req.body.params.question_id;
+  var form = req.body.formData.form;
+  // eslint-disable-next-line camelcase
+  axios.post(`${process.env.API_URL}qa/questions/${questionId}/answers`, form, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then((res) => {
+      console.log('Success', res);
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
-app.get('/products', (req, res) => {
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
+app.post('/qa/questions/', (req, res) => {
+  // eslint-disable-next-line camelcase
+  axios.post(`${process.env.API_URL}qa/questions/`, req.body.form, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then((res) => {
+      console.log('Success', res);
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/questions/${id}/helpful`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/questions/${id}/report`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/answers/${id}/helpful`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  var id = req.body.id;
+  axios.put(`${process.env.API_URL}qa/answers/${id}/report`, {id}, {headers: {Authorization: `${process.env.TOKEN}`}})
+    .then(() => {
+      console.log('Success');
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+
+
+app.get('/products/:product_id', (req, res) => {
+  const id = req.params.product_id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, {
     headers: { Authorization: process.env.TOKEN }
   })
     .then(response => {

@@ -1,23 +1,34 @@
-import React from 'react';
-//import './related.css';
+import React, {useEffect} from 'react';
+import axios from 'axios';
 import RelatedList from './relatedList.jsx';
 
-const ProductCard = ({styles, photo}) => {
+const ProductCard = ({styles, photo, id}) => {
+  const [product, setProduct] = React.useState(null);
 
-  if (!styles || !photo) {
+  useEffect(() => {
+    axios.get(`http://localhost:9000/products/${id}`)
+      .then(response => {
+        setProduct(response.data);
+      })
+      .catch(error =>
+        console.log('An error fetching from server:', error));
+  }, [id]);
+
+  if (!styles || !photo || !product) {
     return null;
   }
 
-  const name = styles.name;
   const price = styles.original_price;
 
 
   return (
     <div className='productCard'>
-      <img src={photo} />
+      <div className='thumbSpace'>
+        <img className='cardImage' src={photo} />
+      </div>
       <div className='container'>
-        <h2>CATEGORY</h2>
-        <h3><b>{name}</b></h3>
+        <h2>{product.category}</h2>
+        <h3><b>{product.name}</b></h3>
         <p>${price}</p>
       Rating
       </div>

@@ -8,7 +8,7 @@ export default function ProductContainer ({currentProduct}) {
   //gallery and detail
   // console.log('currentProduct: ', currentProduct);
   return (
-    <div>
+    <div className="productContainer">
       <ImageList />
       <Detail currentProduct={currentProduct}/>
     </div>

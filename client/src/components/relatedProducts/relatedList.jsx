@@ -1,17 +1,18 @@
 import React, {useEffect} from 'react';
 import ProductCard from './productCards.jsx';
 import axios from 'axios';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const RelatedList = () => {
-  const [productId, setProductId] = React.useState(37312);
+  const [productId, setProductId] = React.useState(37317);
   const [styles, setStyles] = React.useState([]);
-  const [product, setProduct] = React.useState('');
 
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${productId}/related`)
       .then(response => {
-        const stylePromises = response.data.map(item => {
+        const stylePromises = [...new Set(response.data)].map(item => {
           return axios.get(`http://localhost:9000/products/${item}/styles`);
         });
         Promise.all(stylePromises)
@@ -21,14 +22,14 @@ const RelatedList = () => {
 
             for (var item of resultData) {
               var temp = {id: item.product_id};
-              for (var style of item.results) {
+              outerLoop: for (var style of item.results) {
                 for (var photo of style.photos) {
                   if (photo.thumbnail_url) {
                     temp.photo = photo.thumbnail_url;
                     temp.style = style;
                   }
                   if (style['default?']) {
-                    break;
+                    break outerLoop;
                   }
                 }
               }
@@ -47,13 +48,36 @@ const RelatedList = () => {
       });
   }, [productId]);
 
+  const responsive = {
+    superLargeDesktop: {
 
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
   return (
-    <div className='relatedList'>
-      {console.log('styles log', styles)}
-      {styles.map(item => (<ProductCard key={item.id} styles={item.style} photo={item.photo}/>))}
-    </div>
+    <Carousel
+      swipeable={true}
+      draggable={true}
+      keyBoardControl={true}
+      itemClass="carousel-item-padding-30-px"
+      responsive={responsive}>
+      {styles.map(item => (<ProductCard key={item.id} id={parseInt(item.id)} styles={item.style} photo={item.photo}/>))}
+    </Carousel>
   );
 };
 
