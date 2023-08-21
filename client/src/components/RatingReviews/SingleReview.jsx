@@ -105,8 +105,7 @@ const SingleReview = ({ review }) => {
                   {/* format this when new review + post req is setup */}
                   {/* <div className='response'>{review.response}</div> */}
 
-                  <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button data-testid="helpful" onClick={(e) => handleClick(e, helpCount)}>Yes ({helpCount})</button></div>
-                </div>
+                <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button role="helpful" className='underline' onClick={e => handleClick(e, review.review_id.toString(), review.helpfulness)}>Yes ({review.helpfulness})</button></div>
               </div>
             )
           }
