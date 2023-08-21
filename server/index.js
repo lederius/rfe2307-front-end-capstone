@@ -26,16 +26,6 @@ app.get('/reviews/:productID', (req, res) => {
     .catch(err => console.log('failed get request', err));
 });
 
-app.get('/reviews/meta/:productID', (req, res) => {
-  const id = req.params.productID;
-  // set count to show all reviews
-  axios.get(`${process.env.API_URL}reviews/meta/?product_id=${id}`, {
-    headers: {Authorization: `${process.env.TOKEN}`}
-  })
-    .then(response => res.send(response.data))
-    .catch(err => console.log('failed get request', err));
-});
-
 app.put('/reviews/:review_id/helpful', (req, res) => {
   const id = req.params.review_id;
   const count = req.body.data;

@@ -192,6 +192,21 @@ describe('API calls', () => {
 //     const button = screen.getByTestId('helpful');
 //     userEvent.click(button);
 
-//     expect(changeCount).toBeCalled();
-//   });
-// });
+  // it ('Helpful amount should increment when clicked', () => {
+  //   render(<SingleReview reviewList={review}/>);
+  //   const button = screen.getByRole('helpful');
+  //   fireEvent.click(button);
+
+  //   assert(screen.getByText('Yes (155)'), true);
+  // });
+
+  it ('Only new review button exists when product has 0 reviews', () => {
+    render(<ReviewsList />);
+    // check if more button false
+    const more = screen.queryByText('More Reviews');
+    expect(more).toBeNull();
+    // check if add button truthy
+    assert.ok(screen.getByRole('add'));
+  });
+
+});
