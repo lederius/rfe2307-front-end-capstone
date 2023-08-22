@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import ReactStars from 'react-stars';
+import StarRatings from 'react-star-ratings';
 
 const SingleReview = ({ review }) => {
-
-  if (review === undefined) {
-    return <div>No data found</div>;
-  }
 
   const [help, setHelp] = useState(review.helpfulness);
 
   const handleClick = (e) => {
     e.preventDefault();
     setHelp(help + 1);
-    console.log('help', help);
     // put request here for persistency
     axios.put(`/reviews/${review.review_id}/helpful`, { data: help.toString() }, { params: { reviewID: review.review_id.toString() } })
       .then(res => {
@@ -23,7 +18,7 @@ const SingleReview = ({ review }) => {
       .catch(err => console.log('failed helpful put request', err));
   };
 
-  const stars = (int) => <ReactStars value={int} count={5} edit={false} size={24} />;
+  const stars = (int) => <StarRatings rating={int} numberOfStars={5} starDimension={'24px'} starSpacing={'1px'} starRatedColor={'#FFD700'} />;
 
   const rec = (boolean) => {
     if (boolean) {
