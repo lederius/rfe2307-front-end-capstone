@@ -149,7 +149,7 @@ app.get('/products/:product_id', (req, res) => {
 
 app.get('/products', (req, res) => {
   const id = req.params.product_id;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`, {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
     headers: { Authorization: process.env.TOKEN }
   })
     .then(response => {

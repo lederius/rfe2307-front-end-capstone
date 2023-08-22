@@ -7,7 +7,6 @@ export default function Detail ({currentProduct, productDetails, productStyles, 
   //should have 3 containers
   //product info ,style selector, and add to carts
   //these div should be in col
-  console.log('currentProduct; ', currentProduct);
   return (
     <div className="detail">
       <h3>Details</h3>
