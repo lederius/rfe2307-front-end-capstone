@@ -34,7 +34,7 @@ const ProductCard = ({styles, photo, id, actionButton, action}) => {
         <h2 style={{color: 'grey'}}>Category: {product.category}</h2>
         <h3><b>{product.name}</b></h3>
         <div className='priceBlock'>
-          <p className='salePrice'>{styles.sale_price || ''} &nbsp;</p>
+          <p className='salePrice'>{styles.sale_price && '$' + styles.sale_price} &nbsp;</p>
           <p style={{ textDecoration: styles.sale_price ? 'line-through' : 'none' }}>
          ${styles.original_price}
           </p>
