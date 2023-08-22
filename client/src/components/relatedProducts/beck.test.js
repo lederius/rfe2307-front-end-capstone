@@ -23,12 +23,17 @@ describe('Comparison modal component', () => {
   });
 });
 
-describe('Comparison modal component', () => {
+describe('ProductCards modal component', () => {
   test('renders without errors', () => {
     render(<ProductCards />);
   });
 });
 
+// describe('Comparison card should pull product names', () => {
+//   it('shoule show', () => {
+//     expect(<Comparison mainId={37322} />).toBe('Garricl Hoodie');
+//   });
+// });
 
 
 // describe('Comparison card should pull product names', () => {

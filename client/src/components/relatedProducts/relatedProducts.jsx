@@ -12,7 +12,7 @@ const RelatedProducts = () => {
     <div className='mainRelated'>
       <div className='relatedproducts'>
         <h2 className='sectionHeading'> RELATED PRODUCTS <hr className="theLine" /></h2>
-        <RelatedList displayedId={37322}/>
+        <RelatedList displayedId={37971}/>
       </div>
       <div className='youroutfit'>
         <h2 className='sectionHeading'> YOUR OUTFIT <hr className="theLine" /></h2>
