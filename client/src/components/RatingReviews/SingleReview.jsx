@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import ReactStars from 'react-stars';
+import StarRatings from 'react-star-ratings';
 
 const SingleReview = ({ review }) => {
 
@@ -23,7 +23,7 @@ const SingleReview = ({ review }) => {
       .catch(err => console.log('failed helpful put request', err));
   };
 
-  const stars = (int) => <ReactStars value={int} count={5} edit={false} size={24} />;
+  const stars = (int) => <StarRatings rating={int} numberOfStars={5} starDimension={'24px'} starSpacing={'1px'} starRatedColor={'#FFD700'} />;
 
   const rec = (boolean) => {
     if (boolean) {

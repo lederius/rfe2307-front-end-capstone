@@ -2,9 +2,9 @@ import React from 'react';
 
 const StarBreakdown = ({ ratings, total }) => {
   // pass in percentage here and generate bar
+  // next make every star a button that results in a filter when clicked
 
   const bar = (val) => {
-    console.log((val[1] / total) * 100);
     return (
       <div key={val[0]}>{val[0]} Stars
         <div className="w-full bg-slate-200 rounded-full h-2.5 mb-4 dark:bg-slate-300">

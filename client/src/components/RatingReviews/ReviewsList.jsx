@@ -31,7 +31,7 @@ const ReviewsList = ({ reviewList }) => {
               <option>Helpful</option>
             </select>
           </div>
-          <div className='max-h-60 overflow-y-scroll'>
+          <div className='max-h-80 overflow-y-scroll'>
             <div>{reviewList.slice(0, visibleReviews).map(review => <SingleReview review={review} />)}
             </div>
             <div className="flex justify-between">
