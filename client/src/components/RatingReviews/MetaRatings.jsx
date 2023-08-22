@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
+import StarBreakdown from './StarBreakdown.jsx';
 
 const MetaRatings = ({ meta }) => {
-  console.log('meta', meta);
 
   const average = (ratings) => {
     let total = 0;
@@ -15,6 +15,10 @@ const MetaRatings = ({ meta }) => {
     return parseFloat(average);
   };
 
+  const total = () => {
+    return Number(meta.recommended.false) + Number(meta.recommended.true);
+  };
+
   return (
     <div>
       {meta.ratings !== undefined &&
@@ -23,7 +27,8 @@ const MetaRatings = ({ meta }) => {
             {average(meta.ratings)}
             <StarRatings rating={average(meta.ratings)} numberOfStars={5} starDimension={'32px'} starSpacing={'1px'} starRatedColor={'#FFD700'} />
           </div>
-          <div className='text-sm'>Based on {Number(meta.recommended.false) + Number(meta.recommended.true)} ratings</div>
+          <div className='text-sm'>Based on {total()} ratings</div>
+          <StarBreakdown ratings={meta.ratings} total={total()}/>
         </div>
       }
     </div>
