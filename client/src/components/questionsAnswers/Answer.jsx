@@ -10,15 +10,6 @@ const Answer = (props) => {
   const [helpfulCheck, setHelpfulCheck] = useState(false);
   const [reported, setReported] = useState(false);
 
-  const toggleAllAnswers = (e) => {
-    setAllAnswers(!allAnswers);
-    if (e.target.innerText === 'More Answers') {
-      e.target.innerText = 'Collapse';
-    } else {
-      e.target.innerText = 'More Answers';
-    }
-  };
-
   const setHelpful = (e) => {
     if (helpfulCheck === false) {
       setHelpfulness(helpfulness + 1);
@@ -59,15 +50,15 @@ const Answer = (props) => {
     );
   } else {
     return (
-      <div className="mt-1 mb-1">
+      <div role="answer" className="mt-1 mb-1">
         <p><label className="font-bold" >A:</label> {answer.body} </p>
         <div className="flex flex-auto w-124 text-xs text-gray-500"><p className="w-250">by {answer.answerer_name}, {moment.utc(answer.date).format('MMMM DD, YYYY')} </p><span className="text-xs flex-none w-4 ml-4">|</span><label className="mr-1">Helpful?</label>
 
-          <button className="underline text-xs" onClick={(e)=>{
+          <button role="helpfulness-answer" className="underline text-xs" onClick={(e)=>{
             setHelpful(e);
           }}>Yes</button>
 
-          <span className="text-xs">({helpfulness})</span><span className="text-xs flex-none w-4 ml-4">|</span><button className="underline" onClick={(e)=>{
+          <span className="text-xs">({helpfulness})</span><span className="text-xs flex-none w-4 ml-4">|</span><button role="report-answer" className="underline" onClick={(e)=>{
             reportAnswer(e);
           }}>Report </button></div>
         {answer.photos.length > 0 &&
