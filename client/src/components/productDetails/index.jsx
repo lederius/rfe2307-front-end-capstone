@@ -25,41 +25,6 @@ export default function ProductDetails () {
         console.error('errorr ---> ', err);
       });
   }, []);
-  const id = currentProduct.id;
-  let getProduct = function () {
-    axios.get(`/products/${id}`, {params: {productID: id}})
-      .then(product =>{
-        setProductDetails(product.data);
-      })
-      .catch(err=>{
-        console.error(err);
-      });
-  };
-  let getStyles = function () {
-    axios.get(`/products/${id}/styles`, {params: {productID: id}})
-      .then(product =>{
-        setStyles(product.data.results);
-      })
-      .catch(err=>{
-        console.error(err);
-      });
-  };
-  let getReviews = function () {
-    axios.get(`/reviews/${id}`, { params: { productID: id } })
-      .then(reviews=>{
-        setProductReviews(reviews.data);
-      })
-      .catch(error =>{
-        console.error(error);
-      });
-  };
-  //create function that select currentStyle
-  // useEffect(()=>{
-  //   getProduct();
-  //   getStyles();
-  //   getReviews();
-  // }, [currentProduct]);
-
 
   return (
     <div className="productOverview">

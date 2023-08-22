@@ -21,7 +21,10 @@ export default function Detail ({currentProduct, productDetails, productStyles, 
         productStyles={productStyles}
         currentStyle={currentStyle}
       />
-      <AddToCart />
+      <AddToCart
+        productStyles={productStyles}
+        currentStyle={currentStyle}
+      />
     </div>
   );
 }
