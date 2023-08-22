@@ -5,16 +5,11 @@ import StarRatings from 'react-star-ratings';
 
 const SingleReview = ({ review }) => {
 
-  if (review === undefined) {
-    return <div>No data found</div>;
-  }
-
   const [help, setHelp] = useState(review.helpfulness);
 
   const handleClick = (e) => {
     e.preventDefault();
     setHelp(help + 1);
-    console.log('help', help);
     // put request here for persistency
     axios.put(`/reviews/${review.review_id}/helpful`, { data: help.toString() }, { params: { reviewID: review.review_id.toString() } })
       .then(res => {

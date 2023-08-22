@@ -4,7 +4,7 @@ import MetaRatings from './MetaRatings.jsx';
 import ReviewsList from './ReviewsList';
 
 const RatingReviews = () => {
-  const id = '37311';
+  const id = '37313';
 
   const [reviewList, setReviewList] = useState([]);
   const [meta, setMeta] = useState([]);
@@ -29,7 +29,7 @@ const RatingReviews = () => {
       <h1>RATINGS & REVIEWS</h1>
       <div className='grid grid-cols-3 gap-5'>
         <div className='col-span-1'><MetaRatings meta={meta} /></div>
-        <div className='col-span-2'><ReviewsList reviewList={reviewList} /></div>
+        <div className='col-span-2'><ReviewsList reviewList={reviewList} id={id}/></div>
       </div>
     </div>
   );
