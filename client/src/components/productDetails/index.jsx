@@ -11,31 +11,69 @@ export default function ProductDetails () {
   //state passed to children
   const [allProducts, setProducts] = useState([]);
   const [currentProduct, setCurrentProduct] = useState([]);
-  const [productDetail, setProductDetail] = useState([]);
-  console.log('how many times');
+  const [productDetails, setProductDetails] = useState([]);
+  const [productStyles, setStyles] = useState([]);
+  const [productReviews, setProductReviews] = useState([]);
 
   useEffect(()=>{
     axios.get('/products')
       .then(products =>{
-        // console.log(products);
         setProducts(products.data);
         setCurrentProduct(products.data[0]);
-
       })
       .catch(err=>{
         console.error('errorr ---> ', err);
       });
-    // axios.get()
-    console.log('useEffect fired once');
   }, []);
-  // console.log('currentProd: ', currentProduct);
+  const id = currentProduct.id;
+  let getProduct = function () {
+    axios.get(`/products/${id}`, {params: {productID: id}})
+      .then(product =>{
+        setProductDetails(product.data);
+      })
+      .catch(err=>{
+        console.error(err);
+      });
+  };
+  let getStyles = function () {
+    axios.get(`/products/${id}/styles`, {params: {productID: id}})
+      .then(product =>{
+        setStyles(product.data.results);
+      })
+      .catch(err=>{
+        console.error(err);
+      });
+  };
+  let getReviews = function () {
+    axios.get(`/reviews/${id}`, { params: { productID: id } })
+      .then(reviews=>{
+        setProductReviews(reviews.data);
+      })
+      .catch(error =>{
+        console.error(error);
+      });
+  };
+  //create function that select currentStyle
+  // useEffect(()=>{
+  //   getProduct();
+  //   getStyles();
+  //   getReviews();
+  // }, [currentProduct]);
+
+
   return (
     <div className="productOverview">
       <Header
         currentProducts={currentProduct}
-        setCurrentProduct = {setCurrentProduct}
-        allProducts={allProducts}/>
-      <ProductContainer currentProduct={currentProduct}/>
+        allProducts={allProducts}
+        setCurrentProduct = {setCurrentProduct}/>
+      <ProductContainer
+        currentProduct={currentProduct}
+        currentProduct={currentProduct}
+        productDetails={productDetails}
+        productStyles={productStyles}
+        productReviews={productReviews}
+      />
     </div>
   );
 }

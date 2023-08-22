@@ -157,6 +157,22 @@ app.get('/products/:product_id', (req, res) => {
     });
 });
 
+app.get('/products/:product_id', (req, res) => {
+  const id2 = Number(req.params.product_id);
+  const id = 37311;
+  console.log('params: ', req.params.product_id);
+  console.log('id: ', id);
+  console.log('id: ', id);
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, {
+    headers: {Authorization: `${process.env.TOKEN}`},
+  })
+    .then(response =>{
+      console.log('response -->: ', response.data);
+      res.send(response.data);
+    })
+    .catch(err => console.log('failed get request', err));
+});
+
 //list of related products
 app.get('/products/:product_id/related', (req, res) => {
   var productId = req.params.product_id;
