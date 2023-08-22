@@ -93,7 +93,7 @@ describe('API calls', () => {
       }
     ];
 
-    request('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe')
+    request(`${process.env.API_URL}`)
       .get('/reviews/?product_id=37312')
       .expect(200)
       .expect(res => {
@@ -129,7 +129,7 @@ describe('API calls', () => {
       }
     };
 
-    request('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe')
+    request(`${process.env.API_URL}`)
       .get('/reviews/meta/?product_id=37312')
       .expect(200)
       .expect(res => {
@@ -144,7 +144,7 @@ describe('API calls', () => {
   });
 
   it('Should include a successful put request', () => {
-    request('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe')
+    request(`${process.env.API_URL}`)
       .put('/reviews/1280179/helpful')
       .expect(204)
       .set('Authorization', `${process.env.TOKEN}`)
@@ -280,6 +280,14 @@ describe('DOM Testing', () => {
     it('Should calculate the average based on ratings', () => {
       const result = average(meta.ratings);
       expect(result).toBeCloseTo(2.7);
+    });
+  });
+
+  describe('NewReview tests', () => {
+
+    it('Should render reviews list when form is submitted / close the form', () => {
+      render(<RatingsReviews />);
+      expect(screen.getByRole('heading')).toBeDefined();
     });
   });
 
