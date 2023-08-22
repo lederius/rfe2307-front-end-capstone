@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import Header from './Header.jsx';
 import ProductContainer from './ProductContainer.jsx';
-import './index.css';
 import axios from 'axios';
 
 

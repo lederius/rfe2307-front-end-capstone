@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState} from 'react';
-import './index.css';
 
 const Header = ({currentProduct, allProducts, setCurrentProduct}) => {
   // give entire banner a background color;
