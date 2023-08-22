@@ -20,3 +20,40 @@
   max-height: 72vh;
 }
 
+
+/* productDetails */
+
+.productOverview{
+border: 1px solid black;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.Header{
+border: 1px solid pink;
+border-radius: 5%;
+width: 90vw;
+margin-bottom: 2px
+}
+.searchBar{
+  float: right;
+}
+
+.productContainer{
+  border: 1px solid blue;
+  width: 90vw;
+  height: 50vw;
+  display:flex;
+  flex-direction: row;
+}
+.imageList{
+  border: 1px solid blue;
+  width: 60vw;
+  height: auto;
+}
+.detail{
+  border: 1px solid red;
+  width: 30vw;
+  height: auto;
+}

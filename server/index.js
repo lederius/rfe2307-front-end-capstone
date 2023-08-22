@@ -157,21 +157,20 @@ app.get('/products/:product_id', (req, res) => {
     });
 });
 
-app.get('/products/:product_id', (req, res) => {
-  const id2 = Number(req.params.product_id);
-  const id = 37311;
-  console.log('params: ', req.params.product_id);
-  console.log('id: ', id);
-  console.log('id: ', id);
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, {
-    headers: {Authorization: `${process.env.TOKEN}`},
+app.get('/products', (req, res) => {
+  const id = req.params.product_id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`, {
+    headers: { Authorization: process.env.TOKEN }
   })
-    .then(response =>{
-      console.log('response -->: ', response.data);
-      res.send(response.data);
+    .then(response => {
+      res.json(response.data);
     })
-    .catch(err => console.log('failed get request', err));
+    .catch(err => {
+      console.log('Failed to get request', err);
+      res.status(500).json({ error: 'Failed to fetch products' });
+    });
 });
+
 
 //list of related products
 app.get('/products/:product_id/related', (req, res) => {

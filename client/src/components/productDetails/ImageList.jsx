@@ -1,5 +1,4 @@
 import React, { useEffect, useState} from 'react';
-import './index.css';
 
 export default function ImageList () {
   // give entire banner a background color;
