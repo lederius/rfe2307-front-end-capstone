@@ -122,7 +122,7 @@ const NewReview = ({ productID }) => {
 
           <label>Email: <input type='email' name='email' /></label>
 
-          <button type='submit' className='bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg'>Submit Review</button>
+          <button role='submit' type='submit' className='bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg'>Submit Review</button>
         </form>
       </div>
     </div>

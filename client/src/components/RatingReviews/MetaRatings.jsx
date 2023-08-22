@@ -20,14 +20,14 @@ const MetaRatings = ({ meta }) => {
   };
 
   return (
-    <div>
+    <div role='meta'>
       {meta.ratings !== undefined &&
-        <div>
+        <div role='stars'>
           <div className='font-extrabold text-5xl'>
             {average(meta.ratings)}
             <StarRatings rating={average(meta.ratings)} numberOfStars={5} starDimension={'32px'} starSpacing={'1px'} starRatedColor={'#FFD700'} />
           </div>
-          <div className='text-sm'>Based on {total()} ratings</div>
+          <div role='total' className='text-sm'>Based on {total()} ratings</div>
           <StarBreakdown ratings={meta.ratings} total={total()}/>
         </div>
       }
