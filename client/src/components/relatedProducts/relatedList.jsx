@@ -88,6 +88,7 @@ const RelatedList = ({displayedId}) => {
       {styles.map(item => (
         <ProductCard
           actionButton={star}
+          item={item}
           key={item.id}
           id={parseInt(item.id)}
           styles={item.style}
