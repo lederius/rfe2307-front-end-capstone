@@ -16,6 +16,7 @@
     "start": "node server/index.js"
   },
   "dependencies": {
+    "@testing-library/react": "^14.0.0",
     "axios": "^1.4.0",
     "bash": "^0.0.1",
     "body-parser": "^1.20.2",
@@ -42,7 +43,6 @@
     "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
     "@testing-library/jest-dom": "^6.0.0",
-    "@testing-library/react": "^14.0.0",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "eslint": "^8.46.0",

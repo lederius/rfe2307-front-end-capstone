@@ -39,8 +39,8 @@ const SingleReview = ({ review }) => {
   };
 
   return (
-    <div key={review.review_id} className='reviewTile rounded-lg shadow-xl'>
-      <div key={review.review_id} className='min-h-[15%] border-b-2 border-black'>
+    <div className='reviewTile rounded-lg shadow-xl'>
+      <div className='min-h-[15%] border-b-2 border-black'>
         <div className="flex justify-between items-center pt-4 px-2">
           <span className='stars'>{stars(review.rating)}</span>
           <span className='usernameDate'>{review.reviewer_name}, {moment(review.date).fromNow()}</span>
@@ -50,10 +50,8 @@ const SingleReview = ({ review }) => {
           <div className='body p-1'>{review.body}</div>
           <div className='rec p-1'>{rec(review.recommend)}</div>
           <div className='photos flex gap-3 p-1'>{photo(review.photos)}</div>
-
           {/* format this when new review + post req is setup */}
-          {/* <div className='response'>{review.response}</div> */}
-
+          {review.response && <div className='response'>{review.response}</div>}
           <div className='help pb-8 text-sm p-1'>Did you find this review helpful? <button role="helpful" className='underline' onClick={handleClick}>Yes ({help})</button></div>
         </div>
       </div>

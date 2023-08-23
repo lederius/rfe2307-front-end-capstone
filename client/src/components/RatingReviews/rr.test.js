@@ -2,13 +2,16 @@ const request = require('supertest');
 const assert = require('assert');
 require('dotenv').config();
 import React from 'react';
-import { render, fireEvent, cleanup, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, cleanup, screen } from '@testing-library/react';
+import RatingsReviews from './RatingsReviews.jsx';
 import ReviewsList from './ReviewsList.jsx';
 import SingleReview from './SingleReview.jsx';
+import StarBreakdown from './StarBreakdown.jsx';
+import MetaRatings from './MetaRatings.jsx';
 
 describe('API calls', () => {
 
-  it ('Should fetch correct reviews data based on product ID', () => {
+  it('Should fetch correct reviews data based on product ID', () => {
     const expectedData = [
       {
         'review_id': 1280180,
@@ -104,6 +107,54 @@ describe('API calls', () => {
       });
   });
 
+  it('Should fetch correct meta data based on product ID', () => {
+    const expectedMetaData = {
+      'product_id': '37312',
+      'ratings': {
+        '1': '19',
+        '2': '13',
+        '3': '9',
+        '4': '6',
+        '5': '13'
+      },
+      'recommended': {
+        'false': '11',
+        'true': '49'
+      },
+      'characteristics': {
+        'Quality': {
+          'id': 125035,
+          'value': '3.2068965517241379'
+        }
+      }
+    };
+
+    request('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe')
+      .get('/reviews/meta/?product_id=37312')
+      .expect(200)
+      .expect(res => {
+        assert(res.body.results, expectedMetaData);
+      })
+      .set('Authorization', `${process.env.TOKEN}`)
+      .end((err, res) => {
+        if (err) {
+          throw err;
+        }
+      });
+  });
+
+  it('Should include a successful put request', () => {
+    request('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe')
+      .put('/reviews/1280179/helpful')
+      .expect(204)
+      .set('Authorization', `${process.env.TOKEN}`)
+      .end((err, res) => {
+        if (err) {
+          throw err;
+        }
+      });
+  });
+
 });
 
 describe('DOM Testing', () => {
@@ -125,28 +176,171 @@ describe('DOM Testing', () => {
     }
   ];
 
-  // it ('Helpful amount should increment when clicked', () => {
-  //   render(<SingleReview review={review}/>);
-  //   const button = screen.getByRole('helpful');
-  //   fireEvent.click(button);
+  const reviews = [
+    {
+      'review_id': 1135535,
+      'rating': 2,
+      'summary': 'is this working??',
+      'recommend': true,
+      'response': null,
+      'body': 'test 111111',
+      'date': '2022-02-11T00:00:00.000Z',
+      'reviewer_name': 'oliver7777',
+      'helpfulness': 4,
+      'photos': []
+    },
+    {
+      'review_id': 1280355,
+      'rating': 1,
+      'summary': 'this is a test',
+      'recommend': false,
+      'response': null,
+      'body': 'this is a test',
+      'date': '2023-08-09T00:00:00.000Z',
+      'reviewer_name': 'test',
+      'helpfulness': 2,
+      'photos': [
+        {
+          'id': 2459068,
+          'url': 'test.jpg'
+        }
+      ]
+    },
+    {
+      'review_id': 1135535,
+      'rating': 2,
+      'summary': 'is this working??',
+      'recommend': true,
+      'response': null,
+      'body': 'test 111111',
+      'date': '2022-02-11T00:00:00.000Z',
+      'reviewer_name': 'oliver7777',
+      'helpfulness': 4,
+      'photos': []
+    },
+    {
+      'review_id': 1280355,
+      'rating': 1,
+      'summary': 'this is a test',
+      'recommend': false,
+      'response': null,
+      'body': 'this is a test',
+      'date': '2023-08-09T00:00:00.000Z',
+      'reviewer_name': 'test',
+      'helpfulness': 2,
+      'photos': [
+        {
+          'id': 2459068,
+          'url': 'test.jpg'
+        }
+      ]
+    }
+  ];
 
-  //   expect(screen.getByText('Yes (155)')).toBeInTheDocument();
-  // });
+  const meta =
+  {
+    'product_id': '37312',
+    'ratings': {
+      '1': '19',
+      '2': '13',
+      '3': '9',
+      '4': '6',
+      '5': '13'
+    },
+    'recommended': {
+      'false': '11',
+      'true': '49'
+    },
+    'characteristics': {
+      'Quality': {
+        'id': 125035,
+        'value': '3.2068965517241379'
+      }
+    }
+  };
 
-  it ('Only new review button exists when product has 0 reviews', () => {
-    render(<ReviewsList />);
-    // check if more button false
-    const more = screen.queryByText('MORE REVIEWS');
-    expect(more).toBeNull();
-    // check if add button truthy
-    expect(screen.getByRole('add')).toBeDefined();
+  const average = (ratings) => {
+    let total = 0;
+    let response = 0;
+    for (let star in ratings) {
+      total += (Number(ratings[star]) * Number(star));
+      response += Number(ratings[star]);
+    }
+    const average = (total / response).toFixed(1);
+    return parseFloat(average);
+  };
+
+  describe('MetaRatings tests', () => {
+
+    it('Should render metaRatings', () => {
+      render(<MetaRatings meta={meta} />);
+      expect(screen.getByRole('meta')).toBeDefined();
+    });
+
+    it('Should calculate the average based on ratings', () => {
+      const result = average(meta.ratings);
+      expect(result).toBeCloseTo(2.7);
+    });
   });
 
-  it ('New review form should render when add review button clicked', () => {
-    render(<ReviewsList />);
-    const add = screen.getByRole('add');
-    fireEvent.click(add);
-    expect(screen.getByText('New Review')).toBeTruthy();
+  describe('RatingsReviews tests', () => {
+
+    it('Should render ratingsReviews', () => {
+      render(<RatingsReviews />);
+      expect(screen.getByRole('heading')).toBeDefined();
+    });
+  });
+
+  describe('StarBreakdown tests', () => {
+
+    it('Should render starBreakdown', () => {
+      render(<StarBreakdown />);
+      expect(screen.getByRole('stars')).toBeDefined();
+    });
+  });
+
+  describe('ReviewsList tests', () => {
+
+    it('Only new review button exists when product has 0 reviews', () => {
+      render(<ReviewsList reviewList={[]} />);
+      // check if more button false
+      const more = screen.queryByText('MORE REVIEWS');
+      expect(more).toBeNull();
+      // check if add button truthy
+      expect(screen.getByRole('add')).toBeDefined();
+    });
+
+    it('Renders total reviews header', () => {
+      render(<ReviewsList reviewList={reviews} />);
+      // use regex for strings on separate lines
+      expect(screen.getByText(/2 reviews, sorted by/)).toBeTruthy();
+    });
+
+    it('Should increase review list by 2 when more button clicked', () => {
+      render(<ReviewsList reviewList={reviews} />);
+      const button = screen.getByRole('more');
+      fireEvent.click(button);
+      expect(screen.getByText(/4 reviews, sorted by/)).toBeTruthy();
+    });
+
+    it('New review form should render when add review button clicked', () => {
+      render(<ReviewsList reviewList={reviews} />);
+      const add = screen.getByRole('add');
+      fireEvent.click(add);
+      expect(screen.getByText('New Review')).toBeTruthy();
+    });
+  });
+
+  describe('SingleReview tests', () => {
+
+    it('Handleclick function called when helpful is clicked', () => {
+      render(<SingleReview review={review[0]} />);
+      const button = screen.getByRole('helpful');
+      fireEvent.click(button);
+      expect(screen.getByText(/Yes \(155\)/)).toBeTruthy();
+    });
   });
 
 });
+
+

@@ -16,7 +16,7 @@ const StarBreakdown = ({ ratings, total }) => {
   };
 
   return (
-    <div>
+    <div role='stars'>
       {ratings && Object.entries(ratings).reverse().map(star => bar(star))}
     </div>
   );
