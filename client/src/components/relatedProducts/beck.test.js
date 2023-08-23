@@ -98,7 +98,6 @@ describe('Is the main Related area loading', () => {
 
 
 
-
 // describe('ProductCards modal component', () => {
 //   it('Should return some text', async () => {
 //     act(() => {
