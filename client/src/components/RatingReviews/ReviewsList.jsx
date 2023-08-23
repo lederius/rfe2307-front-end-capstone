@@ -3,7 +3,7 @@ import axios from 'axios';
 import SingleReview from './SingleReview.jsx';
 import NewReview from './NewReview.jsx';
 
-const ReviewsList = ({ reviewList, id }) => {
+const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
 
   const [visibleReviews, setVisibleReviews] = useState(2);
   const [form, setForm] = useState(false);
@@ -37,28 +37,40 @@ const ReviewsList = ({ reviewList, id }) => {
     }
   };
 
+  // listens to sort dropdown changes
   useEffect(() => {
     if (sort !== 'Relevance') {
       dropdown();
     }
   }, [sort]);
 
+  // listens to filteredList changes
+  useEffect(() => {
+    setReviews(reviewList);
+  }, [reviewList]);
+
   return (
     <div>
       {form ? (
         <div className='w-96 h-full overflow-y-scroll'>
-          <NewReview productID={id} form={form} setForm={setForm}/>
+          <NewReview productID={id} form={form} setForm={setForm} />
         </div>
       ) : reviews.length > 0 ? (
         <div>
-          <div className='numReviews'>
-            {visibleReviews} reviews, sorted by
-            <select className='sort' onChange={(e) => setSort(e.target.value)}>
-              <option>Relevance</option>
-              <option>Newest</option>
-              <option>Helpful</option>
-            </select>
+          <div className='flex justify-between items-center'>
+            <div className='flex items-center space-x-2'>
+              {visibleReviews} reviews, sorted by
+              <select className='sort' onChange={(e) => setSort(e.target.value)}>
+                <option>Relevance</option>
+                <option>Newest</option>
+                <option>Helpful</option>
+              </select>
+            </div>
+            <div className='flex items-center space-x-2'>
+              {filters.length > 0 && <div>Filtered by {filters} stars</div>}
+            </div>
           </div>
+
           <div className='max-h-80 overflow-y-scroll'>
             <div>{reviews.slice(0, visibleReviews).map((review, index) => <div key={index}><SingleReview review={review} /></div>)}
             </div>
