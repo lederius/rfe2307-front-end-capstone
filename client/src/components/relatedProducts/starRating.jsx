@@ -3,7 +3,7 @@ import Stars from 'react-stars';
 
 const StarRating = ({ rating }) => {
   return (
-    <div>
+    <div data-testid='starzzz'>
       <Stars
         count={5}
         value={rating}

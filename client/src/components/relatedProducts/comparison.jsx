@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const Comparison = ({onClose, mainId, compared}) => {
   const [mainProduct, setMainProduct] = React.useState(null);
-
   useEffect (() => {
     axios.get(`http://localhost:9000/products/${mainId}`)
       .then(response => {
@@ -33,7 +32,7 @@ const Comparison = ({onClose, mainId, compared}) => {
 
   return (
     <div onClick={onClose} className='overlay'>
-      <div className='modalContainer'>
+      <div data-testid='compareTest' className='modalContainer'>
         <h4 className='comparing'>COMPARING</h4>
         <div className='comparedItem'>
           <p>{mainProduct.name}</p>

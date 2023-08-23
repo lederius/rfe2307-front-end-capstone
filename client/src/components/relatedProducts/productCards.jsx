@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import RelatedList from './relatedList.jsx';
-import StarRating from './StarRating';
+import Stars from './StarRating';
 
 
 const ProductCard = ({styles, photo, id, actionButton, action}) => {
   const [product, setProduct] = React.useState(null);
   const [review, setReview] = React.useState(null);
-
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${id}`)
@@ -60,7 +59,7 @@ const ProductCard = ({styles, photo, id, actionButton, action}) => {
         </div>
       </div>
       <div className='starz'>
-        <StarRating rating={review} />
+        <Stars rating={review} />
       </div>
     </div>
   );
