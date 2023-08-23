@@ -27,7 +27,7 @@ const Header = ({currentProduct, allProducts, setCurrentProduct}) => {
             <label>
               <input type="text" name="product"></input>
             </label>
-            <button type="submit">Search</button>
+            <button type="submit" name="search">Search</button>
           </form>
         </span>
 

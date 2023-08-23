@@ -50,7 +50,9 @@ export default function ProductContainer ({currentProduct}) {
   //put detail in state
   return (
     <div className="productContainer">
-      <ImageList />
+      <ImageList
+        productDetails={productDetails}
+        productStyles={productStyles}/>
       <Detail
         currentProduct={currentProduct}
         productDetails={productDetails}
