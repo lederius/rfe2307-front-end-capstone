@@ -87,3 +87,11 @@
   color: red;
   background-color:  rgba(26, 132, 208, 0.846);
 }
+
+.react-multiple-carousel__arrow--right {
+  right: 7px;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 7px;
+}
