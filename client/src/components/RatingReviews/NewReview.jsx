@@ -3,13 +3,13 @@ import axios from 'axios';
 import moment from 'moment';
 import ReactStars from 'react-stars';
 
-const NewReview = ({ productID, modal, setModal }) => {
+const NewReview = ({ productID, form, setForm }) => {
 
   const [name, setName] = useState('selected product');
   const [rating, setRating] = useState(0);
 
-  const changeModal = () => {
-    setModal(!modal);
+  const changeForm = () => {
+    setForm(!form);
   };
 
   const getName = () => {
@@ -25,6 +25,7 @@ const NewReview = ({ productID, modal, setModal }) => {
 
   const handleRating = (newRating) => {
     setRating(newRating);
+    console.log(rating);
   };
 
   const handleSubmit = (e) => {
@@ -55,15 +56,16 @@ const NewReview = ({ productID, modal, setModal }) => {
   return (
     <>
       <div className="modal">
-        <div onClick={changeModal} className="w-100vw h-100vh top-0 left-0 right-0 bottom-0 fixed bg-neutral-600 opacity-70 "></div>
-        <div className="fixed top-36 right-2/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 h-124">
-          <h1 className="text-xl font-bold m-2">New Review</h1>
+        <div onClick={changeForm} className="w-100vw h-100vh top-0 left-0 right-0 bottom-0 fixed bg-neutral-600 opacity-70"></div>
+        <div className="fixed top-30 right-2/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 max-h-96 flex flex-col items-center overflow-y-auto">
+          <h1 className="justify-center text-xl font-bold m-2">New Review</h1>
           <p className="text-sm ml-2">About the {name}</p>
 
-          <form className="flex flex-col" onSubmit={handleSubmit}>
+          <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
 
             <span>
               Rating: <ReactStars count={5} half={false} size={24} onChange={handleRating} />
+              <p className="text-xs">Double Click Please</p>
             </span>
 
             <div>
@@ -76,11 +78,14 @@ const NewReview = ({ productID, modal, setModal }) => {
 
             <div>
               <label>Summary:
-                <input name='summary' maxLength={60} className='border w-64' placeholder='Write a title here...'/></label>
+                <input name='summary' maxLength={60} className='border w-80' placeholder='Write a title here...' /></label>
             </div>
 
             <div>
-              <label>Body: <input name='body' className='border w-64 h-48' minLength={60} maxLength={1000} placeholder='Let us know your thoughts!'/></label>
+              <div><label>Body: </label></div>
+              <div>
+                <textarea name='body' className='border w-80' minLength={60} maxLength={1000} placeholder='Let us know your thoughts!' />
+              </div>
             </div>
 
             <div>
@@ -141,43 +146,24 @@ const NewReview = ({ productID, modal, setModal }) => {
               </label>
             </div>
 
-            <button>Upload Photos</button>
+            <button className='m-1 py-[.438rem] px-2 w-40 mx-auto inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Upload Photos</button>
 
-            <label>Nickname: <input name='nickname' /></label>
+            <label>Nickname: <input className='w-64' name='nickname' placeholder='User123' /></label>
 
             <label>Email:
-              <input required type="email" className="m-2" placeholder="Example: jack@email.com"></input>
+              <input required type="email" className="m-2 w-64" placeholder="Example: jack@email.com"></input>
             </label>
             <span className="m-2 text-xs">For authentication reasons, you will not be emailed</span>
 
             <button role='submit' type='submit' className='m-1 py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Submit Review</button>
-
-            {/* <textarea required className="m-2 h-48" placeholder="Your question"></textarea>
-            <input required className="m-2" placeholder="Example: jackson11!"></input>
-            <span className="m-2 text-xs">For privacy reasons, do not use your full name or email address</span>
-
-            <input required type="email" className="m-2" placeholder="Example: jack@email.com"></input>
-            <span className="m-2 text-xs">For authentication reasons, you will not be emailed</span>*/}
           </form>
-          <button className="h-7 absolute top-1 right-1 px-2 m-1 py-[.688rem] inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-white bg-red-500 hover:border-red-500 transition-all text-sm dark:border-gray-700 dark:hover:border-red-500" onClick={setModal}>
+          <button className="h-7 absolute top-1 right-1 px-2 m-1 py-[.688rem] inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-white bg-red-500 hover:border-red-500 transition-all text-sm dark:border-gray-700 dark:hover:border-red-500" onClick={changeForm}>
             X
           </button>
         </div>
       </div>
     </>
   );
-
-  // return (
-  //   <div>
-  //     <div className='font-bold text-2xl'>New Review</div>
-  //     <div className='form flex flex-col'>
-  //       <form onSubmit={handleSubmit}>
-
-  //       </form>
-  //     </div>
-  //   </div>
-
-  // );
 };
 
 export default NewReview;

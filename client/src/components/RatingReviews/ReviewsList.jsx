@@ -46,7 +46,9 @@ const ReviewsList = ({ reviewList, id }) => {
   return (
     <div>
       {form ? (
-        <NewReview productID={id} />
+        <div className='w-96 h-full overflow-y-scroll'>
+          <NewReview productID={id} form={form} setForm={setForm}/>
+        </div>
       ) : reviews.length > 0 ? (
         <div>
           <div className='numReviews'>
