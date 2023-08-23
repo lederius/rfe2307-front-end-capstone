@@ -12,7 +12,7 @@ export default function ProductDetails () {
   const [currentProduct, setCurrentProduct] = useState([]);
   const [productDetails, setProductDetails] = useState([]);
   const [productStyles, setStyles] = useState([]);
-  const [productReviews, setProductReviews] = useState([]);
+  const [productReviews, setProductReviews] = useState([null]);
 
   useEffect(()=>{
     axios.get('/products')

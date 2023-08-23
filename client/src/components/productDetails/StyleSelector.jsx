@@ -8,7 +8,7 @@ export default function StyleSelector ({productStyles}) {
   let styleOptionDiv;
   let testDiv;
   let styleChange = function (newStyle) {
-    // console.log('arg: ', newStyle);
+    console.log('arg: ', newStyle);
     // need to update currentStyle with setProductStyle
   };
   let styleOption = function () {

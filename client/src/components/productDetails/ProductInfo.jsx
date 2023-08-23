@@ -13,24 +13,28 @@ export default function ProductInfo ({productDetails, currentProduct, productRev
   let priceDiv;
   let descriptionDiv;
   const averageRating = function () {
-    let numberOfRatings = productReviews.length;
-    let intialValue = 0;
-    if (numberOfRatings > 0) {
-      let ratingArr = productReviews.map(product=>{
-        return product.rating;
-      });
-      // console.log('ratingArr: ', ratingArr);
-      let totalRating = ratingArr.reduce((totalRating, currentRating) =>{
-        return totalRating + currentRating;
-      });
-      let avgRating = totalRating / numberOfRatings;
-      //need to make inline with styling
-      starDiv =
+    console.log('productReviews---≥', productReviews);
+    if (productReviews !== undefined || productReviews.length === undefined ) {
+      let numberOfRatings = productReviews.length;
+      let intialValue = 0;
+      if (numberOfRatings > 0) {
+        let ratingArr = productReviews.map(product=>{
+          return product.rating;
+        });
+        // console.log('ratingArr: ', ratingArr);
+        let totalRating = ratingArr.reduce((totalRating, currentRating) =>{
+          return totalRating + currentRating;
+        });
+        let avgRating = totalRating / numberOfRatings;
+        //need to make inline with styling
+        starDiv =
         <span>
           <p>{avgRating} <strong>stars</strong><a href="#"> Read All {numberOfRatings} Reviews</a> </p>
         </span>;
+      }
+
     } else {
-      return 'no value yet';
+      return null;
     }
   };
   averageRating();
