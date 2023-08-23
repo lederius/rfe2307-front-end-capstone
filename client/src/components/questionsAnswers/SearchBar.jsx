@@ -18,9 +18,9 @@ const SearchBar = ({questions, filtered, onSearch, sortQuestions, searching, set
   };
 
   return (
-    <div>
+    <div role="search-bar">
       <form className="relative flex flex-row h-10 border-2 border-slate-500">
-        <input onChange={(e) => {
+        <input role="query-input" onChange={(e) => {
           handleChange(e);
         }}className="w-full" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
         <button type="submit" className="absolute right-0 bottom-1.5">&#128269;</button>

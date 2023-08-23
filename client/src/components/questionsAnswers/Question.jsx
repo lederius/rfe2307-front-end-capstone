@@ -69,14 +69,14 @@ const Question = (props) => {
   };
 
   return (
-    <div className="flex-1">
+    <div role="question" className="flex-1">
       <div className="flex flex-row justify-between">
         <div className="font-bold">
           <label>Q:</label> {props.question.question_body}
         </div>
         <div className="ml-40 text-xs">
           <label className="text-xs">Helpful? </label>
-          <button id={props.question.question_id} className="underline ml-1" onClick={(e)=>{
+          <button role="helpfulness" id={props.question.question_id} className="underline ml-1" onClick={(e)=>{
             setHelpful(e);
           }}>Yes </button>
           <span className=""> ({helpfulness})</span><span className="m-4">|</span>
@@ -93,7 +93,7 @@ const Question = (props) => {
       </div>
       <div className="h-3/6">
         <AnswersList answers={answers} allAnswers={allAnswers}/>
-        {answers.length > 2 && <button onClick={(e) => toggleAllAnswers(e)} className="m-1 py-[.288rem] px-1 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-xs dark:border-gray-700 dark:hover:border-blue-500">More Answers</button>}
+        {answers.length > 2 && <button role="answer-toggle-btn" onClick={(e) => toggleAllAnswers(e)} className="m-1 py-[.288rem] px-1 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-xs dark:border-gray-700 dark:hover:border-blue-500">More Answers</button>}
       </div>
 
     </div>
