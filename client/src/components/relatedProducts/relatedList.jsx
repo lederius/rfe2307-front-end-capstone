@@ -77,7 +77,7 @@ const RelatedList = ({displayedId}) => {
     setComparedProduct(product);
   };
 
-  return (<div className='garage'>
+  return (<div data-testid='mainArea' className='garage'>
     <Carousel
       className='carousel'
       swipeable={true}
