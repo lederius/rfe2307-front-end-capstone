@@ -157,6 +157,21 @@ app.get('/products/:product_id', (req, res) => {
     });
 });
 
+app.get('/products', (req, res) => {
+  const id = req.params.product_id;
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
+    headers: { Authorization: process.env.TOKEN }
+  })
+    .then(response => {
+      res.json(response.data);
+    })
+    .catch(err => {
+      console.log('Failed to get request', err);
+      res.status(500).json({ error: 'Failed to fetch products' });
+    });
+});
+
+
 //list of related products
 app.get('/products/:product_id/related', (req, res) => {
   var productId = req.params.product_id;
