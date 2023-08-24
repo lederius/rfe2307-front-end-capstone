@@ -1,22 +1,28 @@
 import React, { useState, useEffect} from 'react';
 
-export default function StyleSelector ({productStyles}) {
-  //productStyles is based of currentProduct in state
-  //display stles in cols of 4
-  // need to pass in setProductStyle from index
-  // console.log(productStyles, 'productStyles');
+export default function StyleSelector ({productStyles, setCurrentStyle, currentStyle, setPhotoList, photoList}) {
   let styleOptionDiv;
   let testDiv;
+  //console.log('photoList before click: ', photoList);
+
+  useEffect(()=>{
+    if (currentStyle.length > 0) {
+      console.log('in useEffect', currentStyle);
+      console.log('in useEffect', currentStyle.photos);// doesn't work
+    }
+  }, [currentStyle]);
+
   let styleChange = function (newStyle) {
-    console.log('arg: ', newStyle);
-    // need to update currentStyle with setProductStyle
+    const updatedStyle = productStyles.find((style) => style.style_id === newStyle);
+    setCurrentStyle([updatedStyle]);
+    console.log('styleChange: ', photoList);
+    setPhotoList(currentStyle.photos);
   };
+
   let styleOption = function () {
     if (productStyles.length > 0) {
-      // testDiv = <img src={productStyles[0].photos[0].thumbnail_url} height={50} width={50} key={1}/>;
       return styleOptionDiv =
       productStyles.map((product, ind) =>{
-        // { console.log('product.photos[0]:', product.photos[0].thumbnail_url); }
         return <div onClick={()=>{ styleChange(product.style_id); }}>
           <img src={product.photos[0].thumbnail_url} height={50} width={50} key={ind}/>
         </div>;
@@ -24,6 +30,7 @@ export default function StyleSelector ({productStyles}) {
     }
   };
   styleOption();
+
   return (
     <div>
       <h4>Style selector</h4>

@@ -3,7 +3,7 @@ import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
-export default function Detail ({currentProduct, productDetails, productStyles, productReviews, currentStyle}) {
+export default function Detail ({currentProduct, productDetails, productStyles, productReviews, currentStyle, setCurrentStyle, setPhotoList, photoList}) {
   //should have 3 containers
   //product info ,style selector, and add to carts
   //these div should be in col
@@ -20,6 +20,10 @@ export default function Detail ({currentProduct, productDetails, productStyles, 
       <StyleSelector
         productStyles={productStyles}
         currentStyle={currentStyle}
+        setCurrentStyle={setCurrentStyle}
+        setPhotoList={setPhotoList}
+        photoList={photoList}
+
       />
       <AddToCart
         productStyles={productStyles}
