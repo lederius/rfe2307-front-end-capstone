@@ -15,7 +15,7 @@ const RelatedList = ({displayedId}) => {
     axios.get(`/products/${productId}/related`)
       .then(response => {
         const stylePromises = [...new Set(response.data)].map(item => {
-          return axios.get(`/${item}/styles`);
+          return axios.get(`/products/${item}/styles`);
         });
         Promise.all(stylePromises)
           .then(results => {

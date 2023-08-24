@@ -145,7 +145,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 
 app.get('/products/:product_id', (req, res) => {
   const id = req.params.product_id;
-  axios.get(`${process.env.API_URL}api/fec2/hr-rfe/products/${id}`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, {
     headers: { Authorization: process.env.TOKEN }
   })
     .then(response => {
@@ -175,7 +175,7 @@ app.get('/products', (req, res) => {
 //list of related products
 app.get('/products/:product_id/related', (req, res) => {
   var productId = req.params.product_id;
-  axios.get(`${process.env.API_URL}api/fec2/hr-rfe/products/${productId}/related`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`, {
     headers: { Authorization: process.env.TOKEN }
   })
     .then(response => {
@@ -190,7 +190,7 @@ app.get('/products/:product_id/related', (req, res) => {
 //styles
 app.get('/products/:product_id/styles', (req, res) => {
   var productId = req.params.product_id;
-  axios.get(`${process.env.API_URL}api/fec2/hr-rfe/products/${productId}/styles`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/styles`, {
     headers: { Authorization: process.env.TOKEN }
   })
     .then(response => {
