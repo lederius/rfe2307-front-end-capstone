@@ -82,11 +82,21 @@
   transition: transform 0.3s;
 }
 
+@keyframes starspin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .actionButton:hover {
   transform: scale(1.5);
   text-shadow: 1px 1px 1px rgb(1, 12, 19);
-  color: rgb(138, 195, 252)
+  color: rgb(138, 195, 252);
 }
+
+.actionButton:active {
+animation: starspin 0.5s linear 1;
+}
+
 
 
 .react-multiple-carousel__arrow {

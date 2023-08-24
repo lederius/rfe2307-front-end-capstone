@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import RelatedList from './relatedList.jsx';
-import Stars from './StarRating';
+import Starz from './starRating';
+
 
 
 const ProductCard = ({actionButton, action, item, style}) => {
   const [product, setProduct] = React.useState(null);
-  const [review, setReview] = React.useState(null);
+  const [review, setReview] = React.useState(0);
   const id = item.id;
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const ProductCard = ({actionButton, action, item, style}) => {
         </div>
       </div>
       <div className='starz'>
-        <Stars rating={review} />
+        <Starz rating={review} />
       </div>
     </div>
   );
