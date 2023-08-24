@@ -8,7 +8,8 @@ export default function StyleSelector ({productStyles, setCurrentStyle, currentS
   useEffect(()=>{
     if (currentStyle.length > 0) {
       console.log('in useEffect', currentStyle);
-      console.log('in useEffect', currentStyle.photos);// doesn't work
+      console.log('in useEffect', currentStyle[0].photos);// doesn't work
+      setPhotoList(currentStyle[0].photos);
     }
   }, [currentStyle]);
 

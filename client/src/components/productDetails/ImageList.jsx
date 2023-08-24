@@ -1,18 +1,16 @@
 import React, { useEffect, useState} from 'react';
 
-export default function ImageList ({productStyles, currentStyle}) {
+export default function ImageList ({productStyles, currentStyle, photoList}) {
   // console.log('productStyles: ', productStyles);
   // console.log('currentStyle: ', currentStyle);
-  //console.log('photoList on imageList: ', photoList);
+  console.log('photoList on imageList: ', photoList);
   const [currentImg, setCurrentImage] = useState(null);
-  console.log('imageList: ', currentStyle);
-  console.log('photoArr: ', currentStyle.photos); // doesn't work
 
-  const imgList = function() {
-    for (i in currentStyle) {
-      console.log(currentStyle[i]);
-    }
-  };
+  // const imgList = function() {
+  //   for (i in currentStyle) {
+  //     console.log(currentStyle[i]);
+  //   }
+  // };
 
   useEffect(()=>{
     // imgList();
