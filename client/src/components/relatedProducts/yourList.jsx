@@ -25,7 +25,7 @@ const YourList = ({mainId, sid}) => {
         }
       }
     }
-    axios.get(`http://localhost:9000/products/${mainId}/styles`)
+    axios.get(`/${mainId}/styles`)
       .then(response => {
         for (var style of response.data.results) {
           if (style.style_id === sid) {
