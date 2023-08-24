@@ -4,18 +4,14 @@ const Characteristics = ({ chars }) => {
 
   const marker = (val) => {
     const left = Math.round((Number(val) / 5) * 100) - 8;
-    console.log('left', left);
     return {
       left: `${left}%`,
     };
   };
 
-  // chars is an object!!!
-  console.log(chars);
-  // size, width, comfort, quality, length, fit
   const bar = (data) => {
     return (
-      <div className="mx-auto bg-slate-200 rounded-sm h-2 mb-4 relative" style={{ width: '100%' }}>
+      <div className="char-bar mx-auto rounded-sm h-2 mb-4 relative" style={{ width: '100%' }}>
         <div className="marker-triangle" style={marker(data.value)}></div>
       </div>
     );
@@ -56,7 +52,7 @@ const Characteristics = ({ chars }) => {
         )}
         {chars.Fit && (
           <div>
-            <p className='ml-1 text-sm font-medium'>Length</p>
+            <p className='ml-1 text-sm font-medium'>Fit</p>
             <div>{bar(chars.Fit)}</div>
           </div>
         )}
@@ -66,10 +62,3 @@ const Characteristics = ({ chars }) => {
 };
 
 export default Characteristics;
-
-{/* {chars.Size && <div>{bar(chars.Size)}</div>}
-{chars.Width && <div>{bar(chars.Width)}</div>}
-{chars.Comfort && <div>{bar(chars.Comfort)}</div>}
-{chars.Quality && <div>{bar(chars.Quality)}</div>}
-{chars.Length && <div>{bar(chars.Length)}</div>}
-{chars.Fit && <div>{bar(chars.Fit)}</div>} */}

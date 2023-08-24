@@ -92,16 +92,16 @@ margin-bottom: 2px
 .char-bar {
   background: linear-gradient(
     to right,
-    slategray 0%,
-    slategray 31%,
+    rgb(226 232 240) 0%,
+    rgb(226 232 240) 31%,
     transparent 32%,
     transparent 34%,
-    slategray 35%,
-    slategray 64%,
+    rgb(226 232 240) 35%,
+    rgb(226 232 240) 64%,
     transparent 65%,
     transparent 67%,
-    slategray 68%,
-    slategray 100%
+    rgb(226 232 240) 68%,
+    rgb(226 232 240) 100%
   )
 }
 

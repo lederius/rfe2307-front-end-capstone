@@ -27,7 +27,7 @@ const RatingReviews = () => {
   }, []);
 
   return (
-    <div className='max-h-96 overflow-y-scroll'>
+    <div>
       <h1 className='ps-1'role='heading'>RATINGS & REVIEWS</h1>
       <div className='grid grid-cols-3 gap-7 p-1'>
         <div className='col-span-1'><MetaRatings meta={meta} filters={filters} filters={filters} setFilters={setFilters} reviewList={reviewList}/></div>
