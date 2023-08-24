@@ -11,9 +11,9 @@ import ProductDetails from './productDetails/index.jsx';
 const App = () => {
   return (
     <div>
-      <ProductDetails />
-      <RelatedProducts/>
-      <QuestionAnswerContainer />
+      {/* <ProductDetails />
+      <RelatedProducts/> */}
+      {/* <QuestionAnswerContainer /> */}
       <RatingReviews />
     </div>
   );

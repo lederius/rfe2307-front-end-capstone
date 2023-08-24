@@ -77,4 +77,32 @@ margin-bottom: 2px
   color: #FF00FF;
 }
 
+/* marker for review chars */
+.marker-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid slategray;
+  transform: translateX(-50%);
+}
+
+/* char bar */
+.char-bar {
+  background: linear-gradient(
+    to right,
+    slategray 0%,
+    slategray 31%,
+    transparent 32%,
+    transparent 34%,
+    slategray 35%,
+    slategray 64%,
+    transparent 65%,
+    transparent 67%,
+    slategray 68%,
+    slategray 100%
+  )
+}
+
 
