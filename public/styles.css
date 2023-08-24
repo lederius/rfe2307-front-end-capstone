@@ -15,9 +15,27 @@
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
+.question-container {
+  max-height: 100vh;
+}
+
 .questions-list {
   overflow-y: auto;
-  max-height: 72vh;
+  height: 100vh;
+}
+
+.container {
+  max-height: 100vh;
+}
+
+.outter {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.inner {
+flex-grow: 20;
+flex-shrink: 0;
 }
 
 
