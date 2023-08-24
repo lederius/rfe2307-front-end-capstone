@@ -9,8 +9,11 @@ import ProductCard from './productCards.jsx';
 const YourList = ({mainId, sid}) => {
   const [styleInfo, setStyleInfo] = React.useState(null);
 
-  const handleAction = () => {
-    console.log('as');
+  const handleAction = (outputId) => {
+    var index = styleInfo.indexOf(outputId);
+    setStyleInfo(prevStyleInfo => {
+      prevStyleInfo.slice(0, index).concat(prevStyleInfo.slice(index + 1));
+    });
   };
 
   const handleClick = () => {
@@ -79,7 +82,7 @@ const YourList = ({mainId, sid}) => {
             item={output}
             style={item}
             sid={sid}
-            action={handleAction}
+            action={() => handleAction(output.id)}
           />))}
       </Carousel>
     </div>
