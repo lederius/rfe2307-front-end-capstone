@@ -88,11 +88,10 @@ const RelatedList = ({displayedId}) => {
       {styles.map(item => (
         <ProductCard
           actionButton={star}
+          item={item}
+          style={item.style}
           key={item.id}
-          id={parseInt(item.id)}
-          styles={item.style}
-          action={handleCompare}
-          photo={item.photo}/>))}
+          action={handleCompare}/>))}
     </Carousel>
     {modal && <Comparison mainId={productId} compared={comparedProduct} onClose={() => setModal(false)}/>}
   </div>

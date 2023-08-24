@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import RelatedList from './relatedList.jsx';
-import Stars from './StarRating';
+import Starz from './starRating';
 
 
-const ProductCard = ({styles, photo, id, actionButton, action}) => {
+
+const ProductCard = ({actionButton, action, item, style}) => {
   const [product, setProduct] = React.useState(null);
-  const [review, setReview] = React.useState(null);
+  const [review, setReview] = React.useState(0);
+  const id = item.id;
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${id}`)
@@ -34,7 +36,7 @@ const ProductCard = ({styles, photo, id, actionButton, action}) => {
 
   }, [id]);
 
-  if (!styles || !photo || !product) {
+  if (!style || !product) {
     return null;
   }
 
@@ -45,21 +47,21 @@ const ProductCard = ({styles, photo, id, actionButton, action}) => {
   return (
     <div className='productCard'>
       <div className='thumbSpace'>
-        <button className='compareButton' onClick={onAction}>{actionButton}</button>
-        <img className='cardImage' src={photo} />
+        <button className='actionButton' onClick={onAction}>{actionButton}</button>
+        <img className='cardImage' src={style.photos[0].thumbnail_url} />
       </div>
       <div className='container'>
         <h2 style={{color: 'grey'}}>Category: {product.category}</h2>
         <h3><b>{product.name}</b></h3>
         <div className='priceBlock'>
-          <p className='salePrice'>{styles.sale_price && '$' + styles.sale_price} &nbsp;</p>
-          <p style={{ textDecoration: styles.sale_price ? 'line-through' : 'none' }}>
-         ${styles.original_price}
+          <p className='salePrice'>{style.sale_price && '$' + style.sale_price} &nbsp;</p>
+          <p style={{ textDecoration: style.sale_price ? 'line-through' : 'none' }}>
+         ${style.original_price}
           </p>
         </div>
       </div>
       <div className='starz'>
-        <Stars rating={review} />
+        <Starz rating={review} />
       </div>
     </div>
   );

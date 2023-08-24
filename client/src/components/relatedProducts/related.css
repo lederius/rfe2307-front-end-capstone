@@ -22,8 +22,8 @@
 .theLine {
     border: none;
     border-top: 1px solid #ccc;
-    margin: 10px auto;
-    width: 80%;
+    margin: 5px auto;
+    width: 85%;
 
 }
 
@@ -32,6 +32,8 @@
   justify-content: space-between;
   align-items: center;
   margin-left: 100px;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 .thumbSpace {
@@ -68,7 +70,7 @@
   align-items: baseline;
 }
 
-.compareButton {
+.actionButton {
   position: absolute;
   right: 5px;
   background: none;
@@ -77,11 +79,25 @@
   font-size: 24px;
   cursor: pointer;
   text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  transition: transform 0.3s;
 }
 
-.compareButton:hover {
-  color: rgb(46, 175, 235);
+@keyframes starspin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
+
+.actionButton:hover {
+  transform: scale(1.5);
+  text-shadow: 1px 1px 1px rgb(1, 12, 19);
+  color: rgb(138, 195, 252);
+}
+
+.actionButton:active {
+animation: starspin 0.5s linear 1;
+}
+
+
 
 .react-multiple-carousel__arrow {
   color: red;
@@ -95,3 +111,26 @@
 .react-multiple-carousel__arrow--left {
   left: 7px;
 }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(80deg); }
+}
+.plus {
+  font-size: 120px;
+ }
+
+ .plus:hover {
+    animation: spin 0.20s linear 1;
+  }
+
+ .addCard {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  color: rgba(128, 128, 128, 0.633);
+  cursor: pointer;
+ }
