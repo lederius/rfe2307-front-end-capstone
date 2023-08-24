@@ -28,10 +28,6 @@ const RatingReviews = () => {
     fetch();
   }, []);
 
-  // useEffect(() => {
-  //   setReviewList(filteredList);
-  // }, [filteredList]);
-
   return (
     <div>
       <h1 role='heading'>RATINGS & REVIEWS</h1>

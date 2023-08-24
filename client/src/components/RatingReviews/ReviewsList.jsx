@@ -39,9 +39,7 @@ const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
 
   // listens to sort dropdown changes
   useEffect(() => {
-    if (sort !== 'Relevance') {
-      dropdown();
-    }
+    dropdown();
   }, [sort]);
 
   // listens to filteredList changes
@@ -71,7 +69,7 @@ const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
               </select>
             </div>
             <div className='flex items-center space-x-2'>
-              {filters.length > 0 && <div>Filtered by {filters} stars</div>}
+              {filters.length > 0 && <div>Filtered by {filters.join(' & ')} stars</div>}
             </div>
           </div>
 

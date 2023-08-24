@@ -4,28 +4,35 @@ const StarBreakdown = ({ ratings, total, filteredList, setFilteredList, filters,
   // optimization -> fetch ALL reviews based on total
 
   const handleSort = (star) => {
-    // second click should remove the filter
     if (!filters.includes(star)) {
-      setFilters(star);
+      setFilters(prevFilters => prevFilters.concat(star));
     } else {
-      setFilters([]);
+      setFilters(prevFilters => {
+        return prevFilters.filter(f => f !== star);
+      });
     }
 
-    let starList = reviewList.filter(review => {
-      return review.rating === Number(star);
-    });
-    console.log(starList);
+    let starList = [];
+    if (filters.length > 0) {
+      filters.forEach(filter => {
+        const filteredList = reviewList.filter(review => {
+          return review.rating === Number(filter);
+        });
+        starList = starList.concat(filteredList);
+        console.log(starList);
+      });
+    } else {
+      starList = reviewList;
+    }
     setFilteredList(starList);
   };
 
   const handleRemove = () => {
-    console.log(reviewList);
     setFilters([]);
   };
 
   // useEffect(() => {
-  //   handleSort();
-  // }, []);
+  // }, [filters, filteredList]);
 
   const bar = (val) => {
     return (
