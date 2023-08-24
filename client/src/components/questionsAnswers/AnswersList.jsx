@@ -20,16 +20,26 @@ const AnswersList = (props) => {
   useEffect(()=> {
     getShown();
   }, [props.allAnswers]);
+  if (answers.length === 0) {
+    return (
+      <div className="flex justify-center">
+        <p className="realtive m-24">Be the first to answer this question!</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="outter">
+        <div className="inner">
+          {shown.map((answer, index) => {
+            // console.log('this is an answer', answer);
+            return <Answer answer={answer} key={index} />;
+          })}
+        </div>
+      </div>
 
-  return (
-    <div className="max-h-56 overflow-y-auto">
-      {shown.map((answer, index) => {
-        // console.log('this is an answer', answer);
-        return <Answer answer={answer} key={index} />;
-      })}
-    </div>
+    );
+  }
 
-  );
 };
 
 export default AnswersList;

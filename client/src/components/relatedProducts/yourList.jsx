@@ -6,15 +6,16 @@ import axios from 'axios';
 import ProductCard from './productCards.jsx';
 
 
-const YourList = ({mainId, sid}) => {
-  const [styleInfo, setStyleInfo] = React.useState(null);
+const YourList = ({ mainId, sid }) => {
+  const [styleInfo, setStyleInfo] = React.useState([]);
 
   const handleAction = (outputId) => {
-    var index = styleInfo.indexOf(outputId);
-    setStyleInfo(prevStyleInfo => {
-      prevStyleInfo.slice(0, index).concat(prevStyleInfo.slice(index + 1));
-    });
+    const updatedStyleInfo = styleInfo.filter((style) => style.style_id !== outputId);
+
+    setStyleInfo(updatedStyleInfo);
+    localStorage.setItem('styleInfo', JSON.stringify(updatedStyleInfo));
   };
+
 
   const handleClick = () => {
     if (styleInfo) {
@@ -25,15 +26,20 @@ const YourList = ({mainId, sid}) => {
         }
       }
     }
-    axios.get(`http://localhost:9000/products/${mainId}/styles`)
+    axios.get(`/products/${mainId}/styles`)
       .then(response => {
-        for (var style of response.data.results) {
-          if (style.style_id === sid) {
-            styleInfo ? setStyleInfo(prevStyle => [...prevStyle, style]) : setStyleInfo([style]);
-          }
-        }
+        const newStyleInfo = response.data.results.filter(style => style.style_id === sid);
+        setStyleInfo(prevStyleInfo => [...prevStyleInfo, ...newStyleInfo]);
+        localStorage.setItem('styleInfo', JSON.stringify([...styleInfo, ...newStyleInfo]));
       });
   };
+
+  useEffect(() => {
+    const storedStyleInfo = localStorage.getItem('styleInfo');
+    if (storedStyleInfo) {
+      setStyleInfo(JSON.parse(storedStyleInfo));
+    }
+  }, []);
 
   if (!mainId) {
     return null;
@@ -82,7 +88,7 @@ const YourList = ({mainId, sid}) => {
             item={output}
             style={item}
             sid={sid}
-            action={() => handleAction(output.id)}
+            action={() => handleAction(sid)}
           />))}
       </Carousel>
     </div>

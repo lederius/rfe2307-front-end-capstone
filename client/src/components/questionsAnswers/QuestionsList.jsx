@@ -34,7 +34,7 @@ const QuestionsList = (props) => {
   }, [counter]);
 
   return (
-    <div className="questions-list">
+    <div className="flex-grow flex-col questions-list">
       {shown.map((question, index) => {
         return <Question question={question} key={index} toggleAllAnswers={props.toggleAllAnswers} allAnswers={props.allAnswers}/>;
       })}

@@ -12,10 +12,10 @@ const RelatedList = ({displayedId}) => {
   const [comparedProduct, setComparedProduct] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:9000/products/${productId}/related`)
+    axios.get(`/products/${productId}/related`)
       .then(response => {
         const stylePromises = [...new Set(response.data)].map(item => {
-          return axios.get(`http://localhost:9000/products/${item}/styles`);
+          return axios.get(`/products/${item}/styles`);
         });
         Promise.all(stylePromises)
           .then(results => {
