@@ -51,7 +51,7 @@ const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
     } else {
       setReviews(reviewList);
     }
-  }, [filteredList]);
+  }, [filteredList, filters]);
 
   return (
     <div>
