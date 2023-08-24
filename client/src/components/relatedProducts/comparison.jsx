@@ -5,7 +5,7 @@ import axios from 'axios';
 const Comparison = ({onClose, mainId, compared}) => {
   const [mainProduct, setMainProduct] = React.useState(null);
   useEffect (() => {
-    axios.get(`http://localhost:9000/products/${mainId}`)
+    axios.get(`/products/${mainId}`)
       .then(response => {
         setMainProduct(response.data);
       })

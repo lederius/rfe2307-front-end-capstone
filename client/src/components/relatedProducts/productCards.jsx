@@ -11,14 +11,14 @@ const ProductCard = ({actionButton, action, item, style}) => {
   const id = item.id;
 
   useEffect(() => {
-    axios.get(`http://localhost:9000/products/${id}`)
+    axios.get(`/products/${id}`)
       .then(response => {
         setProduct(response.data);
       })
       .catch(error =>
         console.log('An error fetching from server:', error));
 
-    axios.get(`http://localhost:9000/reviews/meta/${id}`)
+    axios.get(`/reviews/meta/${id}`)
       .then(response => {
         const ratings = response.data.ratings;
         var total = 0;
