@@ -89,6 +89,7 @@ const RelatedList = ({displayedId}) => {
         <ProductCard
           actionButton={star}
           item={item}
+          style={item.style}
           key={item.id}
           action={handleCompare}/>))}
     </Carousel>

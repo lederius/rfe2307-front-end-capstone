@@ -4,11 +4,10 @@ import RelatedList from './relatedList.jsx';
 import Stars from './StarRating';
 
 
-const ProductCard = ({actionButton, action, item}) => {
+const ProductCard = ({actionButton, action, item, style}) => {
   const [product, setProduct] = React.useState(null);
   const [review, setReview] = React.useState(null);
   const id = item.id;
-  const styleInfo = item.style;
 
   useEffect(() => {
     axios.get(`http://localhost:9000/products/${id}`)
@@ -36,7 +35,7 @@ const ProductCard = ({actionButton, action, item}) => {
 
   }, [id]);
 
-  if (!styleInfo || !product) {
+  if (!style || !product) {
     return null;
   }
 
@@ -48,15 +47,15 @@ const ProductCard = ({actionButton, action, item}) => {
     <div className='productCard'>
       <div className='thumbSpace'>
         <button className='compareButton' onClick={onAction}>{actionButton}</button>
-        <img className='cardImage' src={item.photo} />
+        <img className='cardImage' src={style.photos[0].thumbnail_url} />
       </div>
       <div className='container'>
         <h2 style={{color: 'grey'}}>Category: {product.category}</h2>
         <h3><b>{product.name}</b></h3>
         <div className='priceBlock'>
-          <p className='salePrice'>{styleInfo.sale_price && '$' + styleInfo.sale_price} &nbsp;</p>
-          <p style={{ textDecoration: styleInfo.sale_price ? 'line-through' : 'none' }}>
-         ${styleInfo.original_price}
+          <p className='salePrice'>{style.sale_price && '$' + style.sale_price} &nbsp;</p>
+          <p style={{ textDecoration: style.sale_price ? 'line-through' : 'none' }}>
+         ${style.original_price}
           </p>
         </div>
       </div>

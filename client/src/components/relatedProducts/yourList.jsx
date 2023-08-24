@@ -51,33 +51,36 @@ const YourList = ({mainId, sid}) => {
     }
   };
 
+  const output = {id: mainId};
 
-  // return (
-  //   <div className='garage'>
-  //     <Carousel
-  //       className='carousel'
-  //       swipeable={true}
-  //       draggable={true}
-  //       keyBoardControl={true}
-  //       responsive={responsive}>
-  //       <div className='productCard' onClick={handleClick}>
-  //         <div className='container addCard'>
-  //           <h1>Add to Outfit</h1>
-  //           <span className='plus'> &#8853;</span>
-  //         </div>
-  //       </div>
-  //       {console.log('sss', styleInfo)}
-  //       {styleInfo && styleInfo.map(item => (
-  //         <ProductCard
-  //           actionButton='&#10005;'
-  //           key={mainId}
-  //           mainId={mainId}
-  //           sid={sid}
-  //           action={handleAction}
-  //         />))}
-  //     </Carousel>
-  //   </div>
-  // );
+
+  return (
+    <div className='garage'>
+      <Carousel
+        className='carousel'
+        swipeable={true}
+        draggable={true}
+        keyBoardControl={true}
+        responsive={responsive}>
+        <div className='productCard' onClick={handleClick}>
+          <div className='container addCard'>
+            <h1>Add to Outfit</h1>
+            <span className='plus'> &#8853;</span>
+          </div>
+        </div>
+        {console.log('sss', styleInfo)}
+        {styleInfo && styleInfo.map(item => (
+          <ProductCard
+            actionButton='&#10005;'
+            key={mainId}
+            item={output}
+            style={item}
+            sid={sid}
+            action={handleAction}
+          />))}
+      </Carousel>
+    </div>
+  );
 };
 
 export default YourList;
