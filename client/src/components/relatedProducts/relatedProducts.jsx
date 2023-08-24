@@ -5,18 +5,19 @@ import axios from 'axios';
 import './related.css';
 
 
-const RelatedProducts = () => {
-
+const RelatedProducts = ({theId, theSid}) => {
+  const mainId = theId || 37971;
+  const sid = theSid || 225228;
 
   return (
     <div className='mainRelated'>
-      <div className='relatedproducts'>
+      <div data-testid='RLload' className='relatedproducts'>
         <h2 className='sectionHeading'> RELATED PRODUCTS <hr className="theLine" /></h2>
-        <RelatedList displayedId={37322}/>
+        <RelatedList displayedId={mainId}/>
       </div>
-      <div className='youroutfit'>
+      <div data-testid='YOload' className='youroutfit'>
         <h2 className='sectionHeading'> YOUR OUTFIT <hr className="theLine" /></h2>
-        <YourList />
+        <YourList mainId={mainId} sid={sid}/>
       </div>
     </div>
   );
