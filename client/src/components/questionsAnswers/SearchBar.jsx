@@ -9,7 +9,7 @@ const SearchBar = ({questions, filtered, onSearch, sortQuestions, searching, set
   const handleChange = (e) => {
     e.preventDefault();
     setQuery(e.target.value);
-    if (query.length > 2) {
+    if (query.length >= 2) {
       setSearching(true);
       onSearch(questionFiltered);
     } else {

@@ -275,18 +275,19 @@ describe('DOM TESTING', () => {
   // it('Tests adding answer to question', async () => {
   //   render(<QuestionsList questions={exampleQuestion}/>);
   //   const openButton = screen.getByRole('add-answer');
-  //   fireEvent.click(openButton);
+  //   await fireEvent.click(openButton);
   //   const body = screen.getByRole('answer-form-body');
-  //   fireEvent.change(body, {target: {value: 'this is a cheesy test body'}});
+  //   await fireEvent.change(body, {target: {value:'this is a cheesy test body'}});
   //   await expect(body.value).toBe("this is a cheesy test body");
   //   const name = screen.getByRole('answer-form-name');
-  //   fireEvent.change(name, {target: {value: 'Test Cheese'}});
+  //   await fireEvent.change(name, {target: {value: 'Test Cheese'}});
   //   await expect(name.value).toBe("Test Cheese");
   //   const email = screen.getByRole('answer-form-email');
-  //   fireEvent.change(email, {target: {value: 'goodemailgmailcom'}});
-  //   await expect(email.value).toBe("goodemailgmailcom");
+  //   await fireEvent.change(email, {target: {value: 'goodemail@gmail.com'}});
+  //   await expect(email.value).toBe("goodemail@gmail.com");
   //   const submitBtn = screen.getByRole('submit-answer');
-  //   await expect(fireEvent.click(submitBtn)).toBe(false);
+  //   await expect(fireEvent.click(submitBtn)).toBe(true);
+  //   await expect(screen.getByText('this is a cheesy test body')).toBeTruthy();
   // });
 
   it('Increments helpfulness of answer on DOM', () => {
@@ -328,4 +329,3 @@ describe('DOM TESTING', () => {
     await expect(screen.queryByRole("question-modal")).toBeFalsy();
   });
 });
-
