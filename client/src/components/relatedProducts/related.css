@@ -22,8 +22,8 @@
 .theLine {
     border: none;
     border-top: 1px solid #ccc;
-    margin: 10px auto;
-    width: 80%;
+    margin: 5px auto;
+    width: 85%;
 
 }
 
@@ -32,6 +32,8 @@
   justify-content: space-between;
   align-items: center;
   margin-left: 100px;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 .thumbSpace {
@@ -77,22 +79,15 @@
   font-size: 24px;
   cursor: pointer;
   text-shadow: 1px 1px 1px rgb(0, 0, 0);
-  animation: glow-animation 1s infinite alternate;
-}
-
-@keyframes glow-animation {
-  from {
-    text-shadow: none;
-  }
-  to {
-    text-shadow: 0 0 20px rgba(66, 175, 247, 0.842);
-  }
+  transition: transform 0.3s;
 }
 
 .actionButton:hover {
-  opacity: 1;
-  color: rgba(38, 150, 224, 0.842);
+  transform: scale(1.5);
+  text-shadow: 1px 1px 1px rgb(1, 12, 19);
+  color: rgb(138, 195, 252)
 }
+
 
 .react-multiple-carousel__arrow {
   color: red;
