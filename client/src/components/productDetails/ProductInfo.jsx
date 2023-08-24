@@ -13,7 +13,6 @@ export default function ProductInfo ({productDetails, currentProduct, productRev
   let priceDiv;
   let descriptionDiv;
   const averageRating = function () {
-    console.log('productReviews---≥', productReviews);
     if (productReviews !== undefined || productReviews.length === undefined ) {
       let numberOfRatings = productReviews.length;
       let intialValue = 0;

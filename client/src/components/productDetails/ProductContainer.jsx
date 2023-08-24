@@ -9,6 +9,7 @@ export default function ProductContainer ({currentProduct}) {
   const [productStyles, setStyles] = useState([]);
   const [productReviews, setProductReviews] = useState([]);
   const [currentStyle, setCurrentStyle] = useState([]);
+  const [photoList, setPhotoList] = useState([]);
   //this container has twp child
   //gallery and detail
   //call axios to get product detail
@@ -46,11 +47,17 @@ export default function ProductContainer ({currentProduct}) {
     getProduct();
     getStyles();
     getReviews();
+    // console.log('in useEffect', currentStyle);
+    // console.log('in useEffect', currentStyle.photos);
+    // setPhotoList(currentStyle.photos);
   }, [currentProduct]);
   //put detail in state
+  // console.log('currentStyle in prodCont: ', currentStyle);
   return (
     <div className="productContainer">
       <ImageList
+        photoList={photoList}
+        currentStyle={currentStyle}
         productDetails={productDetails}
         productStyles={productStyles}/>
       <Detail
@@ -59,6 +66,9 @@ export default function ProductContainer ({currentProduct}) {
         productStyles={productStyles}
         productReviews={productReviews}
         currentStyle={currentStyle}
+        setCurrentStyle={setCurrentStyle}
+        setPhotoList={setPhotoList}
+        photoList={photoList}
       />
     </div>
   );

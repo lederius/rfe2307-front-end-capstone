@@ -57,3 +57,24 @@ margin-bottom: 2px
   width: 30vw;
   height: auto;
 }
+.imageList{
+  background-color: pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prevButton{
+  /* this should be nexted in middle of div on left */
+  border: 1px solid rgb(205, 87, 144);
+  /* align-self: flex-start; */
+}
+.nextButton{
+    /* this should be nexted in middle of div on right */
+  border: 1px solid orange;
+  justify-self: flex-end;
+}
+.imgButton:hover {
+  color: #FF00FF;
+}
+
+
