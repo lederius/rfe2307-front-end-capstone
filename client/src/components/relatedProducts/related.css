@@ -95,3 +95,17 @@
 .react-multiple-carousel__arrow--left {
   left: 7px;
 }
+
+.plus {
+  font-size: 110px;
+ }
+
+ .addCard {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  color: rgba(128, 128, 128, 0.633);
+ }

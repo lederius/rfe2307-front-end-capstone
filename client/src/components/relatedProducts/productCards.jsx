@@ -4,7 +4,7 @@ import RelatedList from './relatedList.jsx';
 import Stars from './StarRating';
 
 
-const ProductCard = ({styles, photo, actionButton, action, item}) => {
+const ProductCard = ({actionButton, action, item}) => {
   const [product, setProduct] = React.useState(null);
   const [review, setReview] = React.useState(null);
   const id = item.id;
