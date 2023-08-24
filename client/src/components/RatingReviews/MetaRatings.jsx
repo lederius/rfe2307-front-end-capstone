@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import StarBreakdown from './StarBreakdown.jsx';
 
-const MetaRatings = ({ meta, filteredList, setFilteredList, filters, setFilters }) => {
+const MetaRatings = ({ meta, filteredList, setFilteredList, filters, setFilters, reviewList }) => {
 
   const average = (ratings) => {
     let total = 0;
@@ -28,7 +28,7 @@ const MetaRatings = ({ meta, filteredList, setFilteredList, filters, setFilters 
             <StarRatings rating={average(meta.ratings)} numberOfStars={5} starDimension={'32px'} starSpacing={'1px'} starRatedColor={'#FFD700'} />
           </div>
           <div role='total' className='text-sm'>Based on {total()} ratings</div>
-          <StarBreakdown ratings={meta.ratings} total={total()} filteredList={filteredList} setFilteredList={setFilteredList} filters={filters} setFilters={setFilters}/>
+          <StarBreakdown ratings={meta.ratings} total={total()} filteredList={filteredList} setFilteredList={setFilteredList} filters={filters} setFilters={setFilters} reviewList={reviewList}/>
         </div>
       }
     </div>

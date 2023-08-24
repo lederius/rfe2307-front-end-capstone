@@ -28,16 +28,16 @@ const RatingReviews = () => {
     fetch();
   }, []);
 
-  useEffect(() => {
-    setReviewList(filteredList);
-  }, [filteredList]);
+  // useEffect(() => {
+  //   setReviewList(filteredList);
+  // }, [filteredList]);
 
   return (
     <div>
       <h1 role='heading'>RATINGS & REVIEWS</h1>
       <div className='grid grid-cols-3 gap-7'>
-        <div className='col-span-1'><MetaRatings meta={meta} filters={filters} filteredList={filteredList} setFilteredList={setFilteredList} filters={filters} setFilters={setFilters}/></div>
-        <div className='col-span-2'><ReviewsList reviewList={reviewList} id={id} filters={filters} setFilters={setFilters}/></div>
+        <div className='col-span-1'><MetaRatings meta={meta} filters={filters} filteredList={filteredList} setFilteredList={setFilteredList} filters={filters} setFilters={setFilters} reviewList={reviewList}/></div>
+        <div className='col-span-2'><ReviewsList reviewList={reviewList} filteredList={filteredList} id={id} filters={filters} setFilters={setFilters}/></div>
       </div>
     </div>
   );

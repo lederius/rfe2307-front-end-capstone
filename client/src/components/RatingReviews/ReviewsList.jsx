@@ -3,7 +3,7 @@ import axios from 'axios';
 import SingleReview from './SingleReview.jsx';
 import NewReview from './NewReview.jsx';
 
-const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
+const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
 
   const [visibleReviews, setVisibleReviews] = useState(2);
   const [form, setForm] = useState(false);
@@ -46,8 +46,12 @@ const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
 
   // listens to filteredList changes
   useEffect(() => {
-    setReviews(reviewList);
-  }, [reviewList]);
+    if (filters.length > 0) {
+      setReviews(filteredList);
+    } else {
+      setReviews(reviewList);
+    }
+  }, [filteredList]);
 
   return (
     <div>

@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
-const StarBreakdown = ({ ratings, total, filteredList, setFilteredList, filters, setFilters }) => {
+const StarBreakdown = ({ ratings, total, filteredList, setFilteredList, filters, setFilters, reviewList }) => {
   // optimization -> fetch ALL reviews based on total
 
   const handleSort = (star) => {
-    console.log(filteredList);
-    setFilters(star);
-    let starList = filteredList.filter(review => {
+    // second click should remove the filter
+    if (!filters.includes(star)) {
+      setFilters(star);
+    } else {
+      setFilters([]);
+    }
+
+    let starList = reviewList.filter(review => {
       return review.rating === Number(star);
     });
     console.log(starList);
     setFilteredList(starList);
+  };
+
+  const handleRemove = () => {
+    console.log(reviewList);
+    setFilters([]);
   };
 
   // useEffect(() => {
@@ -42,7 +52,7 @@ const StarBreakdown = ({ ratings, total, filteredList, setFilteredList, filters,
       </div>
       {filters.length > 0 &&
       <div className='flex justify-center'>
-        <button onClick={(e) => setFilters([])} className="text-black-400 hover:text-white border hover:bg-yellow-500 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-1 py-1 text-center dark:border-yellow-300 dark:text-black-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-0">Remove Filters</button>
+        <button onClick={(e) => handleRemove()} className="text-black-400 hover:text-white border hover:bg-yellow-500 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-1 py-1 text-center dark:border-yellow-300 dark:text-black-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-0">Remove Filters</button>
       </div>}
     </div>
   );
