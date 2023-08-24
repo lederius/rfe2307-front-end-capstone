@@ -9,15 +9,19 @@ import ProductCard from './productCards.jsx';
 const YourList = ({mainId, sid}) => {
   const [styleInfo, setStyleInfo] = React.useState(null);
 
-  const handleClick = () => {
-    console.log('jo');
-  };
-
   const handleAction = () => {
     console.log('as');
   };
 
-  useEffect(() => {
+  const handleClick = () => {
+    if (styleInfo) {
+      for (var style of styleInfo) {
+        if (style.style_id === sid) {
+          console.log('Already added');
+          return;
+        }
+      }
+    }
     axios.get(`http://localhost:9000/products/${mainId}/styles`)
       .then(response => {
         for (var style of response.data.results) {
@@ -26,9 +30,9 @@ const YourList = ({mainId, sid}) => {
           }
         }
       });
-  }, [mainId]);
+  };
 
-  if (!mainId || !styleInfo) {
+  if (!mainId) {
     return null;
   }
   const responsive = {
@@ -68,7 +72,6 @@ const YourList = ({mainId, sid}) => {
             <span className='plus'> &#8853;</span>
           </div>
         </div>
-        {console.log('sss', styleInfo)}
         {styleInfo && styleInfo.map(item => (
           <ProductCard
             actionButton='&#10005;'

@@ -97,7 +97,7 @@
 }
 
 .plus {
-  font-size: 110px;
+  font-size: 120px;
  }
 
  .addCard {
@@ -108,4 +108,5 @@
   height: 100%;
   flex-direction: column;
   color: rgba(128, 128, 128, 0.633);
+  cursor: pointer;
  }
