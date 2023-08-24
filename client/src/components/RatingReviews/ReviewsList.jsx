@@ -28,20 +28,19 @@ const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
 
   // listens to sort dropdown changes
   useEffect(() => {
-    console.log(reviews);
     dropdown();
   }, [sort]);
 
   // listens to filter changes
   useEffect(() => {
-    let filteredList = [];
+    let filteredRevs = [];
 
     if (filters.length > 0) {
-      filteredList = reviews.filter(review => filters.includes(review.rating.toString()));
-      setFilteredList(filteredList);
+      filteredRevs = reviews.filter(review => filters.includes(review.rating.toString()));
     } else {
-      setFilteredList(reviewList);
+      filteredRevs = reviews;
     }
+    setFilteredList(filteredRevs);
   }, [filters, reviews]);
 
   return (
