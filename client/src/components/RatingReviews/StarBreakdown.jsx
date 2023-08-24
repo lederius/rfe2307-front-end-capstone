@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const StarBreakdown = ({ ratings, total, filteredList, setFilteredList, filters, setFilters, reviewList }) => {
+const StarBreakdown = ({ ratings, total, filters, setFilters }) => {
   // optimization -> fetch ALL reviews based on total
 
   const handleSort = (star) => {
@@ -11,28 +11,11 @@ const StarBreakdown = ({ ratings, total, filteredList, setFilteredList, filters,
         return prevFilters.filter(f => f !== star);
       });
     }
-
-    let starList = [];
-    if (filters.length > 0) {
-      filters.forEach(filter => {
-        const filteredList = reviewList.filter(review => {
-          return review.rating === Number(filter);
-        });
-        starList = starList.concat(filteredList);
-        console.log(starList);
-      });
-    } else {
-      starList = reviewList;
-    }
-    setFilteredList(starList);
   };
 
   const handleRemove = () => {
     setFilters([]);
   };
-
-  // useEffect(() => {
-  // }, [filters, filteredList]);
 
   const bar = (val) => {
     return (

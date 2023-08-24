@@ -3,12 +3,13 @@ import axios from 'axios';
 import SingleReview from './SingleReview.jsx';
 import NewReview from './NewReview.jsx';
 
-const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
+const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
 
   const [visibleReviews, setVisibleReviews] = useState(2);
   const [form, setForm] = useState(false);
-  const [reviews, setReviews] = useState(reviewList);
+  const [reviews, setReviews] = useState([]);
   const [sort, setSort] = useState('Relevant');
+  const [filteredList, setFilteredList] = useState(reviewList);
 
   const moreClick = () => {
     setVisibleReviews(visibleReviews + 2);
@@ -42,14 +43,18 @@ const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
     dropdown();
   }, [sort]);
 
-  // listens to filteredList changes
+  // listens to filter changes
   useEffect(() => {
+    let filteredList = [];
+
     if (filters.length > 0) {
-      setReviews(filteredList);
+      filteredList = reviews.filter(review => filters.includes(review.rating.toString()));
+      setFilteredList(filteredList);
     } else {
-      setReviews(reviewList);
+      setFilteredList(reviewList);
     }
-  }, [filteredList, filters]);
+    console.log(filteredList);
+  }, [filters, reviews]);
 
   return (
     <div>
@@ -57,7 +62,7 @@ const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
         <div className='w-96 h-full overflow-y-scroll'>
           <NewReview productID={id} form={form} setForm={setForm} />
         </div>
-      ) : reviews.length > 0 ? (
+      ) : filteredList.length > 0 ? (
         <div>
           <div className='flex justify-between items-center'>
             <div className='flex items-center space-x-2'>
@@ -74,10 +79,10 @@ const ReviewsList = ({ reviewList, filteredList, id, filters, setFilters }) => {
           </div>
 
           <div className='max-h-80 overflow-y-scroll'>
-            <div>{reviews.slice(0, visibleReviews).map((review, index) => <div key={index}><SingleReview review={review} /></div>)}
+            <div>{filteredList.slice(0, visibleReviews).map((review, index) => <div key={index}><SingleReview review={review} /></div>)}
             </div>
             <div className="flex justify-between">
-              {visibleReviews < reviews.length && (
+              {visibleReviews < filteredList.length && (
                 <button role='more' className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
               )}
               <button role='add' className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>
