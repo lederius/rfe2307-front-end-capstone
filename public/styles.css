@@ -105,6 +105,7 @@ margin-bottom: 2px
 .currentImg{
   border:2px solid lightcyan;
 }
+
 .addToCartContainer{
   display: flex;
 }
@@ -122,6 +123,35 @@ margin-bottom: 2px
   border: 1px solid grey;
   width: 150px;
 }
+
+/* marker for review chars */
+.marker-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid slategray;
+  transform: translateX(-50%);
+}
+
+/* char bar */
+.char-bar {
+  background: linear-gradient(
+    to right,
+    rgb(226 232 240) 0%,
+    rgb(226 232 240) 31%,
+    transparent 32%,
+    transparent 34%,
+    rgb(226 232 240) 35%,
+    rgb(226 232 240) 64%,
+    transparent 65%,
+    transparent 67%,
+    rgb(226 232 240) 68%,
+    rgb(226 232 240) 100%
+  )
+}
+
 
 .menu > li {
   margin: 0;
