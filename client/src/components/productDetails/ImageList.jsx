@@ -5,11 +5,9 @@ export default function ImageList ({productStyles, currentStyle, photoList, setC
   const [prevImg, setPrevImg] = useState(null);
   const [nextImg, setNextImg] = useState(null);
   const [centerImg, setCenterImg] = useState(0);
-  console.log('photoList on imageList: ', photoList);
 
   let mainImg = <img src={currentImg} height={300} width={300} />;
   const imgFunc = function (num) {
-    console.log('num: ', num);
     setCurrentImage(photoList[num].url);
   };
 
@@ -23,18 +21,14 @@ export default function ImageList ({productStyles, currentStyle, photoList, setC
   });
 
   const renderCurrentImag = function () {
-    //console.log('in photolist func');
     if (photoList && photoList.length > 0 ) {
       setCurrentImage(photoList[currentIndex].url);
-      // setPrevImg(photoList[photoList.length - 1]);
     }
   };
 
   useEffect(()=>{
     renderCurrentImag();
   }, [photoList, currentIndex]);
-
-
 
   const handleNext = () => {
     setCurrentIndex((currentIndex + 1) % photoList.length);
@@ -46,8 +40,6 @@ export default function ImageList ({productStyles, currentStyle, photoList, setC
   const changeImg = function(ind) {
 
   };
-  // console.log('currentStyle: ', currentStyle);
-  // console.log('productStyles: ', productStyles);
   return (
     <div className="imageList">
       <div className='galleryContainer'>
