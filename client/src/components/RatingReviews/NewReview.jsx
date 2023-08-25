@@ -24,32 +24,37 @@ const NewReview = ({ productID, form, setForm, meta }) => {
 
   const handleRating = (newRating) => {
     setRating(newRating);
-    console.log(rating);
+    console.log(typeof rating);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form data', e.target);
+    let rec = false;
+    if (e.target.rec.value === 'yes') {
+      rec = true;
+    }
 
-    // let newRev = {
-    //   'product_id': productID,
-    //   rating: rating,
-    //   summary: e.target.summary,
-    //   body: e.target.body,
-    //   date: moment().toString(),
-    //   recommend: e.target.rec,
-    //   name: e.target.name,
-    //   email: e.target.email,
+    let newRev = {
+      'product_id': productID,
+      rating: rating,
+      summary: e.target.summary.value,
+      body: e.target.body.value,
+      // date: moment().toString(),
+      recommend: rec,
+      name: e.target.nickname.value,
+      email: e.target.email.value
+    };
+
     //   photos: e.target.photos,
-    //   characteristics: e.target.char
+    //   characteristics: e.target.char.value
     // };
 
-    // axios.post('/reviews', { data: newRev })
-    //   .then(() => {
-    //   changeModal();
-    //   alert('Thank you for your review!')
-    // })
-    //   .catch(err => console.log('Cannot post new review', err));
+    axios.post(`/reviews/${productID}`, { data: newRev }, {params: {id: productID}})
+      .then(res => {
+        changeForm();
+        alert('Thank you for your review!');
+      })
+      .catch(err => console.log('Cannot post new review', err));
   };
 
   const chars = (data) => {
@@ -162,13 +167,13 @@ const NewReview = ({ productID, form, setForm, meta }) => {
                 <textarea name='body' className='border w-80' minLength={60} maxLength={1000} placeholder='Let us know your thoughts!' />
               </div>
             </div>
-            {meta && chars(meta)}
-            <button className='m-1 py-[.438rem] px-2 w-40 mx-auto inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Upload Photos</button>
+            {/* {meta && chars(meta)}
+            <button className='m-1 py-[.438rem] px-2 w-40 mx-auto inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Upload Photos</button> */}
 
             <label>Nickname: <input className='w-64' name='nickname' placeholder='User123' /></label>
 
             <label>Email:
-              <input required type="email" className="m-2 w-64" placeholder="Example: jack@email.com"></input>
+              <input required type="email" name='email' className="m-2 w-64" placeholder="Example: jack@email.com"></input>
             </label>
             <span className="m-2 text-xs">For authentication reasons, you will not be emailed</span>
 

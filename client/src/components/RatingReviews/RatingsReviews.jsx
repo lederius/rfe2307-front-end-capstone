@@ -13,6 +13,7 @@ const RatingReviews = () => {
   const fetch = () => {
     axios.get(`/reviews/${id}`, { params: { productID: id } })
       .then(res => {
+        console.log(res.data);
         setReviewList(res.data);
       })
       .catch(err => console.log('failed client get req', err));

@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.get('/reviews/:productID', (req, res) => {
   const id = req.params.productID;
   // set count to show all reviews
-  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&count=50`, {
+  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&count=236`, {
     headers: { Authorization: `${process.env.TOKEN}` }
   })
     .then(response => res.send(response.data.results))
@@ -36,11 +36,29 @@ app.get('/reviews/meta/:productID', (req, res) => {
 app.get('/reviews/:productID/:sort', (req, res) => {
   const id = req.params.productID;
   const sort = req.params.sort.toLowerCase();
-  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&sort=${sort}&count=50`, {
+  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&sort=${sort}&count=236`, {
     headers: { Authorization: `${process.env.TOKEN}` }
   })
     .then(response => res.send(response.data))
     .catch(err => console.log('failed to get sorted data', err));
+});
+
+app.post('/reviews/:productID', (req, res) => {
+  const id = req.params.productID;
+  const data = req.body.data;
+  axios.post(`${process.env.API_URL}reviews/?product_id=${id}`, {
+    'product_id': Number(id),
+    rating: data.rating,
+    summary: data.summary,
+    body: data.body,
+    recommend: data.recommend,
+    name: data.name,
+    email: data.email,
+    photos: [],
+    characteristics: {}
+  }, { headers: { Authorization: `${process.env.TOKEN}` }})
+    .then(() => res.end())
+    .catch(err => console.log('failed post request', err));
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
