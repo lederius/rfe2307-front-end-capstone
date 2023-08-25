@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.get('/reviews/:productID', (req, res) => {
   const id = req.params.productID;
   // set count to show all reviews
-  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&count=236`, {
+  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&count=250`, {
     headers: { Authorization: `${process.env.TOKEN}` }
   })
     .then(response => res.send(response.data.results))
@@ -36,7 +36,7 @@ app.get('/reviews/meta/:productID', (req, res) => {
 app.get('/reviews/:productID/:sort', (req, res) => {
   const id = req.params.productID;
   const sort = req.params.sort.toLowerCase();
-  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&sort=${sort}&count=236`, {
+  axios.get(`${process.env.API_URL}reviews/?product_id=${id}&sort=${sort}&count=250`, {
     headers: { Authorization: `${process.env.TOKEN}` }
   })
     .then(response => res.send(response.data))
@@ -54,7 +54,7 @@ app.post('/reviews/:productID', (req, res) => {
     recommend: data.recommend,
     name: data.name,
     email: data.email,
-    photos: [],
+    photos: data.photos,
     characteristics: {}
   }, { headers: { Authorization: `${process.env.TOKEN}` }})
     .then(() => res.end())

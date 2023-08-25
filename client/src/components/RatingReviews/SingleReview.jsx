@@ -47,7 +47,7 @@ const SingleReview = ({ review }) => {
         </div>
         <div className="p-2">
           <div className='summary text-lg font-bold p-1'>{review.summary}</div>
-          <div className='body p-1'>{review.body}</div>
+          <div className='body p-1' style={{ overflowWrap: 'break-word' }}>{review.body}</div>
           <div className='rec p-1'>{rec(review.recommend)}</div>
           <div className='photos flex gap-3 p-1'>{photo(review.photos)}</div>
           {/* format this when new review + post req is setup */}

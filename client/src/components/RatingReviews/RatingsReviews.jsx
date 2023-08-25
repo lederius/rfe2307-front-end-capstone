@@ -10,12 +10,10 @@ const RatingReviews = () => {
   const [meta, setMeta] = useState([]);
   const [filters, setFilters] = useState([]);
 
+
   const fetch = () => {
     axios.get(`/reviews/${id}`, { params: { productID: id } })
-      .then(res => {
-        console.log(res.data);
-        setReviewList(res.data);
-      })
+      .then(res => setReviewList(res.data))
       .catch(err => console.log('failed client get req', err));
 
     axios.get(`/reviews/meta/${id}`, { params: { productID: id } })

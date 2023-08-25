@@ -44,10 +44,12 @@ const NewReview = ({ productID, form, setForm, meta }) => {
       // date: moment().toString(),
       recommend: rec,
       name: e.target.nickname.value,
-      email: e.target.email.value
+      email: e.target.email.value,
+      photos: ['https://shorturl.at/mvQ48', 'https://shorturl.at/nuwDU'],
+      characteristics: {}
     };
 
-    //   photos: e.target.photos,
+
     //   characteristics: e.target.char.value
     // };
 
@@ -62,7 +64,7 @@ const NewReview = ({ productID, form, setForm, meta }) => {
   const photos = () => {
     return (
       <div>
-        {images.length > 0 && (
+        {images.length <= 5 && (
           <div className="flex space-x-2">
             {images.map((img, index) => {
               console.log(img);
@@ -72,7 +74,9 @@ const NewReview = ({ productID, form, setForm, meta }) => {
             })}
           </div>
         )}
-        <button onClick={(e) => setInputPhotos(true)} className='m-1 py-[.438rem] px-2 w-40 mx-auto inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Upload Photos</button>
+        {!inputPhotos && (
+          <button onClick={(e) => setInputPhotos(true)} className='m-1 py-[.438rem] px-2 w-40 mx-auto inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Upload Photos</button>
+        )}
       </div>
     );
   };
@@ -183,15 +187,17 @@ const NewReview = ({ productID, form, setForm, meta }) => {
               </div>
             </div>
             {/* {meta && chars(meta)} */}
-            {inputPhotos && (
-              <div>
-                <div className='font-semibold'>Choose up to 5!</div>
+            <div className="flex flex-col items-center justify-center">
+              {inputPhotos && (
                 <div>
-                  <input type='file' name='photo' onChange={(e) => setImages(Array.from(e.target.files))} multiple />
+                  <div className='font-semibold'>Choose up to 5!</div>
+                  <div>
+                    <input type='file' name='photo' onChange={(e) => setImages([...images, ...Array.from(e.target.files)])} multiple />
+                  </div>
                 </div>
-              </div>
-            )}
-            {images.length <= 5 && photos()}
+              )}
+              {images.length <= 5 && photos()}
+            </div>
             <label>Nickname: <input className='w-64' name='nickname' placeholder='User123' /></label>
             <label>Email:
               <input required type="email" name='email' className="m-2 w-64" placeholder="Example: jack@email.com"></input>
