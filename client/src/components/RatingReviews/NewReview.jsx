@@ -177,7 +177,7 @@ const NewReview = ({ productID, form, setForm, meta }) => {
     <>
       <div className="modal">
         <div onClick={changeForm} className="w-100vw h-100vh top-0 left-0 right-0 bottom-0 fixed bg-neutral-600 opacity-70"></div>
-        <div className="fixed top-30 right-2/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded overflow-hidden" style={{ width: '50%', height: '80vh', overflowY: 'auto' }}>
+        <div className="fixed top-0 right-2/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded overflow-hidden" style={{ width: '50%', height: '80vh', overflowY: 'auto' }}>
           <h1 className="flex justify-center text-2xl font-bold m-2">New Review</h1>
           <p className="flex justify-center text-sm ml-2">About the {name}</p>
           <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
