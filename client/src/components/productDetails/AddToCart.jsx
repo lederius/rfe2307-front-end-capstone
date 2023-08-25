@@ -9,28 +9,28 @@ export default function AddToCart ({currentStyle, userCart, setUserCart}) {
   const [openQuantity, setopenQuantity] = useState(false);
 
   const handleOpenSize = function() {
-    console.log('handleSizeOpen works');
+    //console.log('handleSizeOpen works');
     setOpenSize(!openSize);
   };
   const handleOpenQuantity = () => {
-    console.log('handleQuantityOpen works');
+    //console.log('handleQuantityOpen works');
     setopenQuantity(!openQuantity);
   };
 
   const handleMenuOne = () => {
-    console.log('in menu one');
+    //console.log('in menu one');
     setOpenSize(false);
   };
 
   const handleMenuTwo = () => {
-    console.log('in menu two');
+    //console.log('in menu two');
     setOpenSize(false);
   };
 
   for (let keys in currentStyle) {
     // console.log('keys: ', keys);
     if (keys === 'skus') {
-      console.log('[currentStyle[keys]]: ', [currentStyle[keys]]);
+      //console.log('[currentStyle[keys]]: ', [currentStyle[keys]]);
     }
   }
   //dynamically create buttons tht render size/quant text

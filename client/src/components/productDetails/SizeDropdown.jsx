@@ -1,8 +1,7 @@
 import React, { useState, useEffect} from 'react';
 
 export default function Size ({currentStyle, userCart, setUserCart, openSize, trigger, menu}) {
-  console.log('currentStyle in dropDown: ', currentStyle);
-  console.log('currentStyle.skus in dropDown: ', currentStyle.skus);
+
   return (
     <div className="sizeContainer dropdown">
       {trigger}

@@ -5,8 +5,6 @@ import AddToCart from './AddToCart.jsx';
 
 export default function Detail ({currentProduct, productDetails, productStyles, productReviews, currentStyle, setCurrentStyle, setPhotoList, photoList, userCart, setUserCart}) {
 
-  console.log('currentStyle in detail', currentStyle);
-
   return (
     <div className="detail">
       <h3>Details</h3>
