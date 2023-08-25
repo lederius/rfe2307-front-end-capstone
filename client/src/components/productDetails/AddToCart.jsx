@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
+import Size from './SizeDropdown.jsx';
+import Qunatity from './QunatityDropdown.jsx';
 
-//need two drop downs and a button
-//what states do i need? currentStyle,
 
-//
+export default function AddToCart ({currentStyle, userCart, setUserCart}) {
 
-export default function AddToCart ({productStyles, currentStyles}) {
   const [openSize, setOpenSize] = useState(false);
   const [openQuantity, setopenQuantity] = useState(false);
 
@@ -27,26 +26,30 @@ export default function AddToCart ({productStyles, currentStyles}) {
     console.log('in menu two');
     setOpenSize(false);
   };
-  // console.log('productStyles: ', productStyles);
-  // console.log('currentStyles:  ', currentStyles);
+
+  for (let keys in currentStyle) {
+    // console.log('keys: ', keys);
+    if (keys === 'skus') {
+      console.log('[currentStyle[keys]]: ', [currentStyle[keys]]);
+    }
+  }
+  //dynamically create buttons tht render size/quant text
 
   return (
     <div className="addToCartContainer">
       <h4>Add To Cart</h4>
-      <div className="dropDown sizeDropDown">
-        <button onClick={handleOpenSize}>Size</button>
-        {openSize ? (
-          <ul className="menu menuSize">
-            <li className="size-item">
-              <button onClick={handleMenuOne}>Size Medium</button>
-            </li>
-            <li className="size-item">
-              <button onClick={handleMenuTwo}>Size Large</button>
-            </li>
-          </ul>
-        ) : null}
-      </div>
-      <div className="dropDown quantityDropDown">
+      <Size
+        userCart={userCart}
+        setUserCart={setUserCart}
+        openSize={openSize}
+        currentStyle={currentStyle}
+        trigger={<button onClick={handleOpenSize}>Size</button>}
+        menu={[
+          <button onClick={handleMenuOne}>Size Medium</button>,
+          <button onClick={handleMenuTwo}>Size Large</button>
+        ]}
+      />
+      <div className="dropdown quantityDropDown">
         <button onClick={handleOpenQuantity}>Quantity</button>
         {openQuantity ? (
           <ul className="menu menuQuantity">

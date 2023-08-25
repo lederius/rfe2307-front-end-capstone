@@ -4,9 +4,9 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 export default function Detail ({currentProduct, productDetails, productStyles, productReviews, currentStyle, setCurrentStyle, setPhotoList, photoList, userCart, setUserCart}) {
-  //should have 3 containers
-  //product info ,style selector, and add to carts
-  //these div should be in col
+
+  console.log('currentStyle in detail', currentStyle);
+
   return (
     <div className="detail">
       <h3>Details</h3>
