@@ -1,35 +1,50 @@
 import React, { useEffect, useState} from 'react';
 
 export default function ImageList ({productStyles, currentStyle, photoList, setCurrentImage, currentImg}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [prevImg, setPrevImg] = useState(null);
   const [nextImg, setNextImg] = useState(null);
   const [centerImg, setCenterImg] = useState(0);
-  //console.log('photoList on imageList: ', photoList);
 
   let mainImg = <img src={currentImg} height={300} width={300} />;
-  let photoGallery = photoList.map((photo, ind)=>{
+  const imgFunc = function (num) {
+    //console.log('num: ', num);
+    setCurrentImage(photoList[num].url);
+  };
+
+  let photoGallery = photoList && photoList.length >= 1 && photoList.map((photo, ind)=>{
     if (photo.url === currentImg) {
-      return <img className='photoGallery currentImg'src={photo.url} height={80} width={80} key={ind}/>;
+      return <img className='photoGallery currentImg'src={photo.url} height={80} width={80} key={ind}
+        onClick={imgFunc(ind)}/>;
     }
-    return <img className='photoGallery'src={photo.url} height={80} width={80} key={ind}/>;
+    return <img className='photoGallery'src={photo.url} height={80} width={80} key={ind}
+      onClick={()=>{ imgFunc(ind); }}/>;
   });
 
   const renderCurrentImag = function () {
     //console.log('in photolist func');
-    if (photoList.length > 0 ) {
-      setCurrentImage(photoList[0].url);
-      setPrevImg(photoList[photoList.length - 1]);
+    if (photoList && photoList.length > 0 ) {
+      setCurrentImage(photoList[currentIndex].url);
+      // setPrevImg(photoList[photoList.length - 1]);
     }
   };
 
   useEffect(()=>{
     renderCurrentImag();
-  }, [photoList]);
+  }, [photoList, currentIndex]);
 
-  // const changeImg = function(ind) {
-  //   console.log('photoList in changImg: ', photoList);
-  //   setCurrentImage(photoList[0].postion.url);
-  // };
+
+
+  const handleNext = () => {
+    setCurrentIndex((currentIndex + 1) % photoList.length);
+  };
+
+  const handlePrevious = () => {
+    setCurrentIndex((currentIndex - 1 + photoList.length) % photoList.length);
+  };
+  const changeImg = function(ind) {
+
+  };
   // console.log('currentStyle: ', currentStyle);
   // console.log('productStyles: ', productStyles);
   return (
@@ -37,9 +52,9 @@ export default function ImageList ({productStyles, currentStyle, photoList, setC
       <div className='galleryContainer'>
         {photoGallery}
       </div>
-      <button className='prevButton imgButton' onClick={()=>{ changeImg(-1); }} >Previous</button>
+      <button className='prevButton imgButton' onClick={()=>{ handlePrevious(); }} >Previous</button>
       {mainImg}
-      <button className='nextButton imgButton' onClick={()=>{ changeImg(1); }} >Next</button>
+      <button className='nextButton imgButton' onClick={()=>{ handleNext(); }} >Next</button>
     </div>
   );
 }

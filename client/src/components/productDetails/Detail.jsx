@@ -3,10 +3,8 @@ import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
-export default function Detail ({currentProduct, productDetails, productStyles, productReviews, currentStyle, setCurrentStyle, setPhotoList, photoList}) {
-  //should have 3 containers
-  //product info ,style selector, and add to carts
-  //these div should be in col
+export default function Detail ({currentProduct, productDetails, productStyles, productReviews, currentStyle, setCurrentStyle, setPhotoList, photoList, userCart, setUserCart}) {
+
   return (
     <div className="detail">
       <h3>Details</h3>
@@ -28,6 +26,8 @@ export default function Detail ({currentProduct, productDetails, productStyles, 
       <AddToCart
         productStyles={productStyles}
         currentStyle={currentStyle}
+        userCart={userCart}
+        setUserCart={setUserCart}
       />
     </div>
   );
