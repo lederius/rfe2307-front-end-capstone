@@ -56,10 +56,10 @@ const NewReview = ({ productID, form, setForm, meta }) => {
     const char = data.characteristics;
     return (
       <div>
-        <div className='text-lg font-semibold'>Characteristics:</div>
+        <div className='text-lg font-semibold'>Characteristics</div>
         {char.Size && (
-          <label>Size
-            <div>
+          <label><div className='font-medium'>Size:</div>
+            <div className='flex flex-col'>
               <label><input type='radio' name='sizeRadio' />1 - A size too small</label>
               <label><input type='radio' name='sizeRadio' />2 - Half a size too small</label>
               <label><input type='radio' name='sizeRadio' />3 - Perfect</label>
@@ -69,8 +69,8 @@ const NewReview = ({ productID, form, setForm, meta }) => {
           </label>
         )}
         {char.Width && (
-          <label>Width
-            <div>
+          <label><div className='font-medium'>Width:</div>
+            <div className='flex flex-col'>
               <label><input type='radio' name='widthRadio' />1 - Too narrow</label>
               <label><input type='radio' name='widthRadio' />2 - Slightly narrow</label>
               <label><input type='radio' name='widthRadio' />3 - Perfect</label>
@@ -80,8 +80,8 @@ const NewReview = ({ productID, form, setForm, meta }) => {
           </label>
         )}
         {char.Comfort && (
-          <label>Comfort
-            <div>
+          <label><div className='font-medium'>Comfort:</div>
+            <div className='flex flex-col'>
               <label><input type='radio' name='comfortRadio' />1 - Uncomfortable</label>
               <label><input type='radio' name='comfortRadio' />2 - Slightly uncomfortable</label>
               <label><input type='radio' name='comfortRadio' />3 - Ok</label>
@@ -91,8 +91,8 @@ const NewReview = ({ productID, form, setForm, meta }) => {
           </label>
         )}
         {char.Quality && (
-          <label>Quality
-            <div>
+          <label><div className='font-medium'>Quality:</div>
+            <div className='flex flex-col'>
               <label><input type='radio' name='qualityRadio' />1 - Poor</label>
               <label><input type='radio' name='qualityRadio' />2 - Below average</label>
               <label><input type='radio' name='qualityRadio' />3 - What I expected</label>
@@ -102,8 +102,8 @@ const NewReview = ({ productID, form, setForm, meta }) => {
           </label>
         )}
         {char.Length && (
-          <label>Length
-            <div>
+          <label><div className='font-medium'>Length:</div>
+            <div className='flex flex-col'>
               <label><input type='radio' name='lengthRadio' />1 - Runs short</label>
               <label><input type='radio' name='lengthRadio' />2 - Runs slightly short</label>
               <label><input type='radio' name='lengthRadio' />3 - Perfect</label>
@@ -113,8 +113,8 @@ const NewReview = ({ productID, form, setForm, meta }) => {
           </label>
         )}
         {char.Fit && (
-          <label>Fit
-            <div>
+          <label><div className='font-medium'>Fit:</div>
+            <div className='flex flex-col'>
               <label><input type='radio' name='fitRadio' />1 - Runs tight</label>
               <label><input type='radio' name='fitRadio' />2 - Runs slightly tight</label>
               <label><input type='radio' name='fitRadio' />3 - Perfect</label>
