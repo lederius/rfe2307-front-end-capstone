@@ -5,11 +5,10 @@ export default function ImageList ({productStyles, currentStyle, photoList, setC
   const [prevImg, setPrevImg] = useState(null);
   const [nextImg, setNextImg] = useState(null);
   const [centerImg, setCenterImg] = useState(0);
-  console.log('photoList on imageList: ', photoList);
 
   let mainImg = <img src={currentImg} height={300} width={300} />;
   const imgFunc = function (num) {
-    console.log('num: ', num);
+    //console.log('num: ', num);
     setCurrentImage(photoList[num].url);
   };
 

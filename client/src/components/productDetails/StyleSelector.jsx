@@ -8,18 +8,18 @@ export default function StyleSelector ({productStyles, setCurrentStyle, currentS
     if (currentStyle.length > 0) {
       setPhotoList(currentStyle[0].photos);
     }
-    console.log('currentStyle in useeffect: ', currentStyle);
+    //console.log('currentStyle in useeffect: ', currentStyle);
   }, [currentStyle]);
   let styleChange = function (newStyle) {
     //console.log('newStyle: ', newStyle);
     const updatedStyle = productStyles.find((style) => style.style_id === newStyle);
     //console.log('updatedStyle: ', updatedStyle);
     setCurrentStyle([updatedStyle]);
-    console.log('currentStyle: ', currentStyle);
+    //console.log('currentStyle: ', currentStyle);
     // for (let keys in currentStyle) {
     //   console.log('keys: ', keys);
     // }
-    console.log('currentStyle.photos: ', currentStyle.photos);
+    //console.log('currentStyle.photos: ', currentStyle.photos);
     //console.log('currentStyle[0].photos: ', currentStyle.photos);
     setPhotoList(currentStyle.photos);
 

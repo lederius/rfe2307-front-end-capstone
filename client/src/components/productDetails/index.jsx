@@ -13,6 +13,7 @@ export default function ProductDetails () {
   const [productDetails, setProductDetails] = useState([]);
   const [productStyles, setStyles] = useState([]);
   const [productReviews, setProductReviews] = useState([null]);
+  const [userCart, setUserCart] = useState([null]);
 
   useEffect(()=>{
     axios.get('/products')
@@ -33,10 +34,11 @@ export default function ProductDetails () {
         setCurrentProduct = {setCurrentProduct}/>
       <ProductContainer
         currentProduct={currentProduct}
-        currentProduct={currentProduct}
         productDetails={productDetails}
         productStyles={productStyles}
         productReviews={productReviews}
+        userCart={userCart}
+        setUserCart={setUserCart}
       />
     </div>
   );

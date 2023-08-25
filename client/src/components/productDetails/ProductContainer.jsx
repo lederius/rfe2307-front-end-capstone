@@ -4,7 +4,7 @@ import ImageList from './ImageList.jsx';
 import Detail from './Detail.jsx';
 import axios from 'axios';
 
-export default function ProductContainer ({currentProduct}) {
+export default function ProductContainer ({currentProduct, userCart, setUserCart}) {
   const [productDetails, setProductDetails] = useState([]);
   const [productStyles, setStyles] = useState([]);
   const [productReviews, setProductReviews] = useState([]);
@@ -68,6 +68,8 @@ export default function ProductContainer ({currentProduct}) {
             setCurrentStyle={setCurrentStyle}
             setPhotoList={setPhotoList}
             photoList={photoList}
+            userCart={userCart}
+            setUserCart={setUserCart}
           />
         </div>) : null}
       {/* <ImageList
