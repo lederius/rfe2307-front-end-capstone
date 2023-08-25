@@ -3,7 +3,7 @@ import axios from 'axios';
 import SingleReview from './SingleReview.jsx';
 import NewReview from './NewReview.jsx';
 
-const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
+const ReviewsList = ({ reviewList, id, filters, setFilters, meta }) => {
 
   const [visibleReviews, setVisibleReviews] = useState(2);
   const [form, setForm] = useState(false);
@@ -21,21 +21,9 @@ const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
 
   const dropdown = () => {
     // can just use sort API calls
-    if (sort === 'Helpful') {
-      axios.get(`/reviews/${id}/${sort}`, { params: { productID: id, sort: sort } })
-        // .then((res) => console.log(res))
-        .then(res => setReviews(res.data.results))
-        .catch(err => console.log('failed client sort get req', err));
-    } else if (sort === 'Newest') {
-      axios.get(`/reviews/${id}/${sort}`, { params: { productID: id, sort: sort } })
-        // .then((res) => console.log(res.data.results))
-        .then(res => setReviews(res.data.results))
-        .catch(err => console.log('failed client sort get req', err));
-    } else {
-      axios.get(`/reviews/${id}/${sort}`, { params: { productID: id, sort: sort } })
-        .then(res => setReviews(res.data.results))
-        .catch(err => console.log('failed client sort get req', err));
-    }
+    axios.get(`/reviews/${id}/${sort}`, { params: { productID: id, sort: sort } })
+      .then(res => setReviews(res.data.results))
+      .catch(err => console.log('failed client sort get req', err));
   };
 
   // listens to sort dropdown changes
@@ -45,28 +33,27 @@ const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
 
   // listens to filter changes
   useEffect(() => {
-    let filteredList = [];
+    let filteredRevs = [];
 
     if (filters.length > 0) {
-      filteredList = reviews.filter(review => filters.includes(review.rating.toString()));
-      setFilteredList(filteredList);
+      filteredRevs = reviews.filter(review => filters.includes(review.rating.toString()));
     } else {
-      setFilteredList(reviewList);
+      filteredRevs = reviews;
     }
-    console.log(filteredList);
+    setFilteredList(filteredRevs);
   }, [filters, reviews]);
 
   return (
     <div>
       {form ? (
         <div className='w-96 h-full overflow-y-scroll'>
-          <NewReview productID={id} form={form} setForm={setForm} />
+          <NewReview productID={id} form={form} setForm={setForm} meta={meta}/>
         </div>
-      ) : filteredList.length > 0 ? (
+      ) : reviews.length > 0 ? (
         <div>
           <div className='flex justify-between items-center'>
             <div className='flex items-center space-x-2'>
-              {visibleReviews} reviews, sorted by
+              {visibleReviews} Reviews - Sorted by
               <select className='sort' onChange={(e) => setSort(e.target.value)}>
                 <option>Relevance</option>
                 <option>Newest</option>
@@ -78,7 +65,34 @@ const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
             </div>
           </div>
 
-          <div className='max-h-80 overflow-y-scroll'>
+          <div className='max-h-96 overflow-y-scroll'>
+            <div>{filteredList.slice(0, visibleReviews).map((review, index) => <div key={index}><SingleReview review={review} /></div>)}
+            </div>
+            <div className="flex justify-between">
+              {visibleReviews < filteredList.length && (
+                <button role='more' className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={moreClick}>MORE REVIEWS</button>
+              )}
+              <button role='add' className="bg-slate-200 hover:bg-slate-400 font-bold py-2 px-4 rounded shadow-lg" onClick={addClick}>ADD A REVIEW +</button>
+            </div>
+          </div>
+        </div>
+      ) : filteredList.length > 0 ? (
+        <div>
+          <div className='flex justify-between items-center'>
+            <div className='flex items-center space-x-2'>
+              {visibleReviews} Reviews - Sorted by
+              <select className='sort' onChange={(e) => setSort(e.target.value)}>
+                <option>Relevance</option>
+                <option>Newest</option>
+                <option>Helpful</option>
+              </select>
+            </div>
+            <div className='flex items-center space-x-2'>
+              {filters.length > 0 && <div>Filtered by {filters.join(' & ')} stars</div>}
+            </div>
+          </div>
+
+          <div className='max-h-96 overflow-y-scroll'>
             <div>{filteredList.slice(0, visibleReviews).map((review, index) => <div key={index}><SingleReview review={review} /></div>)}
             </div>
             <div className="flex justify-between">
