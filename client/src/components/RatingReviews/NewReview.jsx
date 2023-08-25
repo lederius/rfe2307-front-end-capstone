@@ -14,7 +14,6 @@ const NewReview = ({ productID, form, setForm }) => {
 
   const getName = () => {
     axios.get(`/products/${productID}`, { params: { productID: productID } })
-      // .then(res => console.log('product', res.data))
       .then(res => setName(res.data.name))
       .catch(err => console.log('failed client get product name req', err));
   };
@@ -57,39 +56,40 @@ const NewReview = ({ productID, form, setForm }) => {
     <>
       <div className="modal">
         <div onClick={changeForm} className="w-100vw h-100vh top-0 left-0 right-0 bottom-0 fixed bg-neutral-600 opacity-70"></div>
-        <div className="fixed top-30 right-2/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-96 max-h-96 flex flex-col items-center overflow-y-auto">
-          <h1 className="justify-center text-xl font-bold m-2">New Review</h1>
+        <div className="fixed top-30 right-2/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded w-2/4 h-4/5 max-w-screen overflow-hidden flex flex-col items-center overflow-y-auto">
+          <h1 className="justify-center text-2xl font-bold m-2">New Review</h1>
           <p className="text-sm ml-2">About the {name}</p>
 
           <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
 
-            <span>
+            <span className='text-lg font-semibold'>
               Rating: <ReactStars count={5} half={false} size={24} onChange={handleRating} />
               <p className="text-xs">Double Click Please</p>
             </span>
 
             <div>
               <label>
-                Do you recommend this product?
+                <div className='text-lg font-semibold'>Do you recommend this product?</div>
                 <label><input type='radio' name='rec' value='yes' defaultChecked={true} />Yes</label>
                 <label><input type='radio' name='rec' value='no' />No</label>
               </label>
             </div>
 
             <div>
-              <label>Summary:
+              <label>
+                <div className='text-lg font-semibold'>Summary:</div>
                 <input name='summary' maxLength={60} className='border w-80' placeholder='Write a title here...' /></label>
             </div>
 
             <div>
-              <div><label>Body: </label></div>
+              <div><label className='text-lg font-semibold'>Body: </label></div>
               <div>
                 <textarea name='body' className='border w-80' minLength={60} maxLength={1000} placeholder='Let us know your thoughts!' />
               </div>
             </div>
 
             <div>
-              Characteristics:
+              <div className='text-lg font-semibold'>Characteristics:</div>
               <label>Size
                 <div>
                   <label><input type='radio' name='sizeRadio' />1 - A size too small</label>
