@@ -8,19 +8,25 @@ export default function ImageList ({productStyles, currentStyle, photoList, setC
   console.log('photoList on imageList: ', photoList);
 
   let mainImg = <img src={currentImg} height={300} width={300} />;
+  const imgFunc = function (num) {
+    console.log('num: ', num);
+    setCurrentImage(photoList[num].url);
+  };
 
   let photoGallery = photoList && photoList.length >= 1 && photoList.map((photo, ind)=>{
     if (photo.url === currentImg) {
-      return <img className='photoGallery currentImg'src={photo.url} height={80} width={80} key={ind}/>;
+      return <img className='photoGallery currentImg'src={photo.url} height={80} width={80} key={ind}
+        onClick={imgFunc(ind)}/>;
     }
-    return <img className='photoGallery'src={photo.url} height={80} width={80} key={ind}/>;
+    return <img className='photoGallery'src={photo.url} height={80} width={80} key={ind}
+      onClick={()=>{ imgFunc(ind); }}/>;
   });
 
   const renderCurrentImag = function () {
     //console.log('in photolist func');
     if (photoList && photoList.length > 0 ) {
       setCurrentImage(photoList[currentIndex].url);
-      setPrevImg(photoList[photoList.length - 1]);
+      // setPrevImg(photoList[photoList.length - 1]);
     }
   };
 
