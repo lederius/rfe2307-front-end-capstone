@@ -3,7 +3,7 @@ import axios from 'axios';
 import SingleReview from './SingleReview.jsx';
 import NewReview from './NewReview.jsx';
 
-const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
+const ReviewsList = ({ reviewList, id, filters, setFilters, meta }) => {
 
   const [visibleReviews, setVisibleReviews] = useState(2);
   const [form, setForm] = useState(false);
@@ -47,7 +47,7 @@ const ReviewsList = ({ reviewList, id, filters, setFilters }) => {
     <div>
       {form ? (
         <div className='w-96 h-full overflow-y-scroll'>
-          <NewReview productID={id} form={form} setForm={setForm} />
+          <NewReview productID={id} form={form} setForm={setForm} meta={meta}/>
         </div>
       ) : reviews.length > 0 ? (
         <div>
