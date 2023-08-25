@@ -36,22 +36,39 @@ const NewReview = ({ productID, form, setForm, meta }) => {
       rec = true;
     }
 
+    const sizeRadio = e.target.querySelector('[name="sizeRadio"]:checked');
+    const widthRadio = e.target.querySelector('[name="widthRadio"]:checked');
+    const comfortRadio = e.target.querySelector('[name="comfortRadio"]:checked');
+    const qualityRadio = e.target.querySelector('[name="qualityRadio"]:checked');
+    const lengthRadio = e.target.querySelector('[name="lengthRadio"]:checked');
+    const fitRadio = e.target.querySelector('[name="fitRadio"]:checked');
+
+    const sizeRadioValue = sizeRadio ? sizeRadio.value : null;
+    const widthRadioValue = widthRadio ? widthRadio.value : null;
+    const comfortRadioValue = comfortRadio ? comfortRadio.value : null;
+    const qualityRadioValue = qualityRadio ? qualityRadio.value : null;
+    const lengthRadioValue = lengthRadio ? lengthRadio.value : null;
+    const fitRadioValue = fitRadio ? fitRadio.value : null;
+
     let newRev = {
       'product_id': productID,
       rating: rating,
       summary: e.target.summary.value,
       body: e.target.body.value,
-      // date: moment().toString(),
       recommend: rec,
       name: e.target.nickname.value,
       email: e.target.email.value,
       photos: ['https://shorturl.at/mvQ48', 'https://shorturl.at/nuwDU'],
-      characteristics: {}
+      // need to make this conditional based on meta.characteristics keys
+      // characteristics: {
+      //   '123': sizeRadioValue,
+      //   '456': widthRadioValue,
+      //   '789': comfortRadioValue,
+      //   '012': qualityRadioValue,
+      //   '345': lengthRadioValue,
+      //   '678': fitRadioValue
+      // }
     };
-
-
-    //   characteristics: e.target.char.value
-    // };
 
     axios.post(`/reviews/${productID}`, { data: newRev }, { params: { id: productID } })
       .then(res => {
@@ -89,66 +106,66 @@ const NewReview = ({ productID, form, setForm, meta }) => {
         {char.Size && (
           <label><div className='font-medium'>Size:</div>
             <div className='flex flex-col'>
-              <label><input type='radio' name='sizeRadio' />1 - A size too small</label>
-              <label><input type='radio' name='sizeRadio' />2 - Half a size too small</label>
-              <label><input type='radio' name='sizeRadio' />3 - Perfect</label>
-              <label><input type='radio' name='sizeRadio' />4 - Half a size too big</label>
-              <label><input type='radio' name='sizeRadio' />5 - A size too big</label>
+              <label><input type='radio' name='sizeRadio' value='1'/>1 - A size too small</label>
+              <label><input type='radio' name='sizeRadio' value='2'/>2 - Half a size too small</label>
+              <label><input type='radio' name='sizeRadio' value='3'/>3 - Perfect</label>
+              <label><input type='radio' name='sizeRadio' value='4'/>4 - Half a size too big</label>
+              <label><input type='radio' name='sizeRadio' value='5'/>5 - A size too big</label>
             </div>
           </label>
         )}
         {char.Width && (
           <label><div className='font-medium'>Width:</div>
             <div className='flex flex-col'>
-              <label><input type='radio' name='widthRadio' />1 - Too narrow</label>
-              <label><input type='radio' name='widthRadio' />2 - Slightly narrow</label>
-              <label><input type='radio' name='widthRadio' />3 - Perfect</label>
-              <label><input type='radio' name='widthRadio' />4 - Slightly wide</label>
-              <label><input type='radio' name='widthRadio' />5 - Too wide</label>
+              <label><input type='radio' name='widthRadio' value='1'/>1 - Too narrow</label>
+              <label><input type='radio' name='widthRadio' value='2'/>2 - Slightly narrow</label>
+              <label><input type='radio' name='widthRadio' value='3'/>3 - Perfect</label>
+              <label><input type='radio' name='widthRadio' value='4'/>4 - Slightly wide</label>
+              <label><input type='radio' name='widthRadio' value='5'/>5 - Too wide</label>
             </div>
           </label>
         )}
         {char.Comfort && (
           <label><div className='font-medium'>Comfort:</div>
             <div className='flex flex-col'>
-              <label><input type='radio' name='comfortRadio' />1 - Uncomfortable</label>
-              <label><input type='radio' name='comfortRadio' />2 - Slightly uncomfortable</label>
-              <label><input type='radio' name='comfortRadio' />3 - Ok</label>
-              <label><input type='radio' name='comfortRadio' />4 - Comfortable</label>
-              <label><input type='radio' name='comfortRadio' />5 - Perfect</label>
+              <label><input type='radio' name='comfortRadio' value='1'/>1 - Uncomfortable</label>
+              <label><input type='radio' name='comfortRadio' value='2'/>2 - Slightly uncomfortable</label>
+              <label><input type='radio' name='comfortRadio' value='3'/>3 - Ok</label>
+              <label><input type='radio' name='comfortRadio' value='4'/>4 - Comfortable</label>
+              <label><input type='radio' name='comfortRadio' value='5'/>5 - Perfect</label>
             </div>
           </label>
         )}
         {char.Quality && (
           <label><div className='font-medium'>Quality:</div>
             <div className='flex flex-col'>
-              <label><input type='radio' name='qualityRadio' />1 - Poor</label>
-              <label><input type='radio' name='qualityRadio' />2 - Below average</label>
-              <label><input type='radio' name='qualityRadio' />3 - What I expected</label>
-              <label><input type='radio' name='qualityRadio' />4 - Pretty great</label>
-              <label><input type='radio' name='qualityRadio' />5 - Perfect</label>
+              <label><input type='radio' name='qualityRadio' value='1'/>1 - Poor</label>
+              <label><input type='radio' name='qualityRadio' value='2'/>2 - Below average</label>
+              <label><input type='radio' name='qualityRadio' value='3'/>3 - What I expected</label>
+              <label><input type='radio' name='qualityRadio' value='4'/>4 - Pretty great</label>
+              <label><input type='radio' name='qualityRadio' value='5'/>5 - Perfect</label>
             </div>
           </label>
         )}
         {char.Length && (
           <label><div className='font-medium'>Length:</div>
             <div className='flex flex-col'>
-              <label><input type='radio' name='lengthRadio' />1 - Runs short</label>
-              <label><input type='radio' name='lengthRadio' />2 - Runs slightly short</label>
-              <label><input type='radio' name='lengthRadio' />3 - Perfect</label>
-              <label><input type='radio' name='lengthRadio' />4 - Runs slightly long</label>
-              <label><input type='radio' name='lengthRadio' />5 - Runs long</label>
+              <label><input type='radio' name='lengthRadio' value='1'/>1 - Runs short</label>
+              <label><input type='radio' name='lengthRadio' value='2'/>2 - Runs slightly short</label>
+              <label><input type='radio' name='lengthRadio' value='3'/>3 - Perfect</label>
+              <label><input type='radio' name='lengthRadio' value='4'/>4 - Runs slightly long</label>
+              <label><input type='radio' name='lengthRadio' value='5'/>5 - Runs long</label>
             </div>
           </label>
         )}
         {char.Fit && (
           <label><div className='font-medium'>Fit:</div>
             <div className='flex flex-col'>
-              <label><input type='radio' name='fitRadio' />1 - Runs tight</label>
-              <label><input type='radio' name='fitRadio' />2 - Runs slightly tight</label>
-              <label><input type='radio' name='fitRadio' />3 - Perfect</label>
-              <label><input type='radio' name='fitRadio' />4 - Runs slightly loose</label>
-              <label><input type='radio' name='fitRadio' />5 - Runs loose</label>
+              <label><input type='radio' name='fitRadio' value='1'/>1 - Runs tight</label>
+              <label><input type='radio' name='fitRadio' value='2'/>2 - Runs slightly tight</label>
+              <label><input type='radio' name='fitRadio' value='3'/>3 - Perfect</label>
+              <label><input type='radio' name='fitRadio' value='4'/>4 - Runs slightly loose</label>
+              <label><input type='radio' name='fitRadio' value='5'/>5 - Runs loose</label>
             </div>
           </label>
         )}
@@ -186,7 +203,7 @@ const NewReview = ({ productID, form, setForm, meta }) => {
                 <textarea name='body' className='border w-80' minLength={60} maxLength={1000} placeholder='Let us know your thoughts!' />
               </div>
             </div>
-            {/* {meta && chars(meta)} */}
+            {meta && chars(meta)}
             <div className="flex flex-col items-center justify-center">
               {inputPhotos && (
                 <div>

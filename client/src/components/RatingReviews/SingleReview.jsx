@@ -10,7 +10,7 @@ const SingleReview = ({ review }) => {
   const handleClick = (e) => {
     e.preventDefault();
     setHelp(help + 1);
-    // put request here for persistency
+    // put request here for persistency - bug here
     axios.put(`/reviews/${review.review_id}/helpful`, { data: help.toString() }, { params: { reviewID: review.review_id.toString() } })
       .then(res => {
         console.log('successful put req');
