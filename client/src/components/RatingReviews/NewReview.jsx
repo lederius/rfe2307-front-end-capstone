@@ -7,6 +7,8 @@ const NewReview = ({ productID, form, setForm, meta }) => {
 
   const [name, setName] = useState('selected product');
   const [rating, setRating] = useState(0);
+  const [inputPhotos, setInputPhotos] = useState(false);
+  const [images, setImages] = useState([]);
 
   const changeForm = () => {
     setForm(!form);
@@ -49,12 +51,30 @@ const NewReview = ({ productID, form, setForm, meta }) => {
     //   characteristics: e.target.char.value
     // };
 
-    axios.post(`/reviews/${productID}`, { data: newRev }, {params: {id: productID}})
+    axios.post(`/reviews/${productID}`, { data: newRev }, { params: { id: productID } })
       .then(res => {
         changeForm();
         alert('Thank you for your review!');
       })
       .catch(err => console.log('Cannot post new review', err));
+  };
+
+  const photos = () => {
+    return (
+      <div>
+        {images.length > 0 && (
+          <div className="flex space-x-2">
+            {images.map((img, index) => {
+              console.log(img);
+              return <img key={index} alt="thumbnail"
+                width={60} height={60}
+                src={URL.createObjectURL(img)} />;
+            })}
+          </div>
+        )}
+        <button onClick={(e) => setInputPhotos(true)} className='m-1 py-[.438rem] px-2 w-40 mx-auto inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Upload Photos</button>
+      </div>
+    );
   };
 
   const chars = (data) => {
@@ -139,14 +159,11 @@ const NewReview = ({ productID, form, setForm, meta }) => {
         <div className="fixed top-30 right-2/4 translate-x-2/4 leading-6 bg-neutral-50 border-4 rounded overflow-hidden" style={{ width: '50%', height: '80vh', overflowY: 'auto' }}>
           <h1 className="flex justify-center text-2xl font-bold m-2">New Review</h1>
           <p className="flex justify-center text-sm ml-2">About the {name}</p>
-
           <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
-
             <span className='text-lg font-semibold'>
               Rating: <ReactStars count={5} half={false} size={24} onChange={handleRating} />
               <p className="text-xs">Double Click Please</p>
             </span>
-
             <div>
               <label>
                 <div className='text-lg font-semibold'>Do you recommend this product?</div>
@@ -154,32 +171,36 @@ const NewReview = ({ productID, form, setForm, meta }) => {
                 <label><input type='radio' name='rec' value='no' />No</label>
               </label>
             </div>
-
             <div>
               <label>
                 <div className='text-lg font-semibold'>Summary:</div>
                 <input name='summary' maxLength={60} className='border w-80' placeholder='Write a title here...' /></label>
             </div>
-
             <div>
               <div><label className='text-lg font-semibold'>Body: </label></div>
               <div>
                 <textarea name='body' className='border w-80' minLength={60} maxLength={1000} placeholder='Let us know your thoughts!' />
               </div>
             </div>
-            {/* {meta && chars(meta)}
-            <button className='m-1 py-[.438rem] px-2 w-40 mx-auto inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Upload Photos</button> */}
-
+            {/* {meta && chars(meta)} */}
+            {inputPhotos && (
+              <div>
+                <div className='font-semibold'>Choose up to 5!</div>
+                <div>
+                  <input type='file' name='photo' onChange={(e) => setImages(Array.from(e.target.files))} multiple />
+                </div>
+              </div>
+            )}
+            {images.length <= 5 && photos()}
             <label>Nickname: <input className='w-64' name='nickname' placeholder='User123' /></label>
-
             <label>Email:
               <input required type="email" name='email' className="m-2 w-64" placeholder="Example: jack@email.com"></input>
             </label>
             <span className="m-2 text-xs">For authentication reasons, you will not be emailed</span>
 
-            <button role='submit' type='submit' className='m-1 py-[.688rem] px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Submit Review</button>
+            <button role='submit' type='submit' className='m-1 py-[.688rem] px-4  items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-blue-500 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all text-sm dark:border-gray-700 dark:hover:border-blue-500'>Submit Review</button>
           </form>
-          <button className="h-7 absolute top-1 right-1 px-2 m-1 py-[.688rem] inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-white bg-red-500 hover:border-red-500 transition-all text-sm dark:border-gray-700 dark:hover:border-red-500" onClick={changeForm}>
+          <button onClick={changeForm} className="h-7 absolute top-1 right-1 px-2 m-1 py-[.688rem] inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-white bg-red-500 hover:border-red-500 transition-all text-sm dark:border-gray-700 dark:hover:border-red-500">
             X
           </button>
         </div>
