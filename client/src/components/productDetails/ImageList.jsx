@@ -1,58 +1,45 @@
 import React, { useEffect, useState} from 'react';
 
-export default function ImageList ({productStyles, currentStyle}) {
-  // console.log('productStyles: ', productStyles);
-  // console.log('currentStyle: ', currentStyle);
+export default function ImageList ({productStyles, currentStyle, photoList, setCurrentImage, currentImg}) {
+  const [prevImg, setPrevImg] = useState(null);
+  const [nextImg, setNextImg] = useState(null);
+  const [centerImg, setCenterImg] = useState(0);
   //console.log('photoList on imageList: ', photoList);
-  const [currentImg, setCurrentImage] = useState(null);
-  console.log('imageList: ', currentStyle);
-  console.log('photoArr: ', currentStyle.photos); // doesn't work
 
-  const imgList = function() {
-    for (i in currentStyle) {
-      console.log(currentStyle[i]);
+  let mainImg = <img src={currentImg} height={300} width={300} />;
+  let photoGallery = photoList.map((photo, ind)=>{
+    if (photo.url === currentImg) {
+      return <img className='photoGallery currentImg'src={photo.url} height={80} width={80} key={ind}/>;
+    }
+    return <img className='photoGallery'src={photo.url} height={80} width={80} key={ind}/>;
+  });
+
+  const renderCurrentImag = function () {
+    //console.log('in photolist func');
+    if (photoList.length > 0 ) {
+      setCurrentImage(photoList[0].url);
+      setPrevImg(photoList[photoList.length - 1]);
     }
   };
 
   useEffect(()=>{
-    // imgList();
-  }, [currentStyle]);
-  // console.log('currentStyle.photos: ', currentStyle.photos);
-  // useEffect(()=>{
-  //   //this changes img base of current style being used
-  //   setCurrentImage(currentStyle.photos[0].url);
-  //   // console.log('currentImg', currentImg);
-  // }, [currentStyle]);
-  //create prevImage and nextImage for state
-  // give entire banner a background color;
-  // use flex box, overlay, position
-  //add hover with border and focus on thumbnail
-  //create 3 states for the imgs
-  //set currentImage with photo from current style
-  let mainImg = null;
+    renderCurrentImag();
+  }, [photoList]);
 
-
-  // <img src={currentStyle.photos.thumbnail_url} height={50} width={50} key={ind}/>
-
-  const changeImg = function(whichPic) {
-    console.log(whichPic);
-  };
+  // const changeImg = function(ind) {
+  //   console.log('photoList in changImg: ', photoList);
+  //   setCurrentImage(photoList[0].postion.url);
+  // };
   // console.log('currentStyle: ', currentStyle);
   // console.log('productStyles: ', productStyles);
   return (
     <div className="imageList">
+      <div className='galleryContainer'>
+        {photoGallery}
+      </div>
       <button className='prevButton imgButton' onClick={()=>{ changeImg(-1); }} >Previous</button>
-      <br/>
+      {mainImg}
       <button className='nextButton imgButton' onClick={()=>{ changeImg(1); }} >Next</button>
-      {/* <div className>
-        <img />
-      </div>
-      <div>
-        <img />
-      </div>
-      <div>
-        <img />
-      </div> */}
     </div>
   );
 }

@@ -10,9 +10,8 @@ export default function ProductContainer ({currentProduct}) {
   const [productReviews, setProductReviews] = useState([]);
   const [currentStyle, setCurrentStyle] = useState([]);
   const [photoList, setPhotoList] = useState([]);
-  //this container has twp child
-  //gallery and detail
-  //call axios to get product detail
+  const [currentImg, setCurrentImage] = useState(null);
+
   const id = currentProduct.id;
   let getProduct = function () {
     axios.get(`/products/${id}`, {params: {productID: id}})
@@ -28,6 +27,7 @@ export default function ProductContainer ({currentProduct}) {
       .then(product =>{
         setStyles(product.data.results);
         setCurrentStyle(product.data.results[0]);
+        setPhotoList(product.data.results[0].photos);
       })
       .catch(err=>{
         console.error(err);
@@ -47,15 +47,30 @@ export default function ProductContainer ({currentProduct}) {
     getProduct();
     getStyles();
     getReviews();
-    // console.log('in useEffect', currentStyle);
-    // console.log('in useEffect', currentStyle.photos);
-    // setPhotoList(currentStyle.photos);
   }, [currentProduct]);
-  //put detail in state
-  // console.log('currentStyle in prodCont: ', currentStyle);
   return (
-    <div className="productContainer">
-      <ImageList
+    <div >
+      {currentStyle ? (
+        <div className="productContainer">
+          <ImageList
+            photoList={photoList}
+            currentStyle={currentStyle}
+            productDetails={productDetails}
+            productStyles={productStyles}
+            setCurrentImage={setCurrentImage}
+            currentImg={currentImg}/>
+          <Detail
+            currentProduct={currentProduct}
+            productDetails={productDetails}
+            productStyles={productStyles}
+            productReviews={productReviews}
+            currentStyle={currentStyle}
+            setCurrentStyle={setCurrentStyle}
+            setPhotoList={setPhotoList}
+            photoList={photoList}
+          />
+        </div>) : null}
+      {/* <ImageList
         photoList={photoList}
         currentStyle={currentStyle}
         productDetails={productDetails}
@@ -69,7 +84,7 @@ export default function ProductContainer ({currentProduct}) {
         setCurrentStyle={setCurrentStyle}
         setPhotoList={setPhotoList}
         photoList={photoList}
-      />
+      /> */}
     </div>
   );
 }

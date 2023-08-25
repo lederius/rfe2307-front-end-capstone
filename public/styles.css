@@ -94,7 +94,17 @@ margin-bottom: 2px
 .imgButton:hover {
   color: #FF00FF;
 }
-
+.galleryContainer{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.photoGallery:hover{
+  border: 1px solid lavenderblush;
+}
+.currentImg{
+  border:2px solid lightcyan;
+}
 /* marker for review chars */
 .marker-triangle {
   position: absolute;

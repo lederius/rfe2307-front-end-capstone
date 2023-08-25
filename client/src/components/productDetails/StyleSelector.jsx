@@ -3,20 +3,26 @@ import React, { useState, useEffect} from 'react';
 export default function StyleSelector ({productStyles, setCurrentStyle, currentStyle, setPhotoList, photoList}) {
   let styleOptionDiv;
   let testDiv;
-  //console.log('photoList before click: ', photoList);
-
+  //console.log('photoList in styleSelector: ', photoList);
   useEffect(()=>{
     if (currentStyle.length > 0) {
-      console.log('in useEffect', currentStyle);
-      console.log('in useEffect', currentStyle.photos);// doesn't work
+      setPhotoList(currentStyle[0].photos);
     }
+    //console.log('currentStyle in useeffect: ', currentStyle);
   }, [currentStyle]);
-
   let styleChange = function (newStyle) {
+    //console.log('newStyle: ', newStyle);
     const updatedStyle = productStyles.find((style) => style.style_id === newStyle);
+    //console.log('updatedStyle: ', updatedStyle);
     setCurrentStyle([updatedStyle]);
-    console.log('styleChange: ', photoList);
+    console.log('currentStyle: ', currentStyle);
+    // for (let keys in currentStyle) {
+    //   console.log('keys: ', keys);
+    // }
+    console.log('currentStyle.photos: ', currentStyle.photos);
+    //console.log('currentStyle[0].photos: ', currentStyle.photos);
     setPhotoList(currentStyle.photos);
+
   };
 
   let styleOption = function () {
@@ -31,10 +37,11 @@ export default function StyleSelector ({productStyles, setCurrentStyle, currentS
   };
   styleOption();
 
+
+
   return (
     <div>
       <h4>Style selector</h4>
-      {testDiv}
       {styleOptionDiv}
     </div>
   );
