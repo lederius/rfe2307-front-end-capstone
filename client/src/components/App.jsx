@@ -12,9 +12,9 @@ const App = () => {
   return (
     <div>
       <ProductDetails />
-      <RelatedProducts/>
+      {/* <RelatedProducts/>
       <QuestionAnswerContainer />
-      <RatingReviews />
+      <RatingReviews /> */}
     </div>
   );
 };

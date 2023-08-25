@@ -8,7 +8,7 @@ export default function StyleSelector ({productStyles, setCurrentStyle, currentS
     if (currentStyle.length > 0) {
       setPhotoList(currentStyle[0].photos);
     }
-    //console.log('currentStyle in useeffect: ', currentStyle);
+    console.log('currentStyle in useeffect: ', currentStyle);
   }, [currentStyle]);
   let styleChange = function (newStyle) {
     //console.log('newStyle: ', newStyle);
